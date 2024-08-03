@@ -16,4 +16,5 @@ public class Recipe {
     @Enumerated(EnumType.STRING)
     private CookingTime cookingTime;
 
+
 }
