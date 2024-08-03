@@ -19,7 +19,7 @@ public class UserController {
     @GetMapping("/create-user")
     public String createUserForm(Model model) {
         model.addAttribute("user", new UserDto());
-        return "create-user";
+        return "create-users";
     }
 
     @PostMapping(path = "/users")
