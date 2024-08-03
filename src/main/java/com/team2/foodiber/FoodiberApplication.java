@@ -64,7 +64,7 @@ public class FoodiberApplication implements CommandLineRunner {
 
 		Recipe recipe7 = new Recipe();
 		recipe7.setName("Oven roasted salmon and vegetables");
-		recipe7.setRecipeCategory(RecipeCategory.SOUP);
+		recipe7.setRecipeCategory(RecipeCategory.MAIN_COURSE);
 		recipe7.setCookingTime(CookingTime.SLOW_30MIN);
 		recipeRepository.saveAndFlush(recipe7);
 	}
