@@ -10,6 +10,7 @@ public class Ingredients {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String item;
     private boolean isGlutenFree;
     private boolean isLactoseFree;
