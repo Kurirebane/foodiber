@@ -22,7 +22,7 @@ public class MainController {
     public String getAllRecipes (final ModelMap modelMap) {
         List <Recipe> recipes = recipeService.getAllRecipes();
         modelMap.addAttribute("recipes", recipes);
-        return "recipies";
+        return "search-recipes";
     }
 
 
