@@ -12,7 +12,12 @@ public class RecipeIngredients {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long ingredientsId;// Kas see peaks olema sama mis ingredients klass ja seal field id?
-    private Long recipeId;
+    @ManyToOne
+    @JoinColumn(name = "ingredientsId", referencedColumnName = "id")
+    private Ingredients ingredients;
+
+    @ManyToOne
+    @JoinColumn(name = "recipe_id", referencedColumnName = "id")
+    private Recipe recipe;
     private String amounts;
 }
