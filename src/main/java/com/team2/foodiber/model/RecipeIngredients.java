@@ -17,7 +17,7 @@ public class RecipeIngredients {
     private Ingredients ingredients;
 
     @ManyToOne
-    @JoinColumn(name = "recipe_id", referencedColumnName = "id")
+    @JoinColumn(name = "recipeId", referencedColumnName = "id")
     private Recipe recipe;
     private String amounts;
 }
