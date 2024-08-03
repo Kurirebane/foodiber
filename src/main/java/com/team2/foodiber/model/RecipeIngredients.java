@@ -20,4 +20,5 @@ public class RecipeIngredients {
     @JoinColumn(name = "recipeId", referencedColumnName = "id")
     private Recipe recipe;
     private String amounts;
+
 }
