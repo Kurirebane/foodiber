@@ -3,13 +3,13 @@ package com.team2.foodiber.controller;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.service.RecipeService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 @AllArgsConstructor
 public class MainController {
 
@@ -22,7 +22,7 @@ public class MainController {
     public String getAllRecipes (final ModelMap modelMap) {
         List <Recipe> recipes = recipeService.getAllRecipes();
         modelMap.addAttribute("recipes", recipes);
-        return "recipies";
+        return "search-recipes";
     }
 
 
