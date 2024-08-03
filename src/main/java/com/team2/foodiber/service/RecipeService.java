@@ -7,7 +7,11 @@ import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.model.RecipeCategory;
 import com.team2.foodiber.model.User;
 import com.team2.foodiber.repository.RecipeRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class RecipeService {
 
     public final RecipeRepository recipeRepository;
@@ -36,5 +40,10 @@ public class RecipeService {
         Recipe recipe = recipeDtoToRecipe(new RecipeDto());
         Recipe savedRecipe = recipeRepository.save(recipe);
         return toDto(savedRecipe);
+    }
+
+    public List<Recipe> getAllRecipes() {
+        return recipeRepository.findAll();
+
     }
 }
