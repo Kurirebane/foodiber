@@ -24,6 +24,10 @@ public class MainController {
         modelMap.addAttribute("recipes", recipes);
         return "search-recipes";
     }
+    @GetMapping()
+    public String getIndex(){
+        return "index";
+    }
 
 
 
