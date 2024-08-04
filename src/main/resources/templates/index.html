@@ -70,13 +70,19 @@
 			
 		</div>
 	</nav>
-	
-	<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/backgroundimage.png)" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-12 col-md-offset-0 text-left">
-					
+		<title>Large Input Text in Textarea</title>
+		<style>
+			.custom-textarea {
+				width: 100%;
+				height: 41px;
+				padding: 10px;
+				padding-right: 40px;
+				font-size: 18px;
+				box-sizing: border-box;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				resize: none;
+			}
 
 					<div class="row row-mt-15em">
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
@@ -95,34 +101,108 @@
 												<div class="row form-group">
 													<textarea id="user-input" rows="2" cols="25" style="width: 307px; height: 41px;"></textarea>
 
-												</div>
-												<div class="row form-group">
+			.toggle-password {
+				position: absolute;
+				right: 10px;
+				top: 50%;
+				transform: translateY(-50%);
+				cursor: pointer;
+				background: none;
+				border: none;
+				font-size: 18px;
+				padding: 0;
+				z-index: 1;
+			}
+			.username-container, .password-container {
+				width: 30%;
+			}
 
-												</div>
-												<div class="row form-group">
-
-												</div>
-
-												<div class="row form-group">
-													<div class="col-md-12">
-														<input type="submit" class="btn btn-primary btn-block" value="Reserve Now">
+		</style>
+		</head>
+		<body>
+		<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/backgroundimage.png)" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<div class="gtco-container">
+				<div class="row">
+					<div class="col-md-12 col-md-offset-0 text-left">
+						<div class="row row-mt-15em">
+							<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+								<span class="intro-text-small">View recipes or something <a href="someaddress.com" target="_blank">something</a></span>
+								<h1 class="cursive-font">All in good taste!</h1>
+							</div>
+							<div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
+								<div class="form-wrap-fluid">
+									<div class="tab">
+										<div class="tab-content">
+											<div class="tab-content-inner active" data-content="signup">
+												<h3 class="cursive-font">Log in</h3>
+												<form action="#">
+													<div class="row form-group">
+														<div class="username-container">
+														<input type="text" id="username" class="custom-textarea" placeholder="Username">
+														</div>
 													</div>
-												</div>
-											</form>	
+													<div class="row form-group">
+														<div class="password-container">
+															<input type="password" id="password" class="custom-textarea" placeholder="Password">
+															<button type="button" class="toggle-password" id="togglePassword">👁️</button>
+														</div>
+													</div>
+													<div class="row form-group"></div>
+													<div class="row form-group"></div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<input type="submit" class="btn btn-primary btn-block" value="LOGIN">
+														</div>
+													</div>
+												</form>
+											</div>
 										</div>
-
-										
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-							
-					
 				</div>
 			</div>
-		</div>
-	</header>
+		</header>
+
+		<script>
+			document.getElementById('togglePassword').addEventListener('click', function() {
+				const passwordField = document.getElementById('password');
+				if (passwordField.type === 'password') {
+					passwordField.type = 'text';
+					this.textContent = '🙈';
+				} else {
+					passwordField.type = 'password';
+					this.textContent = '👁️';
+				}
+			});
+		</script>
+
+		<script>
+			document.querySelectorAll('textarea').forEach(function(textarea) {
+				textarea.addEventListener('focus', function() {
+					if (this.value === this.placeholder) {
+						this.value = '';
+					}
+				});
+
+				textarea.addEventListener('blur', function() {
+					if (this.value === '') {
+						this.value = this.placeholder;
+					}
+				});
+
+				window.onload = function() {
+					document.querySelectorAll('textarea').forEach(function(textarea) {
+						if (textarea.value === '') {
+							textarea.value = textarea.placeholder;
+						}
+					});
+				};
+			});
+		</script>
 
 	
 	
