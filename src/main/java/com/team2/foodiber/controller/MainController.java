@@ -29,6 +29,13 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping(path = "/select-category")
+    public String getAllCategories(){
+        return "select-category";
+    }
+
+//    @GetMapping(path = )
+
 
 
 
