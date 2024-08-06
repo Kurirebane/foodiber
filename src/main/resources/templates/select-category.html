@@ -32,7 +32,7 @@
   <script src="./js/respond.min.js"></script>
   <![endif]-->
 
-  <div class="gtco-section" style="background-image: url(images/categories_backround.jpeg)">
+ <!-- <div class="gtco-section" style="background-image: url(images/categories_backround.jpeg)">
     <div class="gtco-container">
       <div class="row" role="banner">
         <div class="col-md-6 col-md-offset-2 text-center gtco-heading">
@@ -114,9 +114,72 @@
         </div>
       </div>
     </div>
+  </div>-->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Selection</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url('/images/backgroundimage.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .category-button {
+        display: block;
+        margin: 40px;
+        padding: 30px 45px;
+        font-size: 22px;
+        background-color: #204d74;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+
+      }
+      .category-button:hover {
+        background-color: #5bc0de;
+      }
+      h1 {
+        font-family: Arial, Baskerville, monospace;
+        font-size: 40px;
+        font-style: italic;
+        font-weight: bold;
+        color: #204d74;
+
+      }
+    </style>
+  </head>
+<body>
+<div class="container">
+  <h1>SELECT FOOD CATEGORY</h1>
+  <div>
+  <a href="/category?name=category1" class="category-button" onclick="window.location.href='index.html'">BREAKFAST</a>
+  <a href="/category?name=category2" class="category-button">MAIN COURSE</a>
+  <a href="/category?name=category3" class="category-button">SOUP</a>
+  <a href="/category?name=category4" class="category-button">DESSERT</a>
+  <a href="/category?name=category5" class="category-button">VEGETARIAN</a>
+  <button class="redirect-button" >Go to Front Page</button>
   </div>
+</div>
+</body>
 </head>
 <body>
+
 
 </body>
 </html>

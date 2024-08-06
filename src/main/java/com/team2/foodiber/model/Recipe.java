@@ -17,4 +17,5 @@ public class Recipe {
     private CookingTime cookingTime;
 
 
+
 }
