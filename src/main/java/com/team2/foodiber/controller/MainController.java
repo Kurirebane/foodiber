@@ -31,8 +31,10 @@ public class MainController {
 
     @GetMapping(path = "/select-category")
     public String getAllCategories(){
+
         return "select-category";
     }
+
 
 //    @GetMapping(path = )
 
