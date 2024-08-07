@@ -9,6 +9,7 @@ import com.team2.foodiber.model.User;
 import com.team2.foodiber.repository.RecipeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,7 +21,7 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    private Recipe recipeDtoToRecipe (RecipeDto recipeDto){
+    private Recipe recipeDtoToRecipe(RecipeDto recipeDto) {
         Recipe recipe = new Recipe();
         recipe.setName(recipeDto.getName());
         recipe.setRecipeCategory(RecipeCategory.valueOf(recipeDto.getCategory()));
@@ -28,7 +29,7 @@ public class RecipeService {
         return recipe;
     }
 
-    private RecipeDto toDto(Recipe recipe){
+    private RecipeDto toDto(Recipe recipe) {
         RecipeDto recipeDto = new RecipeDto();
         recipeDto.setName(recipe.getName());
         recipeDto.setCategory(String.valueOf(RecipeCategory.valueOf(recipeDto.getCategory())));
@@ -36,14 +37,21 @@ public class RecipeService {
         return recipeDto;
     }
 
-    public RecipeDto createRecipe (RecipeDto createdRecipeDto) {
+    public RecipeDto createRecipe(RecipeDto createdRecipeDto) {
         Recipe recipe = recipeDtoToRecipe(new RecipeDto());
         Recipe savedRecipe = recipeRepository.save(recipe);
         return toDto(savedRecipe);
     }
 
+    public List<Recipe> getRecipesByCategory(RecipeCategory category) {
+        return recipeRepository.findByRecipeCategory(category);
+    }
+
+
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
 
     }
+
 }
+
