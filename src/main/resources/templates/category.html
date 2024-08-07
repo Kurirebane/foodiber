@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-image: url('/images/backgroundimage5.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    h1 {
+      font-family: Arial, Baskerville, monospace;
+      font-size: 40px;
+      font-style: italic;
+      font-weight: bold;
+      color: #204d74;
+      text-align: center;
+
+
+    }
+    .grid-container {
+      display: grid;
+      border: #204d74;
+      align-content: center;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .grid-item {
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .grid-item h2 {
+      margin-top: 0;
+    }
+    .back-button {
+      display: block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      width: 150px;
+    }
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+<h1>RECIPES</h1>
+<ul>
+  <li th:each="recipe : ${recipes}">
+    <h2 th:text="${recipe.name}"></h2>
+    <p th:text="${recipe.recipeCategory}"></p>
+    <p th:text="${recipe.cookingTime}"></p>
+  </li>
+</ul>
+<a href="/">Go back to main page</a>
+</body>
+</html>
