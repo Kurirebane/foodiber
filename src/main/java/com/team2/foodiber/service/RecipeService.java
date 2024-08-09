@@ -53,5 +53,8 @@ public class RecipeService {
 
     }
 
+    public Recipe getRecipeById(Long recipeId) {
+        return recipeRepository.findAllById(recipeId);
+    }
 }
 
