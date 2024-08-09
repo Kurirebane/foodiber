@@ -67,6 +67,31 @@ public class FoodiberApplication implements CommandLineRunner {
 		recipe7.setRecipeCategory(RecipeCategory.MAIN_COURSE);
 		recipe7.setCookingTime(CookingTime.SLOW_30MIN);
 		recipeRepository.save(recipe7);
+
+		Recipe recipe8 = new Recipe();
+		recipe8.setName("Vegetarian lasagne");
+		recipe8.setRecipeCategory(RecipeCategory.VEGETARIAN);
+		recipe8.setCookingTime(CookingTime.SLOW_30MIN);
+		recipeRepository.save(recipe8);
+
+		Recipe recipe9 = new Recipe();
+		recipe9.setName("Oven buckwheat with fried ham");
+		recipe9.setRecipeCategory(RecipeCategory.MAIN_COURSE);
+		recipe9.setCookingTime(CookingTime.SLOW_30MIN);
+		recipeRepository.save(recipe9);
+
+		Recipe recipe10 = new Recipe();
+		recipe10.setName("Greek yoghurt with mango puree and crunchy granola");
+		recipe10.setRecipeCategory(RecipeCategory.DESSERT);
+		recipe10.setCookingTime(CookingTime.FAST_5MIN);
+		recipeRepository.save(recipe10);
+
+		Recipe recipe11 = new Recipe();
+		recipe11.setName("Poor knights");
+		recipe11.setRecipeCategory(RecipeCategory.DESSERT);
+		recipe11.setCookingTime(CookingTime.MEDIUM_15MIN);
+		recipeRepository.save(recipe11);
+
 	}
 
 
