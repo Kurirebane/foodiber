@@ -47,6 +47,13 @@ public class MainController {
         return "category";
     }
 
+    @GetMapping("/recipe/details")
+    public String getRecipeDetails(@RequestParam(name = "id") Long recipeId, Model model) {
+        Recipe recipe = recipeService.getRecipeById(recipeId);
+        model.addAttribute("recipe", recipe);
+        return "recipe-details";  // The template to display the recipe details
+    }
+
 
 
 
