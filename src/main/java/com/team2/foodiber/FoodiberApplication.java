@@ -1,8 +1,8 @@
 package com.team2.foodiber;
 
-import com.team2.foodiber.model.CookingTime;
-import com.team2.foodiber.model.Recipe;
-import com.team2.foodiber.model.RecipeCategory;
+import com.team2.foodiber.model.*;
+import com.team2.foodiber.repository.IngredientsRepository;
+import com.team2.foodiber.repository.RecipeIngredientsRepository;
 import com.team2.foodiber.repository.RecipeRepository;
 import com.team2.foodiber.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,10 @@ public class FoodiberApplication implements CommandLineRunner {
 	private UserService userService;
 	@Autowired
 	private RecipeRepository recipeRepository;
+	@Autowired
+	private IngredientsRepository ingredientsRepository;
+	@Autowired
+	private RecipeIngredientsRepository recipeIngredientsRepository;
 
 
 	public static void main(String[] args) {
@@ -48,13 +52,27 @@ public class FoodiberApplication implements CommandLineRunner {
 		recipe4.setName("Creamy roasted pumpkin soup");
 		recipe4.setRecipeCategory(RecipeCategory.SOUP);
 		recipe4.setCookingTime(CookingTime.SLOW_30MIN);
-		recipeRepository.save(recipe4);
+		Recipe savedPumpkinSoup = recipeRepository.save(recipe4);
+
 
 		Recipe recipe5 = new Recipe();
 		recipe5.setName("Avocado toast");
 		recipe5.setRecipeCategory(RecipeCategory.BREAKFAST);
 		recipe5.setCookingTime(CookingTime.FAST_5MIN);
-		recipeRepository.save(recipe5);
+		Recipe savedAvocadoToast = recipeRepository.save(recipe5);
+
+		Ingredient ingredients = new Ingredient();
+		ingredients.setItem("carrot");
+		ingredients.setGlutenFree(true);
+		ingredients.setLactoseFree(true);
+		Ingredient savedIngredientsCarrot = ingredientsRepository.save(ingredients);
+
+		RecipeIngredients recipeIngredients = new RecipeIngredients();
+		recipeIngredients.setIngredient(savedIngredientsCarrot);
+		recipeIngredients.setRecipe(savedPumpkinSoup);
+		recipeIngredients.setQuantity("3");
+		recipeIngredientsRepository.save(recipeIngredients);
+
 
 		Recipe recipe6 = new Recipe();
 		recipe6.setName("Chickpea curry");
