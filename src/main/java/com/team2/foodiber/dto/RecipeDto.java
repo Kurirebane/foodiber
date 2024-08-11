@@ -9,5 +9,6 @@ public class RecipeDto {
     private String name;
     private String category;
     private CookingTime cookingTime;
+    private String ingredients;
 
 }

@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>Create User</h2>
-<form action="/users" method="post" th:object="${user}">
+<form action="/create" method="post" th:object="${user}">
     <div>
         <label for="name">Name</label>
         <input type="text" id="name" name="name" th:field="*{name}">
