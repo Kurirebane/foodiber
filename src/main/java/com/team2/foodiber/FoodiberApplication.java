@@ -10,6 +10,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @SpringBootApplication
 public class FoodiberApplication implements CommandLineRunner {
 
@@ -23,6 +27,7 @@ public class FoodiberApplication implements CommandLineRunner {
 	private RecipeIngredientsRepository recipeIngredientsRepository;
 
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(FoodiberApplication.class, args);
 	}
@@ -30,6 +35,8 @@ public class FoodiberApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+
+		// ********************************* RECIPES *********************************************
 		Recipe recipe1 = new Recipe();
 		recipe1.setName("Pasta bolognese");
 		recipe1.setRecipeCategory(RecipeCategory.MAIN_COURSE);
@@ -54,25 +61,11 @@ public class FoodiberApplication implements CommandLineRunner {
 		recipe4.setCookingTime(CookingTime.SLOW_30MIN);
 		Recipe savedPumpkinSoup = recipeRepository.save(recipe4);
 
-
 		Recipe recipe5 = new Recipe();
 		recipe5.setName("Avocado toast");
 		recipe5.setRecipeCategory(RecipeCategory.BREAKFAST);
 		recipe5.setCookingTime(CookingTime.FAST_5MIN);
 		Recipe savedAvocadoToast = recipeRepository.save(recipe5);
-
-		Ingredient ingredients = new Ingredient();
-		ingredients.setItem("carrot");
-		ingredients.setGlutenFree(true);
-		ingredients.setLactoseFree(true);
-		Ingredient savedIngredientsCarrot = ingredientsRepository.save(ingredients);
-
-		RecipeIngredients recipeIngredients = new RecipeIngredients();
-		recipeIngredients.setIngredient(savedIngredientsCarrot);
-		recipeIngredients.setRecipe(savedPumpkinSoup);
-		recipeIngredients.setQuantity("3");
-		recipeIngredientsRepository.save(recipeIngredients);
-
 
 		Recipe recipe6 = new Recipe();
 		recipe6.setName("Chickpea curry");
@@ -110,8 +103,110 @@ public class FoodiberApplication implements CommandLineRunner {
 		recipe11.setCookingTime(CookingTime.MEDIUM_15MIN);
 		recipeRepository.save(recipe11);
 
+		//*********************' INGREDIENTS *********************************************
+
+		Ingredient ingredientCarrot = new Ingredient();
+		ingredientCarrot.setItem("carrot");
+		ingredientCarrot.setGlutenFree(true);
+		ingredientCarrot.setLactoseFree(true);
+		Ingredient savedIngredientsCarrot = ingredientsRepository.save(ingredientCarrot);
+
+		Ingredient ingredientPotato = new Ingredient();
+		ingredientPotato.setItem("potato");
+		ingredientPotato.setGlutenFree(true);
+		ingredientPotato.setLactoseFree(true);
+		Ingredient savedIngredientsPotato = ingredientsRepository.save(ingredientPotato);
+
+		Ingredient ingredientPumpkin = new Ingredient();
+		ingredientPumpkin.setItem("pumpkin");
+		ingredientPumpkin.setGlutenFree(true);
+		ingredientPumpkin.setLactoseFree(true);
+		Ingredient savedIngredientsPumpkin = ingredientsRepository.save(ingredientPumpkin);
+
+		Ingredient ingredientOnion = new Ingredient();
+		ingredientOnion.setItem("onion");
+		ingredientOnion.setGlutenFree(true);
+		ingredientOnion.setLactoseFree(true);
+		Ingredient savedIngredientsOnion = ingredientsRepository.save(ingredientOnion);
+
+		Ingredient ingredientOliveOil = new Ingredient();
+		ingredientOliveOil.setItem("olive oil");
+		ingredientOliveOil.setGlutenFree(true);
+		ingredientOliveOil.setLactoseFree(true);
+		Ingredient savedIngredientsOliveOil= ingredientsRepository.save(ingredientOliveOil);
+
+		Ingredient ingredientCream = new Ingredient();
+		ingredientCream.setItem("20% coffee cream");
+		ingredientCream.setGlutenFree(true);
+		ingredientCream.setLactoseFree(false);
+		Ingredient savedIngredientsCream = ingredientsRepository.save(ingredientCream);
+
+		Ingredient ingredientGarlic = new Ingredient();
+		ingredientGarlic.setItem("garlic");
+		ingredientGarlic.setGlutenFree(true);
+		ingredientGarlic.setLactoseFree(true);
+		Ingredient savedIngredientsGarlic = ingredientsRepository.save(ingredientGarlic);
+
+		Ingredient ingredientLeek = new Ingredient();
+		ingredientLeek.setItem("leek");
+		ingredientLeek.setGlutenFree(true);
+		ingredientLeek.setLactoseFree(true);
+		Ingredient savedIngredientsLeek = ingredientsRepository.save(ingredientLeek);
+
+		 //*************** RECIPE INGREDIENTS ******************************************
+		RecipeIngredients recipeIngredientsCarrot = new RecipeIngredients();
+		recipeIngredientsCarrot.setIngredient(savedIngredientsCarrot);
+		recipeIngredientsCarrot.setRecipe(savedPumpkinSoup);
+		recipeIngredientsCarrot.setQuantityPerServing("3");
+		recipeIngredientsRepository.save(recipeIngredientsCarrot);
+
+
+		RecipeIngredients recipeIngredientsOliveOil = new RecipeIngredients();
+		recipeIngredientsOliveOil.setIngredient(savedIngredientsOliveOil);
+		recipeIngredientsOliveOil.setRecipe(savedPumpkinSoup);
+		recipeIngredientsOliveOil.setQuantityPerServing("3 tablespoons");
+        recipeIngredientsRepository.save(recipeIngredientsOliveOil);
+
+		RecipeIngredients recipeIngredientsPotato = new RecipeIngredients();
+		recipeIngredientsPotato.setIngredient(savedIngredientsPotato);
+		recipeIngredientsPotato.setRecipe(savedPumpkinSoup);
+		recipeIngredientsPotato.setQuantityPerServing("100 gr");
+		recipeIngredientsRepository.save(recipeIngredientsPotato);
+
+		RecipeIngredients recipeIngredientsPumpkin = new RecipeIngredients();
+		recipeIngredientsPumpkin.setIngredient(savedIngredientsPumpkin);
+		recipeIngredientsPumpkin.setRecipe(savedPumpkinSoup);
+		recipeIngredientsPumpkin.setQuantityPerServing("200 gr");
+		recipeIngredientsRepository.save(recipeIngredientsPumpkin);
+
+
+		savedPumpkinSoup.getIngredients().add(recipeIngredientsCarrot);
+		savedPumpkinSoup.getIngredients().add(recipeIngredientsOliveOil);
+		savedPumpkinSoup.getIngredients().add(recipeIngredientsPumpkin);
+		savedPumpkinSoup.getIngredients().add(recipeIngredientsPotato);
+		recipeRepository.save(savedPumpkinSoup);
+
+
+
+
+
+
+
+//		List<Recipe> recipes = recipeRepository.findAll();
+//
+//		for (Recipe recipe : recipes) {
+//			if (recipe.getName().equals("Pasta bolognese")) {
+//				recipeService.addIngredientToRecipe(recipe, "Spaghetti", "200g");
+//				recipeService.addIngredientToRecipe(recipe, "Ground Beef", "300g");
+//				recipeService.addIngredientToRecipe(recipe, "Tomato Sauce", "2 cups");
+//				recipeService.addIngredientToRecipe(recipe, String.valueOf(ingredientOnion), "1 cup");
+//			}
+//		}
 	}
 
 
-	}
+
+
+
+}
 

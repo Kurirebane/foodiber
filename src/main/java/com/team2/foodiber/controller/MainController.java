@@ -54,9 +54,12 @@ public class MainController {
         return "category";
     }
 
-    @GetMapping("/recipe-details")
+    @GetMapping("/recipe/details")
     public String getRecipeDetails(@RequestParam(name = "id") Long recipeId, Model model) {
         Recipe recipe = recipeService.getRecipeById(recipeId);
+        if (recipe == null) {
+            return "/select-category";  // Handle the error properly
+        }
         model.addAttribute("recipe", recipe);
         return "recipe-details";
     }

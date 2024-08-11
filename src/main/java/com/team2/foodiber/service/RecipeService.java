@@ -2,11 +2,11 @@ package com.team2.foodiber.service;
 
 import com.team2.foodiber.dto.RecipeDto;
 import com.team2.foodiber.dto.UserDto;
-import com.team2.foodiber.model.CookingTime;
-import com.team2.foodiber.model.Recipe;
-import com.team2.foodiber.model.RecipeCategory;
-import com.team2.foodiber.model.User;
+import com.team2.foodiber.model.*;
+import com.team2.foodiber.repository.IngredientsRepository;
+import com.team2.foodiber.repository.RecipeIngredientsRepository;
 import com.team2.foodiber.repository.RecipeRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,9 +16,14 @@ import java.util.List;
 public class RecipeService {
 
     public final RecipeRepository recipeRepository;
+    private final IngredientsRepository ingredientsRepository;
+    private final RecipeIngredientsRepository recipeIngredientsRepository;
 
-    public RecipeService(RecipeRepository recipeRepository) {
+
+    public RecipeService(RecipeRepository recipeRepository, IngredientsRepository ingredientsRepository, RecipeIngredientsRepository recipeIngredientsRepository) {
         this.recipeRepository = recipeRepository;
+        this.ingredientsRepository = ingredientsRepository;
+        this.recipeIngredientsRepository = recipeIngredientsRepository;
     }
 
     //RecipeDTO -> Recipe
