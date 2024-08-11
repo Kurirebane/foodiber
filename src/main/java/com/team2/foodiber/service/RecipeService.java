@@ -21,6 +21,7 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
+    //RecipeDTO -> Recipe
     private Recipe recipeDtoToRecipe(RecipeDto recipeDto) {
         Recipe recipe = new Recipe();
         recipe.setName(recipeDto.getName());
@@ -28,7 +29,7 @@ public class RecipeService {
         recipe.setCookingTime(recipeDto.getCookingTime());
         return recipe;
     }
-
+    // Recipe -> RecipeDTO
     private RecipeDto toDto(Recipe recipe) {
         RecipeDto recipeDto = new RecipeDto();
         recipeDto.setName(recipe.getName());
@@ -36,25 +37,32 @@ public class RecipeService {
         recipeDto.setCookingTime(recipeDto.getCookingTime());
         return recipeDto;
     }
-
+    // New Recipe
     public RecipeDto createRecipe(RecipeDto createdRecipeDto) {
         Recipe recipe = recipeDtoToRecipe(new RecipeDto());
         Recipe savedRecipe = recipeRepository.save(recipe);
         return toDto(savedRecipe);
     }
-
+    // get all RECIPES by Category
     public List<Recipe> getRecipesByCategory(RecipeCategory category) {
         return recipeRepository.findByRecipeCategory(category);
     }
 
-
+    // get all Recipes
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
 
     }
-
+    // get Recipe by ID
     public Recipe getRecipeById(Long recipeId) {
         return recipeRepository.findAllById(recipeId);
+    }
+
+    // save Recipes
+    public RecipeDto saveRecipe(RecipeDto recipeDto) {
+        Recipe recipe = recipeDtoToRecipe(recipeDto);
+        Recipe savedRecipe = recipeRepository.save(recipe);
+        return toDto(savedRecipe);
     }
 }
 
