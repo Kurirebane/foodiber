@@ -59,12 +59,13 @@
   </style>
 </head>
 <body>
-<h1>RECIPES</h1>
+<h1>[[${categoryName}]] RECIPES</h1>
 <div class="grid-container">
   <a th:each="recipe : ${recipes}"
      th:href="@{/recipe/details(id=${recipe.id})}"
      th:text="${recipe.name}"
      class="grid-item">
+    <a th:href="@{/recipe/details(id=${recipe.id})}" class="grid-item" th:text="${recipe.name}"></a>
   </a>
 </div>
 <a href="/select-category" class="back-button">Go back to category selection</a>
