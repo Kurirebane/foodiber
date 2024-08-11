@@ -34,3 +34,4 @@ public class RecipeController {
         return "success";
     }
 }
+
