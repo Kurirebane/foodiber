@@ -48,9 +48,34 @@ public class MainController {
 
     @GetMapping("/category")
     public String getCategoryPage(@RequestParam(name = "name") RecipeCategory recipeCategory, ModelMap model) {
+        String recipeCategoryLower = recipeCategory.name().toLowerCase();
         List<Recipe> filteredRecipes = recipeService.getRecipesByCategory(recipeCategory);
         model.addAttribute("recipes", filteredRecipes);
         model.addAttribute("categoryName", recipeCategory);
+
+        String backgroundImageUrl;
+        switch (recipeCategory) {
+            case BREAKFAST:
+                backgroundImageUrl = "/images/breakfast.jpg";
+                break;
+            case MAIN_COURSE:
+                backgroundImageUrl = "/images/maincourses.jpg";
+                break;
+            case SOUP:
+                backgroundImageUrl = "/images/soups.jpg";
+                break;
+            case DESSERT:
+                backgroundImageUrl = "/images/desserts.jpg";
+                break;
+            case VEGETARIAN:
+                backgroundImageUrl = "/images/vegetarian.jpg";
+                break;
+            default:
+                backgroundImageUrl = "/images/categories_backround.jpeg";
+                break;
+        }
+        model.addAttribute("backgroundImageUrl", backgroundImageUrl);
+
         return "category";
     }
 
