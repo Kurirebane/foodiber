@@ -118,12 +118,44 @@
         .white-text {
             color: white;
         }
+        /*.menu-container {*/
+        /*    position: absolute;*/
+        /*    top: 20px;*/
+        /*    right: 20px;*/
+        /*    background-color: #9bec66;*/
+        /*    border-radius: 10px;*/
+        /*    box-shadow: #2e6da4;*/
+        /*    width: 150px;*/
+        /*    z-index: 1000;*/
+        /*}*/
+        /*.menu-container ul {*/
+        /*    list-style-type: none;*/
+        /*    padding:0;*/
+        /*    margin:0;*/
+        /*}*/
+        /*.menu-container li {*/
+        /*    padding:10px 20px;*/
+        /*    border-bottom: 1px solid;*/
+        /*}*/
+        /*.menu-container li:hover {*/
+        /*    background-color: #3c763d;*/
+        /*    cursor: pointer;*/
+        /*}*/
+
+
+
     </style>
     </head>
     <body>
     <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
             style="background-image: url(images/backgroundimage.png); height: 130vh;"
             data-stellar-background-ratio="0.5">
+<!--        <div> class="menu-container">-->
+<!--            <ul>-->
+<!--                <li>User</li>-->
+<!--                <li>logout</li>-->
+<!--            </ul>-->
+<!--            </div>-->
         <div class="overlay"></div>
         <div class="gtco-container">
             <div class="row">
@@ -163,7 +195,7 @@
                                                         <div class="password-container">
                                                             <input type="password" id="password" class="custom-textarea"
                                                                    placeholder="Password">
-                                                            <button type="button" class="toggle-password"
+                                                            <button  type="button" class="toggle-password"
                                                                     id="togglePassword">👁️
                                                             </button>
                                                         </div>
@@ -172,7 +204,7 @@
                                                     <div class="row form-group"></div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
-                                                            <input type="submit" class="btn btn-primary btn-block"
+                                                            <input onclick="window.location.href='/select-category'" type="button" class="btn btn-primary btn-block"
                                                                    value="LOGIN">
                                                         </div>
                                                     </div>
