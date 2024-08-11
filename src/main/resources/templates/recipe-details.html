@@ -8,9 +8,17 @@
 <body>
 <h1>[[${recipe.name}]]</h1>
 <h2>Ingredients</h2>
-<ul>
-    <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient}"></li> // ingredients annab errori
+
+<body>
+<h1>Ingredients for [[${recipe.name}]]</h1>
+<ul class="ingredient-list">
+    <li th:each="recipeIngredient : ${recipe.ingredients}" class="ingredient-item">
+        <span class="ingredient-name" th:text="${recipeIngredient.ingredient.name}"></span>
+        <span class="quantity" th:text="${recipeIngredient.quantity}"></span>
+    </li>
 </ul>
+<a href="/" class="back-button">Go back to main page</a>
+</body>
 <a href="/category" class="back-button">Go back to recipe selection</a>
 </body>
 </html>
