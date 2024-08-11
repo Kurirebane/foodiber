@@ -21,4 +21,6 @@ public class RecipeIngredients {
     private Recipe recipe;
     private String quantity;
 
+    public void setChecked(boolean isChecked) {
+    }
 }
