@@ -22,6 +22,8 @@ public class Recipe {
 
     @Enumerated(EnumType.STRING)
     private CookingTime cookingTime;
+    @Column(columnDefinition = "TEXT")
+    private String instructions;
 
     @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RecipeIngredients> ingredients = new ArrayList<>();

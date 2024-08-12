@@ -71,11 +71,12 @@ public class RecipeService {
     }
 
 
-    public Recipe createRecipe(String name, RecipeCategory category, CookingTime cookingTime) {
+    public Recipe createRecipe(String name, RecipeCategory category, CookingTime cookingTime, String instructions) {
         Recipe recipe = new Recipe();
         recipe.setName(name);
         recipe.setRecipeCategory(category);
         recipe.setCookingTime(cookingTime);
+        recipe.setInstructions(instructions);
         return recipeRepository.save(recipe);
     }
 
