@@ -18,18 +18,18 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         // Create a recipe
-        Recipe pumpkinSoup = recipeService.createRecipe("Creamy roasted pumpkin soup", RecipeCategory.SOUP, CookingTime.SLOW_30MIN);
-        Recipe pastaBolognese = recipeService.createRecipe("Pasta Bolognese", RecipeCategory.MAIN_COURSE, CookingTime.SLOW_30MIN);
-        Recipe pancakes = recipeService.createRecipe("Chia seed pancakes with greek yoghurt", RecipeCategory.BREAKFAST, CookingTime.MEDIUM_15MIN);
-        Recipe oatPorridge = recipeService.createRecipe("Oat porridge with fresh berries and honey drizzle", RecipeCategory.BREAKFAST, CookingTime.FAST_5MIN);
-        Recipe avocadoToast = recipeService.createRecipe("Avocado toast", RecipeCategory.BREAKFAST, CookingTime.FAST_5MIN);
-        Recipe chickpeaCurry = recipeService.createRecipe("Chickpea curry", RecipeCategory.VEGETARIAN, CookingTime.SLOW_30MIN);
-        Recipe ovenroastedSalmon = recipeService.createRecipe("Oven roasted salmon with vegetables", RecipeCategory.MAIN_COURSE, CookingTime.SLOW_30MIN);
-        Recipe zucchiniLasagne = recipeService.createRecipe("Zucchini lasagne", RecipeCategory.VEGETARIAN, CookingTime.SLOW_30MIN);
-        Recipe ovenBuckwheat = recipeService.createRecipe("Oven baked buckwheat with fried ham", RecipeCategory.MAIN_COURSE, CookingTime.SLOW_30MIN);
-        Recipe greekYoghurtGranola = recipeService.createRecipe("Greek yoghurt with mango puree and crunchy granola", RecipeCategory.DESSERT, CookingTime.FAST_5MIN);
-        Recipe poorKnights = recipeService.createRecipe("Poor knights", RecipeCategory.DESSERT, CookingTime.FAST_5MIN);
-        Recipe peaAndThymeSoup = recipeService.createRecipe("Potato and pea soup with fresh thyme", RecipeCategory.SOUP, CookingTime.SLOW_30MIN);
+        Recipe pumpkinSoup = recipeService.createRecipe("Creamy roasted pumpkin soup", RecipeCategory.SOUP, CookingTime.SLOW_30MIN, "Heat oil in a large saucepan over medium heat. Add onion and cook for 2-3 minutes until soft. Add garlic and vegetables, then toss to coat. Add stock, then bring to the boil. Reduce heat to low, cover and cook for 25 minutes or until the vegetables are tender. Cool slightly. In batches, transfer to a blender and whiz until smooth. Return soup to the saucepan and place over low heat. Stir in cream, then season. To serve, ladle into bowls and top with seeds and parsley, then drizzle with extra oil. ");
+        Recipe pastaBolognese = recipeService.createRecipe("Pasta Bolognese", RecipeCategory.MAIN_COURSE, CookingTime.SLOW_30MIN, "Heat a large saucepan over a medium heat. Add a tablespoon of olive oil and once hot add the beef mince and a pinch of salt and pepper. Cook the mince until well browned over a medium-high heat (be careful not to burn the mince. It just needs to be a dark brown colour). Once browned, transfer the mince to a bowl and set aside. Add another tablespoon of oil to the saucepan you browned the mince in and turn the heat to medium. Add the onions and a pinch of salt and fry gently for 5-6 minutes, or until softened and translucent. Add the garlic and cook for another 2 minutes. Add the grated carrot then pour the mince and any juices in the bowl back into the saucepan. Add the tomatoes to the pan and stir well to mix. Pour in the stock, bring to a simmer and then reduce the temperature to simmer gently for 45 minutes, or until the sauce is thick and rich. Taste and adjust the seasoning as necessary. When ready to cook the spaghetti, heat a large saucepan of water and add a pinch of salt. Cook according to the packet instructions. Once the spaghetti is cooked through, drain and add to the pan with the bolognese sauce. Mix well and serve.");
+        Recipe pancakes = recipeService.createRecipe("Chia seed pancakes with greek yoghurt", RecipeCategory.BREAKFAST, CookingTime.MEDIUM_15MIN, "In a bowl whisk together eggs and sugar. Add milk, flour and a pinch of salt. Mix well and add chia seeds. Leave for 10 minutes and then cook preferred size of pancakes on medium heat flipping half-way through. Transfer to a plate and top with greek yoghurt and peanut butter");
+        Recipe oatPorridge = recipeService.createRecipe("Oat porridge with fresh berries and honey drizzle", RecipeCategory.BREAKFAST, CookingTime.FAST_5MIN, "");
+        Recipe avocadoToast = recipeService.createRecipe("Avocado toast", RecipeCategory.BREAKFAST, CookingTime.FAST_5MIN, "");
+        Recipe chickpeaCurry = recipeService.createRecipe("Chickpea curry", RecipeCategory.VEGETARIAN, CookingTime.SLOW_30MIN, "");
+        Recipe ovenroastedSalmon = recipeService.createRecipe("Oven roasted salmon with vegetables", RecipeCategory.MAIN_COURSE, CookingTime.SLOW_30MIN, "");
+        Recipe zucchiniLasagne = recipeService.createRecipe("Zucchini lasagne", RecipeCategory.VEGETARIAN, CookingTime.SLOW_30MIN, "");
+        Recipe ovenBuckwheat = recipeService.createRecipe("Oven baked buckwheat with fried ham", RecipeCategory.MAIN_COURSE, CookingTime.SLOW_30MIN, "");
+        Recipe greekYoghurtGranola = recipeService.createRecipe("Greek yoghurt with mango puree and crunchy granola", RecipeCategory.DESSERT, CookingTime.FAST_5MIN, "");
+        Recipe poorKnights = recipeService.createRecipe("Poor knights", RecipeCategory.DESSERT, CookingTime.FAST_5MIN, "");
+        Recipe peaAndThymeSoup = recipeService.createRecipe("Potato and pea soup with fresh thyme", RecipeCategory.SOUP, CookingTime.SLOW_30MIN, "");
 
 
         // Create ingredients
@@ -75,6 +75,9 @@ public class DataInitializer implements CommandLineRunner {
         Ingredient dill = recipeService.createIngredient("dill", true, true);
         Ingredient parsley = recipeService.createIngredient("parsley", true, true);
         Ingredient pumpkinSeeds = recipeService.createIngredient("pumpkin seeds", true, true);
+        Ingredient mincedMeat = recipeService.createIngredient("minced meat", true, true);
+        Ingredient sugar = recipeService.createIngredient("sugar", true, true);
+        Ingredient peanutButter = recipeService.createIngredient("peanut butter", true, true);
 
 
 
@@ -82,7 +85,7 @@ public class DataInitializer implements CommandLineRunner {
 
         // PUMPKINSOUP
         recipeService.addIngredientToRecipe(pumpkinSoup, carrot, "60 gr");
-        recipeService.addIngredientToRecipe(pumpkinSoup, oliveOil, "3 tablespoons");
+        recipeService.addIngredientToRecipe(pumpkinSoup, oliveOil, "3 tbsp");
         recipeService.addIngredientToRecipe(pumpkinSoup, pumpkin, "200 gr");
         recipeService.addIngredientToRecipe(pumpkinSoup, potato, "150gr");
         recipeService.addIngredientToRecipe(pumpkinSoup, garlic, "1 glove");
@@ -90,9 +93,31 @@ public class DataInitializer implements CommandLineRunner {
         recipeService.addIngredientToRecipe(pumpkinSoup, leek, "50gr");
         recipeService.addIngredientToRecipe(pumpkinSoup, stock, "100ml");
         recipeService.addIngredientToRecipe(pumpkinSoup, coconutCream, "40gr");
-        recipeService.addIngredientToRecipe(pumpkinSoup, leek, "50gr");
         recipeService.addIngredientToRecipe(pumpkinSoup, pumpkinSeeds, "to taste");
         recipeService.addIngredientToRecipe(pumpkinSoup, parsley, "to taste");
+
+        // PASTA BOLOGNESE
+        recipeService.addIngredientToRecipe(pastaBolognese , oliveOil, "1 tbsp");
+        recipeService.addIngredientToRecipe(pastaBolognese , mincedMeat, "100 gr");
+        recipeService.addIngredientToRecipe(pastaBolognese , onion, "10gr");
+        recipeService.addIngredientToRecipe(pastaBolognese , garlic, "5gr");
+        recipeService.addIngredientToRecipe(pastaBolognese , carrot, "25gr");
+        recipeService.addIngredientToRecipe(pastaBolognese , tomatoSauce, "200gr");
+        recipeService.addIngredientToRecipe(pastaBolognese , stock, "100ml");
+        recipeService.addIngredientToRecipe(pastaBolognese , pasta, "100gr");
+        recipeService.addIngredientToRecipe(pastaBolognese , salt, "to taste");
+        recipeService.addIngredientToRecipe(pastaBolognese , pepper, "to taste");
+
+        // PANCAKES
+        recipeService.addIngredientToRecipe(pancakes, egg, "1");
+        recipeService.addIngredientToRecipe(pancakes, sugar, "10gr");
+        recipeService.addIngredientToRecipe(pancakes, wholeWheatFlour, "50gr");
+        recipeService.addIngredientToRecipe(pancakes, milk, "50ml");
+        recipeService.addIngredientToRecipe(pancakes, salt, "1 pinch");
+        recipeService.addIngredientToRecipe(pancakes, chiaSeeds, "1 tsp");
+        recipeService.addIngredientToRecipe(pancakes, greekYoghurt, "to taste");
+        recipeService.addIngredientToRecipe(pancakes, peanutButter, "to taste");
+
 
 
 
