@@ -59,16 +59,16 @@ public class MainController {
                 backgroundImageUrl = "/images/breakfast.jpg";
                 break;
             case MAIN_COURSE:
-                backgroundImageUrl = "/images/maincourses.jpg";
+                backgroundImageUrl = "/images/maincourses3.jpeg";
                 break;
             case SOUP:
                 backgroundImageUrl = "/images/soups.jpg";
                 break;
             case DESSERT:
-                backgroundImageUrl = "/images/desserts.jpg";
+                backgroundImageUrl = "/images/dessert3.jpg";
                 break;
             case VEGETARIAN:
-                backgroundImageUrl = "/images/vegetarian.jpg";
+                backgroundImageUrl = "/images/vegetarian2.jpg";
                 break;
             default:
                 backgroundImageUrl = "/images/categories_backround.jpeg";
