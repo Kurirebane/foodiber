@@ -69,5 +69,35 @@ public class RecipeService {
         Recipe savedRecipe = recipeRepository.save(recipe);
         return toDto(savedRecipe);
     }
+
+
+    public Recipe createRecipe(String name, RecipeCategory category, CookingTime cookingTime, String instructions) {
+        Recipe recipe = new Recipe();
+        recipe.setName(name);
+        recipe.setRecipeCategory(category);
+        recipe.setCookingTime(cookingTime);
+        recipe.setInstructions(instructions);
+        return recipeRepository.save(recipe);
+    }
+
+    public Ingredient createIngredient(String item, boolean isGlutenFree, boolean isLactoseFree) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setItem(item);
+        ingredient.setGlutenFree(isGlutenFree);
+        ingredient.setLactoseFree(isLactoseFree);
+        return ingredientsRepository.save(ingredient);
+    }
+
+    public void addIngredientToRecipe(Recipe recipe, Ingredient ingredient, String quantityPerServing) {
+        RecipeIngredients recipeIngredient = new RecipeIngredients();
+        recipeIngredient.setIngredient(ingredient);
+        recipeIngredient.setRecipe(recipe);
+        recipeIngredient.setQuantityPerServing(quantityPerServing);
+        recipeIngredientsRepository.save(recipeIngredient);
+
+        recipe.getIngredients().add(recipeIngredient);
+        recipeRepository.save(recipe);
+    }
+
 }
 
