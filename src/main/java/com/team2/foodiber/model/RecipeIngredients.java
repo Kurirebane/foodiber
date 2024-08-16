@@ -27,4 +27,6 @@ public class RecipeIngredients {
     @Transient // This field is not persisted to the database
     private boolean checked;
 
+    public void setChecked(boolean isChecked) {
+    }
 }
