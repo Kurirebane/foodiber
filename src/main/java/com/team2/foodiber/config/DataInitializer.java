@@ -88,146 +88,121 @@ public class DataInitializer implements CommandLineRunner {
         // Add ingredients to the recipe
 
         // PUMPKINSOUP
-        recipeService.addIngredientToRecipe(pumpkinSoup, carrot, "60 gr");
-        recipeService.addIngredientToRecipe(pumpkinSoup, oliveOil, "3 tbsp");
-        recipeService.addIngredientToRecipe(pumpkinSoup, pumpkin, "200 gr");
-        recipeService.addIngredientToRecipe(pumpkinSoup, potato, "150gr");
-        recipeService.addIngredientToRecipe(pumpkinSoup, garlic, "1 glove");
-        recipeService.addIngredientToRecipe(pumpkinSoup, onion, "30gr");
-        recipeService.addIngredientToRecipe(pumpkinSoup, leek, "50gr");
-        recipeService.addIngredientToRecipe(pumpkinSoup, stock, "100ml");
-        recipeService.addIngredientToRecipe(pumpkinSoup, coconutCream, "40gr");
-        recipeService.addIngredientToRecipe(pumpkinSoup, pumpkinSeeds, "to taste");
-        recipeService.addIngredientToRecipe(pumpkinSoup, parsley, "to taste");
+        recipeService.addIngredientToRecipe(pumpkinSoup, carrot, "gr", 60);
+        recipeService.addIngredientToRecipe(pumpkinSoup, oliveOil, "tbsp", 3);
+        recipeService.addIngredientToRecipe(pumpkinSoup, pumpkin, "gr", 200);
+        recipeService.addIngredientToRecipe(pumpkinSoup, potato, "gr", 150);
+        recipeService.addIngredientToRecipe(pumpkinSoup, garlic, "glove", 1);
+        recipeService.addIngredientToRecipe(pumpkinSoup, onion, "30gr", 30);
+        recipeService.addIngredientToRecipe(pumpkinSoup, leek, "gr", 50);
+        recipeService.addIngredientToRecipe(pumpkinSoup, stock, "ml", 100);
+        recipeService.addIngredientToRecipe(pumpkinSoup, coconutCream, "gr", 40);
+        recipeService.addIngredientToRecipe(pumpkinSoup, pumpkinSeeds, "to taste", 0);
+        recipeService.addIngredientToRecipe(pumpkinSoup, parsley, "to taste", 0);
 
         // PASTA BOLOGNESE
-        recipeService.addIngredientToRecipe(pastaBolognese , oliveOil, "1 tbsp");
-        recipeService.addIngredientToRecipe(pastaBolognese , mincedMeat, "100 gr");
-        recipeService.addIngredientToRecipe(pastaBolognese , onion, "10gr");
-        recipeService.addIngredientToRecipe(pastaBolognese , garlic, "5gr");
-        recipeService.addIngredientToRecipe(pastaBolognese , carrot, "25gr");
-        recipeService.addIngredientToRecipe(pastaBolognese , tomatoSauce, "200gr");
-        recipeService.addIngredientToRecipe(pastaBolognese , stock, "100ml");
-        recipeService.addIngredientToRecipe(pastaBolognese , pasta, "100gr");
-        recipeService.addIngredientToRecipe(pastaBolognese , salt, "to taste");
-        recipeService.addIngredientToRecipe(pastaBolognese , pepper, "to taste");
+        recipeService.addIngredientToRecipe(pastaBolognese , oliveOil, "tbsp", 1);
+        recipeService.addIngredientToRecipe(pastaBolognese , mincedMeat, "gr", 100);
+        recipeService.addIngredientToRecipe(pastaBolognese , onion, "gr", 10);
+        recipeService.addIngredientToRecipe(pastaBolognese , garlic, "gr", 5);
+        recipeService.addIngredientToRecipe(pastaBolognese , carrot, "gr", 25);
+        recipeService.addIngredientToRecipe(pastaBolognese , tomatoSauce, "gr", 200);
+        recipeService.addIngredientToRecipe(pastaBolognese , stock, "ml", 100);
+        recipeService.addIngredientToRecipe(pastaBolognese , pasta, "gr", 100);
+        recipeService.addIngredientToRecipe(pastaBolognese , salt, "to taste", 0);
+        recipeService.addIngredientToRecipe(pastaBolognese , pepper, "to taste", 0);
 
         // PANCAKES
-        recipeService.addIngredientToRecipe(pancakes, egg, "1");
-        recipeService.addIngredientToRecipe(pancakes, sugar, "10gr");
-        recipeService.addIngredientToRecipe(pancakes, wholeWheatFlour, "50gr");
-        recipeService.addIngredientToRecipe(pancakes, milk, "50ml");
-        recipeService.addIngredientToRecipe(pancakes, salt, "1 pinch");
-        recipeService.addIngredientToRecipe(pancakes, chiaSeeds, "1 tsp");
-        recipeService.addIngredientToRecipe(pancakes, greekYoghurt, "to taste");
-        recipeService.addIngredientToRecipe(pancakes, peanutButter, "to taste");
+        recipeService.addIngredientToRecipe(pancakes, egg, "egg/eggs", 1);
+        recipeService.addIngredientToRecipe(pancakes, sugar, "gr", 10);
+        recipeService.addIngredientToRecipe(pancakes, wholeWheatFlour, "gr", 50);
+        recipeService.addIngredientToRecipe(pancakes, milk, "ml", 50);
+        recipeService.addIngredientToRecipe(pancakes, salt, "pinch", 1);
+        recipeService.addIngredientToRecipe(pancakes, chiaSeeds, "tsp", 1);
+        recipeService.addIngredientToRecipe(pancakes, greekYoghurt, "to taste", 0);
+        recipeService.addIngredientToRecipe(pancakes, peanutButter, "to taste", 0);
 
         //OAT PORRIDGE
-        recipeService.addIngredientToRecipe(oatPorridge, milk, "100ml");
-        recipeService.addIngredientToRecipe(oatPorridge, oats, "30gr");
-        recipeService.addIngredientToRecipe(oatPorridge, chiaSeeds, "to taste");
-        recipeService.addIngredientToRecipe(oatPorridge, honey, "to taste");
-        recipeService.addIngredientToRecipe(oatPorridge, raspberries, "to taste");
-        recipeService.addIngredientToRecipe(oatPorridge, blueberries, "to taste");
-        recipeService.addIngredientToRecipe(oatPorridge, butter, "15gr");
+        recipeService.addIngredientToRecipe(oatPorridge, milk, "ml", 100);
+        recipeService.addIngredientToRecipe(oatPorridge, oats, "gr", 30);
+        recipeService.addIngredientToRecipe(oatPorridge, chiaSeeds, "to taste", 0);
+        recipeService.addIngredientToRecipe(oatPorridge, honey, "gr", 10);
+        recipeService.addIngredientToRecipe(oatPorridge, raspberries, "gr", 50);
+        recipeService.addIngredientToRecipe(oatPorridge, blueberries, "gr", 50);
+        recipeService.addIngredientToRecipe(oatPorridge, butter, "gr", 15);
 
         //AVOCADO TOAST
-        recipeService.addIngredientToRecipe(avocadoToast, bread, "2 large slices");
-        recipeService.addIngredientToRecipe(avocadoToast, avocado, "1 avocado");
-        recipeService.addIngredientToRecipe(avocadoToast, egg, "1 egg");
-        recipeService.addIngredientToRecipe(avocadoToast, lemon, "to taste");
-        recipeService.addIngredientToRecipe(avocadoToast, pepper, "to taste");
-        recipeService.addIngredientToRecipe(avocadoToast, salt, "to taste");
+        recipeService.addIngredientToRecipe(avocadoToast, bread, "slices", 2);
+        recipeService.addIngredientToRecipe(avocadoToast, avocado, "avocado", 1);
+        recipeService.addIngredientToRecipe(avocadoToast, egg, "egg/eggs", 1);
+        recipeService.addIngredientToRecipe(avocadoToast, lemon, "to taste", 0);
+        recipeService.addIngredientToRecipe(avocadoToast, pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(avocadoToast, salt, "to taste", 0);
 
         //CHICKPEA CURRY
-        recipeService.addIngredientToRecipe(chickpeaCurry, chickpeas, "100gr");
-        recipeService.addIngredientToRecipe(chickpeaCurry, coconutCream, "100ml");
-        recipeService.addIngredientToRecipe(chickpeaCurry, butter, "10gr");
-        recipeService.addIngredientToRecipe(chickpeaCurry, carrot, "100gr");
-        recipeService.addIngredientToRecipe(chickpeaCurry, lentils, "80gr");
-        recipeService.addIngredientToRecipe(chickpeaCurry, salt, "to taste");
-        recipeService.addIngredientToRecipe(chickpeaCurry, pepper, "to taste");
-        recipeService.addIngredientToRecipe(chickpeaCurry, stock, "200ml");
+        recipeService.addIngredientToRecipe(chickpeaCurry, chickpeas, "gr", 100);
+        recipeService.addIngredientToRecipe(chickpeaCurry, coconutCream, "ml", 100);
+        recipeService.addIngredientToRecipe(chickpeaCurry, butter, "gr", 10);
+        recipeService.addIngredientToRecipe(chickpeaCurry, carrot, "gr", 100);
+        recipeService.addIngredientToRecipe(chickpeaCurry, lentils, "gr", 80);
+        recipeService.addIngredientToRecipe(chickpeaCurry, salt, "to taste", 0);
+        recipeService.addIngredientToRecipe(chickpeaCurry, pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(chickpeaCurry, stock, "ml", 200);
 
         //OVENROASTED SALMON
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, salmon, "150gr");
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, lemon, "to taste");
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, dill, "to taste");
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, beetroot, "100gr");
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, carrot, "100gr");
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, potato, "100gr");
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, asparagus, "75gr");
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, salt, "to taste");
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, pepper, "to taste");
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, oliveOil, "15gr");
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, salmon, "gr", 150);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, lemon, "to taste", 0);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, dill, "to taste", 0);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, beetroot, "gr", 100);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, carrot, "gr", 100);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, potato, "gr", 100);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, asparagus, "gr", 75);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, salt, "to taste", 0);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, oliveOil, "gr", 15);
 
         //ZUCCHINI LASAGNE
-        recipeService.addIngredientToRecipe(zucchiniLasagne, zucchini, "400gr");
-        recipeService.addIngredientToRecipe(zucchiniLasagne, oatCream, "400mle");
-        recipeService.addIngredientToRecipe(zucchiniLasagne, salt, "to taste");
-        recipeService.addIngredientToRecipe(zucchiniLasagne, pepper, "to taste");
-        recipeService.addIngredientToRecipe(zucchiniLasagne, tofu, "200gr");
-        recipeService.addIngredientToRecipe(zucchiniLasagne, parsley, "to taste");
-        recipeService.addIngredientToRecipe(zucchiniLasagne, tomatoSauce, "200gr");
+        recipeService.addIngredientToRecipe(zucchiniLasagne, zucchini, "gr", 400);
+        recipeService.addIngredientToRecipe(zucchiniLasagne, oatCream, "ml", 400);
+        recipeService.addIngredientToRecipe(zucchiniLasagne, salt, "to taste", 0);
+        recipeService.addIngredientToRecipe(zucchiniLasagne, pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(zucchiniLasagne, tofu, "gr", 200);
+        recipeService.addIngredientToRecipe(zucchiniLasagne, parsley, "to taste", 0);
+        recipeService.addIngredientToRecipe(zucchiniLasagne, tomatoSauce, "gr", 200);
 
         //OVEN BUCKWHEAT WITH FRIED HAM
-        recipeService.addIngredientToRecipe(ovenBuckwheat, buckwheat, "100gr");
-        recipeService.addIngredientToRecipe(ovenBuckwheat, butter, "to taste");
-        recipeService.addIngredientToRecipe(ovenBuckwheat, ham, "75gr");
-        recipeService.addIngredientToRecipe(ovenBuckwheat, carrot, "50gr");
-        recipeService.addIngredientToRecipe(ovenBuckwheat, stock, "200ml");
-        recipeService.addIngredientToRecipe(ovenBuckwheat, peas, "50gr");
-        recipeService.addIngredientToRecipe(ovenBuckwheat, water, "150ml");
+        recipeService.addIngredientToRecipe(ovenBuckwheat, buckwheat, "100gr", 100);
+        recipeService.addIngredientToRecipe(ovenBuckwheat, butter, "to taste", 0);
+        recipeService.addIngredientToRecipe(ovenBuckwheat, ham, "75gr", 75);
+        recipeService.addIngredientToRecipe(ovenBuckwheat, carrot, "50gr", 50);
+        recipeService.addIngredientToRecipe(ovenBuckwheat, stock, "200ml", 200);
+        recipeService.addIngredientToRecipe(ovenBuckwheat, peas, "50gr", 50);
+        recipeService.addIngredientToRecipe(ovenBuckwheat, water, "150ml", 150);
 
         //GREEK YOGHURT GRANOLA
-        recipeService.addIngredientToRecipe(greekYoghurtGranola, granola, "to taste");
-        recipeService.addIngredientToRecipe(greekYoghurtGranola, greekYoghurt, "to taste");
-        recipeService.addIngredientToRecipe(greekYoghurtGranola, mangoPuree, "to taste");
-        recipeService.addIngredientToRecipe(greekYoghurtGranola, chiaSeeds, "to taste");
+        recipeService.addIngredientToRecipe(greekYoghurtGranola, granola, "gr", 60);
+        recipeService.addIngredientToRecipe(greekYoghurtGranola, greekYoghurt, "gr", 200);
+        recipeService.addIngredientToRecipe(greekYoghurtGranola, mangoPuree, "gr", 50);
+        recipeService.addIngredientToRecipe(greekYoghurtGranola, chiaSeeds, "gr", 10);
 
         //POOR KNIGHTS
-        recipeService.addIngredientToRecipe(poorKnights, bread, "3 slices");
-        recipeService.addIngredientToRecipe(poorKnights, egg, "1 egg");
-        recipeService.addIngredientToRecipe(poorKnights, milk, "splash of milk");
-        recipeService.addIngredientToRecipe(poorKnights, honey, "to taste");
-        recipeService.addIngredientToRecipe(poorKnights, sugar, "to taste");
-        recipeService.addIngredientToRecipe(poorKnights, cinnamon, "to taste");
+        recipeService.addIngredientToRecipe(poorKnights, bread, "slices", 3);
+        recipeService.addIngredientToRecipe(poorKnights, egg, "egg/eggs", 1);
+        recipeService.addIngredientToRecipe(poorKnights, milk, "ml", 30);
+        recipeService.addIngredientToRecipe(poorKnights, honey, "gr", 10);
+        recipeService.addIngredientToRecipe(poorKnights, sugar, "gr", 10);
+        recipeService.addIngredientToRecipe(poorKnights, cinnamon, "to taste", 0);
 
         //PEA AND THYME SOUP
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, peas, "150gr");
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, potato, "150gr");
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, butter, "20gr");
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, salt, "to taste");
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, pepper, "to taste");
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, thyme, "1 handful");
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, cream, "100ml");
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, garlic, "10gr");
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, onion, "20gr");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // You can repeat the process to add more recipes and ingredients
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, peas, "gr", 150);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, potato, "gr", 150);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, butter, "gr", 20);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, salt, "to taste", 0);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, thyme, "handful", 1);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, cream, "ml", 100);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, garlic, "gr", 10);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, onion, "gr", 20);
     }
 
 

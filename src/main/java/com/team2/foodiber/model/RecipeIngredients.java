@@ -21,7 +21,8 @@ public class RecipeIngredients {
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
-    private String quantityPerServing;
+    private String quantityUnit;
+    private double quantityValue;
 
     @Transient // This field is not persisted to the database
     private boolean checked;
