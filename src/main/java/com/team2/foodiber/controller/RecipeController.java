@@ -4,6 +4,7 @@ import com.team2.foodiber.dto.RecipeDto;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.model.RecipeIngredients;
 import com.team2.foodiber.model.ShoppingList;
+import com.team2.foodiber.repository.RecipeIngredientsRepository;
 import com.team2.foodiber.repository.RecipeRepository;
 import com.team2.foodiber.service.RecipeService;
 import com.team2.foodiber.service.ShoppingListService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -30,6 +32,8 @@ public class RecipeController {
 
     @Autowired
     private RecipeIngredientsRepository recipeIngredientsRepository;
+    @Autowired
+    private ShoppingListService shoppingListService;
 
     @GetMapping("/create")
     public String showCreateRecipeForm(Model model) {
@@ -63,31 +67,8 @@ public class RecipeController {
         shoppingListService.addIngredientsToShoppingList(recipe.getIngredients(), servings);
 
         return "redirect:/recipes/shopping-list"; // Redirect to the shopping list page
-    }
-//    @GetMapping("/shopping-list")
-//    public String viewShoppingList(Model model) {
-//        ShoppingList shoppingList = shoppingListService.getLatestShoppingList();
-//        model.addAttribute("shoppingList", shoppingList);
-//        return "shopping-list"; // View name for shopping list
-//    }
-
-}
-
-    @PostMapping("/saveIngredients")
-    public String saveIngredients(@RequestParam Map<String, String> params, @RequestParam("recipeId") Long recipeId) {
-        Recipe recipe = recipeRepository.findById(recipeId).orElseThrow(() -> new RuntimeException("Recipe not found"));
-
-        // Retrieve all RecipeIngredients for the recipe
-        List<RecipeIngredients> recipeIngredients = recipeIngredientsRepository.findByRecipe(recipe);
-
-        // Iterate over the form parameters and update the 'checked' status
-        for (RecipeIngredients ri : recipeIngredients) {
-            String paramName = "ingredient_" + ri.getId();
-            boolean isChecked = params.containsKey(paramName);
-            ri.setChecked(isChecked); // Assuming you have a method to set the checked status
-            recipeIngredientsRepository.save(ri);
+        //
         }
 
-        return "redirect:/recipe-details?recipeId=" + recipeId;
-    }
+
 }
