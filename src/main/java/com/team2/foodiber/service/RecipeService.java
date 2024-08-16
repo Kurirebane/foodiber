@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeService {
@@ -88,16 +89,20 @@ public class RecipeService {
         return ingredientsRepository.save(ingredient);
     }
 
-    public void addIngredientToRecipe(Recipe recipe, Ingredient ingredient, String quantityPerServing) {
+    public void addIngredientToRecipe(Recipe recipe, Ingredient ingredient, String quantityUnit, double quantityValue) {
         RecipeIngredients recipeIngredient = new RecipeIngredients();
         recipeIngredient.setIngredient(ingredient);
         recipeIngredient.setRecipe(recipe);
-        recipeIngredient.setQuantityPerServing(quantityPerServing);
+        recipeIngredient.setQuantityUnit(quantityUnit);
+        recipeIngredient.setQuantityValue(quantityValue);
         recipeIngredientsRepository.save(recipeIngredient);
 
         recipe.getIngredients().add(recipeIngredient);
         recipeRepository.save(recipe);
     }
 
+    public Optional<Recipe> findById(Long recipeId) {
+        return recipeRepository.findById(recipeId);
+    }
 }
 
