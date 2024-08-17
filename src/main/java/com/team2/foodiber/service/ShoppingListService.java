@@ -6,10 +6,9 @@ import com.team2.foodiber.model.ShoppingListItem;
 import com.team2.foodiber.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShoppingListService {
@@ -17,101 +16,53 @@ public class ShoppingListService {
     @Autowired
     private ShoppingListRepository shoppingListRepository;
 
-    public void addIngredientsToShoppingList(List<RecipeIngredients> ingredients, int servings) {
+    // Saving ingredients to shopping list and trying to make it so it checks if item already exists and adds quantities together so the same ingredient will appear on one line
+    public void addIngredientsToShoppingList(List<RecipeIngredients> selectedIngredients, int servings) {
         ShoppingList shoppingList = getLatestShoppingList();
-        for (RecipeIngredients recipeIngredient : ingredients) {
-            double adjustedQuantity = recipeIngredient.getQuantityValue() * servings;
-            ShoppingListItem shoppingListItem = new ShoppingListItem();
-            shoppingListItem.setIngredient(recipeIngredient.getIngredient());
-            shoppingListItem.setQuantityValue(adjustedQuantity);
-            shoppingListItem.setQuantityUnit(recipeIngredient.getQuantityUnit());
-            shoppingListItem.setShoppingList(shoppingList);
-            shoppingList.getItems().add(shoppingListItem);
+
+        for (RecipeIngredients ingredient : selectedIngredients) {
+            double adjustedQuantity = ingredient.getQuantityValue() * servings;
+
+            if (adjustedQuantity > 0) {
+                Optional<ShoppingListItem> existingItemOpt = shoppingList.getItems().stream()
+                        .filter(item -> item.getIngredient().equals(ingredient.getIngredient()) &&
+                                item.getQuantityUnit().equals(ingredient.getQuantityUnit()))
+                        .findFirst();
+
+                if (existingItemOpt.isPresent()) {
+                    ShoppingListItem existingItem = existingItemOpt.get();
+                    existingItem.setQuantityValue(existingItem.getQuantityValue() + adjustedQuantity);
+                } else {
+                    ShoppingListItem newItem = new ShoppingListItem();
+                    newItem.setIngredient(ingredient.getIngredient());
+                    newItem.setQuantityValue(adjustedQuantity);
+                    newItem.setQuantityUnit(ingredient.getQuantityUnit());
+                    newItem.setShoppingList(shoppingList);
+
+                    shoppingList.getItems().add(newItem);
+                }
+            }
         }
+
         shoppingListRepository.save(shoppingList);
     }
-
     public ShoppingList getLatestShoppingList() {
         ShoppingList shoppingList = shoppingListRepository.findTopByOrderByCreatedDateDesc();
         if (shoppingList == null) {
             shoppingList = new ShoppingList();
-            shoppingList.setItems(new ArrayList<>()); // Initialize with an empty list
-            shoppingListRepository.save(shoppingList); // Optional: Save to persist
+            shoppingList.setItems(new ArrayList<>());
+            shoppingListRepository.save(shoppingList);
         }
         return shoppingList;
     }
 
-
-//    public ShoppingList addIngredientsToShoppingList(List<RecipeIngredients> recipeIngredients, int servings) {
-//        // Retrieve or create the latest shopping list
-//        ShoppingList shoppingList = getLatestShoppingList();
-//
-//        // Iterate over each recipe ingredient
-//        for (RecipeIngredients recipeIngredient : recipeIngredients) {
-//            // Extract quantity value and unit from RecipeIngredients
-//            double quantityValue = recipeIngredient.getQuantityValue() * servings;
-//            String quantityUnit = recipeIngredient.getQuantityUnit();
-//
-//            // Check if this ingredient is already in the shopping list
-//            ShoppingListItem existingItem = shoppingList.getItems().stream()
-//                    .filter(item -> item.getIngredient().equals(recipeIngredient.getIngredient())
-//                            && item.getQuantityUnit().equals(quantityUnit)) // match both ingredient and unit
-//                    .findFirst()
-//                    .orElse(null);
-//
-//            if (existingItem != null) {
-//                // If the ingredient with the same unit is already in the list, update the quantity
-//                existingItem.setQuantityValue(existingItem.getQuantityValue() + quantityValue);
-//            } else {
-//                // If not, create a new ShoppingListItem and add it to the shopping list
-//                ShoppingListItem newItem = new ShoppingListItem();
-//                newItem.setIngredient(recipeIngredient.getIngredient());
-//                newItem.setQuantityValue(quantityValue);
-//                newItem.setQuantityUnit(quantityUnit);
-//                shoppingList.getItems().add(newItem);
-//            }
-//        }
-//
-//        // Save and return the updated shopping list
-//        return shoppingListRepository.save(shoppingList);
-//    }
-
-//    public ShoppingList addIngredientsToShoppingList(List<RecipeIngredients> recipeIngredients, int servings) {
-//        ShoppingList shoppingList = new ShoppingList();
-//
-//        for (RecipeIngredients recipeIngredient : recipeIngredients) {
-//            ShoppingListItem item = new ShoppingListItem();
-//            item.setIngredient(recipeIngredient.getIngredient());
-//
-//            // Calculate the new quantity based on the number of servings
-//            double originalQuantity = recipeIngredient.getQuantityValue();
-//            double adjustedQuantity = originalQuantity * servings; // Adjust based on the servings
-//            String quantity = String.valueOf(adjustedQuantity) + " " + recipeIngredient.getQuantityUnit();
-//
-//            item.setQuantity(quantity);
-//            item.setShoppingList(shoppingList);
-//            shoppingList.getItems().add(item);
-//        }
-//
-//        // Save the shopping list with all items
-//        return shoppingListRepository.save(shoppingList);
-//    }
+    public void clearShoppingList() {
+        ShoppingList shoppingList = getLatestShoppingList();
+        if (shoppingList != null) {
+            shoppingList.getItems().clear();
+            shoppingListRepository.save(shoppingList);
+        }
+    }
 
 
-//        public ShoppingList getLatestShoppingList() {
-//            ShoppingList latestShoppingList = shoppingListRepository.findTopByOrderByCreatedDateDesc();
-//
-//            if (latestShoppingList == null) {
-//                // If no shopping list exists, create a new one
-//                latestShoppingList = new ShoppingList();
-//                latestShoppingList.setCreatedDate(LocalDateTime.now()); // Assuming you have a createdDate field
-//                // Add any other default values or initialization here
-//
-//                latestShoppingList = shoppingListRepository.save(latestShoppingList);
-//            }
-//
-//            return latestShoppingList;
-//        }
-
-
-}
+}//*********************************************************************************************************************

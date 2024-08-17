@@ -53,6 +53,9 @@
         <span th:text="${item.quantityUnit}"></span>
     </li>
 </ul>
+<form th:action="|/shopping-list/empty|" method="post">
+    <button type="submit">Empty Shopping List</button>
+</form>
 <a href="/select-category">Go back to category selection</a>
 </body>
 </html>

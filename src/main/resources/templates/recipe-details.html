@@ -55,6 +55,7 @@
         <li th:each="recipeIngredient : ${recipe.ingredients}">
             <input type="checkbox"
                    th:attr="id=${'ingredient_' + recipeIngredient.id}"
+                   th:name="selectedIngredients"
                    th:value="${recipeIngredient.id}"/>
             <label th:for="${'ingredient_' + recipeIngredient.id}">
                 <span th:text="${recipeIngredient.ingredient.item}">Ingredient Name</span> -
