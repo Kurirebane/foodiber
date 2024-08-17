@@ -3,8 +3,6 @@ package com.team2.foodiber.controller;
 import com.team2.foodiber.dto.RecipeDto;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.model.RecipeIngredients;
-import com.team2.foodiber.model.ShoppingList;
-import com.team2.foodiber.repository.RecipeIngredientsRepository;
 import com.team2.foodiber.repository.RecipeRepository;
 import com.team2.foodiber.service.RecipeService;
 import com.team2.foodiber.service.ShoppingListService;
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -29,9 +27,6 @@ public class RecipeController {
     private final RecipeService recipeService;
     @Autowired
     private RecipeRepository recipeRepository;
-
-    @Autowired
-    private RecipeIngredientsRepository recipeIngredientsRepository;
     @Autowired
     private ShoppingListService shoppingListService;
 
@@ -53,22 +48,26 @@ public class RecipeController {
         return "success";
     }
 
+
     @PostMapping("/saveIngredients")
     public String saveIngredients(
             @RequestParam Long recipeId,
-            @RequestParam Map<Long, String> quantities, // This is for ingredient quantities
-            @RequestParam int servings, // This is for the number of servings
+            @RequestParam Map<Long, String> quantities,
+            @RequestParam int servings,
+            @RequestParam List<Long> selectedIngredients,
             Model model) {
 
         Recipe recipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid recipe Id:" + recipeId));
 
-        // Logic to handle the updated quantities and servings
-        shoppingListService.addIngredientsToShoppingList(recipe.getIngredients(), servings);
+        // Filtering selected recipes
+        List<RecipeIngredients> ingredientsToAdd = recipe.getIngredients().stream()
+                .filter(ingredient -> selectedIngredients.contains(ingredient.getId()))
+                .collect(Collectors.toList());
 
-        return "redirect:/recipes/shopping-list"; // Redirect to the shopping list page
-        //
-        }
+        // quantities and servings
+        shoppingListService.addIngredientsToShoppingList(ingredientsToAdd, servings);
 
-
+        return "redirect:/recipes/shopping-list";
+    }
 }
