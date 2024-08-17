@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,5 +57,99 @@
     <button type="submit">Empty Shopping List</button>
 </form>
 <a href="/select-category">Go back to category selection</a>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping List</title>
+
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url("/images/shoppinglist1.jpg");
+            background-size: cover;
+            background-position: center;
+
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .shopping-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            max-width: 600px;
+        }
+        .shopping-list li {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .shopping-list li span {
+            font-size: 16px;
+        }
+        .shopping-list button {
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .shopping-list button:hover {
+            background-color: #c82333;
+        }
+        .back-button {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Your Shopping List</h1>
+<ul class="shopping-list">
+    <li th:each="item : ${shoppingList.items}">
+        <span th:text="${item.ingredient.item}"></span>:
+        <span th:text="${item.quantityValue}"></span>
+        <span th:text="${item.quantityUnit}"></span>
+    </li>
+</ul>
+<form th:action="@{/shopping-list/empty}" method="post">
+    <button type="submit">Empty Shopping List</button>
+</form>
+<a href="/select-category" class="back-button">Go back to category selection</a>
 </body>
 </html>
