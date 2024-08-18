@@ -37,10 +37,30 @@ public class RecipeController {
     }
 
     @PostMapping
-    public String createRecipe(RecipeDto recipeDto, Model model) {
-        RecipeDto savedRecipe = recipeService.createRecipe(recipeDto);
-        model.addAttribute("recipe", savedRecipe);
-        return "redirect:/recipes/success";
+    public String createRecipe(@ModelAttribute RecipeDto recipeDto,
+                               @RequestParam("image") MultipartFile file, Model model) {
+        try {
+            if (!file.isEmpty()) {
+                Image image = new Image();
+                image.setName(file.getOriginalFilename());
+                image.setType(file.getContentType());
+                image.setSize(file.getSize());
+                image.setImageData(file.getBytes());
+
+                Image savedImage = imageRepository.save(image);
+                recipeDto.setImageId(savedImage.getId());
+            }
+
+
+                RecipeDto savedRecipe = recipeService.createRecipe(recipeDto);
+                model.addAttribute("recipe", savedRecipe);
+                return "redirect:/recipes/success";
+            } catch (Exception exception) {
+            exception.printStackTrace();
+            model.addAttribute("Error", "Could not upload this image.");
+            return "create-recipe";
+        }
+
     }
 
     @GetMapping("/success")
