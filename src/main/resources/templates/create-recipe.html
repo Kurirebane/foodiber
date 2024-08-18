@@ -68,7 +68,7 @@
 </head>
 <body>
 <h2>Create Recipe</h2>
-<form action="/recipes" method="post" th:object="${recipe}">
+<form action="/recipes" method="post" enctype="multipart/form-data" th:object="${recipe}">
     <div>
         <label for="name">Recipe Name</label>
         <input type="text" id="name" name="name" th:field="*{name}" required>
@@ -94,6 +94,11 @@
     <div>
         <label for="cookingTime">Cooking Time (minutes)</label>
         <input type="number" id="cookingTime" name="cookingTime" th:field="*{cookingTime}" required>
+    </div>
+
+    <div>
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image", accept="image">
     </div>
 
     <div>

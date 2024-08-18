@@ -10,5 +10,6 @@ public class RecipeDto {
     private String category;
     private CookingTime cookingTime;
     private String ingredients;
+    private Long imageId;
 
 }
