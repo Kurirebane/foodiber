@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 
 @Service
 
@@ -74,12 +72,39 @@ public class RecipeService {
         Recipe savedRecipe = recipeRepository.save(recipe);
         return toDto(savedRecipe);
     }
-    // Get user Recipes
-    public List<RecipeDto> getUserRecipes() {
-        List<Recipe> recipes = recipeRepository.findAll();
-        return recipes.stream().map(this::toDto).collect(Collectors.toList());
 
+
+    public Recipe createRecipe(String name, RecipeCategory category, CookingTime cookingTime, String instructions) {
+        Recipe recipe = new Recipe();
+        recipe.setName(name);
+        recipe.setRecipeCategory(category);
+        recipe.setCookingTime(cookingTime);
+        recipe.setInstructions(instructions);
+        return recipeRepository.save(recipe);
     }
 
+    public Ingredient createIngredient(String item, boolean isGlutenFree, boolean isLactoseFree) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setItem(item);
+        ingredient.setGlutenFree(isGlutenFree);
+        ingredient.setLactoseFree(isLactoseFree);
+        return ingredientsRepository.save(ingredient);
+    }
+
+    public void addIngredientToRecipe(Recipe recipe, Ingredient ingredient, String quantityUnit, double quantityValue) {
+        RecipeIngredients recipeIngredient = new RecipeIngredients();
+        recipeIngredient.setIngredient(ingredient);
+        recipeIngredient.setRecipe(recipe);
+        recipeIngredient.setQuantityUnit(quantityUnit);
+        recipeIngredient.setQuantityValue(quantityValue);
+        recipeIngredientsRepository.save(recipeIngredient);
+
+        recipe.getIngredients().add(recipeIngredient);
+        recipeRepository.save(recipe);
+    }
+
+    public Optional<Recipe> findById(Long recipeId) {
+        return recipeRepository.findById(recipeId);
+    }
 }
 

@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[[${recipe.name}]] Ingredients</title>
-    <!--<style>
+    <title>Recipe Details</title>
+    <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            text-align: left;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
             margin: 0;
-            background-image: url('/images/backgroundimage.png');
-            background-size: cover;
-            background-position: left;
-            background-repeat: no-repeat;
+            padding: 20px;
         }
         h1 {
             text-align: center;
             margin-bottom: 20px;
-
+        }
+        .ingredient-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ingredient-list li {
+            margin-bottom: 10px;
         }
         .back-button {
             display: block;
@@ -39,95 +41,32 @@
         .back-button:hover {
             background-color: #0056b3;
         }
-    </style>-->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-image: url('/images/backgroundimage.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-style: italic;
-            font-size: 50px;
-        }
-        .ingredient-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.8); /* Optional: to give a background for readability */
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .ingredient-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            width: 100%;
-            max-width: 800px; /* Adjust as needed */
-        }
-        .ingredient-list li {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            background: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .ingredient-list input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        .back-button {
-            display: block;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            width: 150px;
-        }
-        .back-button:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
 <h1>Ingredients for [[${recipe.name}]]</h1>
-<!--<ul>
-    <li th:each="recipeIngredient : ${recipe.ingredients}">
-        <span th:text="${recipeIngredient.ingredient.item}">Ingredient Name</span> -
-        <span th:text="${recipeIngredient.quantityPerServing}">Quantity</span>
-    </li>
-</ul>
-<a href="/select-category" class="back-button">Go back to category selection</a> -->
-<div>
-<form th:action="@{/saveIngredients}" method="post">
+<form th:action="@{/recipes/saveIngredients}" method="post">
+    <!-- Input for servings -->
+    <label for="servings">Servings:</label>
+    <input type="number" id="servings" name="servings" min="1" value="1"/>
+
+    <!-- Ingredients list -->
     <ul class="ingredient-list">
         <li th:each="recipeIngredient : ${recipe.ingredients}">
-            <!-- Use th:attr to dynamically set attributes -->
             <input type="checkbox"
                    th:attr="id=${'ingredient_' + recipeIngredient.id}"
-                   th:value="${recipeIngredient.id}"
-                   th:checked="${recipeIngredient.checked ? 'checked' : ''}"/>
+                   th:name="selectedIngredients"
+                   th:value="${recipeIngredient.id}"/>
             <label th:for="${'ingredient_' + recipeIngredient.id}">
                 <span th:text="${recipeIngredient.ingredient.item}">Ingredient Name</span> -
-                <span th:text="${recipeIngredient.quantityPerServing}">Quantity</span>
+                <span th:text="${recipeIngredient.quantityValue}">Quantity</span>
+                <span th:text="${recipeIngredient.quantityUnit}">Unit</span>
             </label>
         </li>
     </ul>
     <input type="hidden" name="recipeId" th:value="${recipe.id}"/>
-    <button type="submit">Add to shoppinglist</button>
-</form></div>
+    <button type="submit">Add to shopping list</button>
+</form>
+<a href="/select-category" class="back-button">Go back to category selection</a>
 </body>
 </html>
