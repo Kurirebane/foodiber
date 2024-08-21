@@ -97,8 +97,8 @@ public class DataInitializer implements CommandLineRunner {
         recipeService.addIngredientToRecipe(pumpkinSoup, leek, "gr", 50);
         recipeService.addIngredientToRecipe(pumpkinSoup, stock, "ml", 100);
         recipeService.addIngredientToRecipe(pumpkinSoup, coconutCream, "gr", 40);
-        recipeService.addIngredientToRecipe(pumpkinSoup, pumpkinSeeds, "to taste", 0);
-        recipeService.addIngredientToRecipe(pumpkinSoup, parsley, "to taste", 0);
+        recipeService.addIngredientToRecipe(pumpkinSoup, pumpkinSeeds, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(pumpkinSoup, parsley, "to taste", 0.1);
 
         // PASTA BOLOGNESE
         recipeService.addIngredientToRecipe(pastaBolognese , oliveOil, "tbsp", 1);
@@ -109,8 +109,8 @@ public class DataInitializer implements CommandLineRunner {
         recipeService.addIngredientToRecipe(pastaBolognese , tomatoSauce, "gr", 200);
         recipeService.addIngredientToRecipe(pastaBolognese , stock, "ml", 100);
         recipeService.addIngredientToRecipe(pastaBolognese , pasta, "gr", 100);
-        recipeService.addIngredientToRecipe(pastaBolognese , salt, "to taste", 0);
-        recipeService.addIngredientToRecipe(pastaBolognese , pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(pastaBolognese , salt, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(pastaBolognese , pepper, "to taste", 0.1);
 
         // PANCAKES
         recipeService.addIngredientToRecipe(pancakes, egg, "egg/eggs", 1);
@@ -119,13 +119,13 @@ public class DataInitializer implements CommandLineRunner {
         recipeService.addIngredientToRecipe(pancakes, milk, "ml", 50);
         recipeService.addIngredientToRecipe(pancakes, salt, "pinch", 1);
         recipeService.addIngredientToRecipe(pancakes, chiaSeeds, "tsp", 1);
-        recipeService.addIngredientToRecipe(pancakes, greekYoghurt, "to taste", 0);
-        recipeService.addIngredientToRecipe(pancakes, peanutButter, "to taste", 0);
+        recipeService.addIngredientToRecipe(pancakes, greekYoghurt, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(pancakes, peanutButter, "to taste", 0.1);
 
         //OAT PORRIDGE
         recipeService.addIngredientToRecipe(oatPorridge, milk, "ml", 100);
         recipeService.addIngredientToRecipe(oatPorridge, oats, "gr", 30);
-        recipeService.addIngredientToRecipe(oatPorridge, chiaSeeds, "to taste", 0);
+        recipeService.addIngredientToRecipe(oatPorridge, chiaSeeds, "to taste", 0.1);
         recipeService.addIngredientToRecipe(oatPorridge, honey, "gr", 10);
         recipeService.addIngredientToRecipe(oatPorridge, raspberries, "gr", 50);
         recipeService.addIngredientToRecipe(oatPorridge, blueberries, "gr", 50);
@@ -135,9 +135,9 @@ public class DataInitializer implements CommandLineRunner {
         recipeService.addIngredientToRecipe(avocadoToast, bread, "slices", 2);
         recipeService.addIngredientToRecipe(avocadoToast, avocado, "avocado", 1);
         recipeService.addIngredientToRecipe(avocadoToast, egg, "egg/eggs", 1);
-        recipeService.addIngredientToRecipe(avocadoToast, lemon, "to taste", 0);
-        recipeService.addIngredientToRecipe(avocadoToast, pepper, "to taste", 0);
-        recipeService.addIngredientToRecipe(avocadoToast, salt, "to taste", 0);
+        recipeService.addIngredientToRecipe(avocadoToast, lemon, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(avocadoToast, pepper, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(avocadoToast, salt, "to taste", 0.1);
 
         //CHICKPEA CURRY
         recipeService.addIngredientToRecipe(chickpeaCurry, chickpeas, "gr", 100);
@@ -145,34 +145,34 @@ public class DataInitializer implements CommandLineRunner {
         recipeService.addIngredientToRecipe(chickpeaCurry, butter, "gr", 10);
         recipeService.addIngredientToRecipe(chickpeaCurry, carrot, "gr", 100);
         recipeService.addIngredientToRecipe(chickpeaCurry, lentils, "gr", 80);
-        recipeService.addIngredientToRecipe(chickpeaCurry, salt, "to taste", 0);
-        recipeService.addIngredientToRecipe(chickpeaCurry, pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(chickpeaCurry, salt, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(chickpeaCurry, pepper, "to taste", 0.1);
         recipeService.addIngredientToRecipe(chickpeaCurry, stock, "ml", 200);
 
         //OVENROASTED SALMON
         recipeService.addIngredientToRecipe(ovenroastedSalmon, salmon, "gr", 150);
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, lemon, "to taste", 0);
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, dill, "to taste", 0);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, lemon, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, dill, "to taste", 0.1);
         recipeService.addIngredientToRecipe(ovenroastedSalmon, beetroot, "gr", 100);
         recipeService.addIngredientToRecipe(ovenroastedSalmon, carrot, "gr", 100);
         recipeService.addIngredientToRecipe(ovenroastedSalmon, potato, "gr", 100);
         recipeService.addIngredientToRecipe(ovenroastedSalmon, asparagus, "gr", 75);
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, salt, "to taste", 0);
-        recipeService.addIngredientToRecipe(ovenroastedSalmon, pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, salt, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(ovenroastedSalmon, pepper, "to taste", 0.1);
         recipeService.addIngredientToRecipe(ovenroastedSalmon, oliveOil, "gr", 15);
 
         //ZUCCHINI LASAGNE
         recipeService.addIngredientToRecipe(zucchiniLasagne, zucchini, "gr", 400);
         recipeService.addIngredientToRecipe(zucchiniLasagne, oatCream, "ml", 400);
-        recipeService.addIngredientToRecipe(zucchiniLasagne, salt, "to taste", 0);
-        recipeService.addIngredientToRecipe(zucchiniLasagne, pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(zucchiniLasagne, salt, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(zucchiniLasagne, pepper, "to taste", 0.1);
         recipeService.addIngredientToRecipe(zucchiniLasagne, tofu, "gr", 200);
-        recipeService.addIngredientToRecipe(zucchiniLasagne, parsley, "to taste", 0);
+        recipeService.addIngredientToRecipe(zucchiniLasagne, parsley, "to taste", 0.1);
         recipeService.addIngredientToRecipe(zucchiniLasagne, tomatoSauce, "gr", 200);
 
         //OVEN BUCKWHEAT WITH FRIED HAM
         recipeService.addIngredientToRecipe(ovenBuckwheat, buckwheat, "100gr", 100);
-        recipeService.addIngredientToRecipe(ovenBuckwheat, butter, "to taste", 0);
+        recipeService.addIngredientToRecipe(ovenBuckwheat, butter, "to taste", 0.1);
         recipeService.addIngredientToRecipe(ovenBuckwheat, ham, "75gr", 75);
         recipeService.addIngredientToRecipe(ovenBuckwheat, carrot, "50gr", 50);
         recipeService.addIngredientToRecipe(ovenBuckwheat, stock, "200ml", 200);
@@ -191,14 +191,14 @@ public class DataInitializer implements CommandLineRunner {
         recipeService.addIngredientToRecipe(poorKnights, milk, "ml", 30);
         recipeService.addIngredientToRecipe(poorKnights, honey, "gr", 10);
         recipeService.addIngredientToRecipe(poorKnights, sugar, "gr", 10);
-        recipeService.addIngredientToRecipe(poorKnights, cinnamon, "to taste", 0);
+        recipeService.addIngredientToRecipe(poorKnights, cinnamon, "to taste", 0.1);
 
         //PEA AND THYME SOUP
         recipeService.addIngredientToRecipe(peaAndThymeSoup, peas, "gr", 150);
         recipeService.addIngredientToRecipe(peaAndThymeSoup, potato, "gr", 150);
         recipeService.addIngredientToRecipe(peaAndThymeSoup, butter, "gr", 20);
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, salt, "to taste", 0);
-        recipeService.addIngredientToRecipe(peaAndThymeSoup, pepper, "to taste", 0);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, salt, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(peaAndThymeSoup, pepper, "to taste", 0.1);
         recipeService.addIngredientToRecipe(peaAndThymeSoup, thyme, "handful", 1);
         recipeService.addIngredientToRecipe(peaAndThymeSoup, cream, "ml", 100);
         recipeService.addIngredientToRecipe(peaAndThymeSoup, garlic, "gr", 10);
