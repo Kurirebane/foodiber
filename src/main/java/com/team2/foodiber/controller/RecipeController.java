@@ -1,8 +1,10 @@
 package com.team2.foodiber.controller;
 
 import com.team2.foodiber.dto.RecipeDto;
+import com.team2.foodiber.model.Image;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.model.RecipeIngredients;
+import com.team2.foodiber.repository.ImageRepository;
 import com.team2.foodiber.repository.RecipeRepository;
 import com.team2.foodiber.service.RecipeService;
 import com.team2.foodiber.service.ShoppingListService;
@@ -10,10 +12,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -29,6 +29,8 @@ public class RecipeController {
     private RecipeRepository recipeRepository;
     @Autowired
     private ShoppingListService shoppingListService;
+    @Autowired
+    ImageRepository imageRepository;
 
     @GetMapping("/create")
     public String showCreateRecipeForm(Model model) {
