@@ -30,7 +30,7 @@ public class RecipeController {
     @Autowired
     private ShoppingListService shoppingListService;
     @Autowired
-    ImageRepository imageRepository;
+    private ImageRepository imageRepository;
 
     @GetMapping("/create")
     public String showCreateRecipeForm(Model model) {
