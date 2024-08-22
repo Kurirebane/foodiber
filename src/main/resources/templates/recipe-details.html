@@ -1,3 +1,164 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            color: #007bff;
+        }
+        p.instructions {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        form {
+            width: 100%;
+            max-width: 800px;
+        }
+        label[for="servings"] {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        #servings {
+            width: 100%;
+            max-width: 100px;
+            padding: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .ingredient-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ingredient-list li {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .ingredient-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .ingredient-list input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.5);
+        }
+        .ingredient-list label {
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .ingredient-list span {
+            font-size: 1.1rem;
+            margin-right: 5px;
+        }
+        .ingredient-list .quantity {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        button[type="submit"] {
+            padding: 15px 30px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: block;
+            margin: 20px auto;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .back-button {
+            display: block;
+            margin: 20px 0;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${recipe.name}">Recipe Name</h1>
+<p class="instructions" th:text="${recipe.instructions}">Recipe instructions will appear here...</p>
+<form th:action="@{/recipes/saveIngredients}" method="post">
+    <label for="servings">Servings:</label>
+    <input type="number" id="servings" name="servings" min="1" value="1" oninput="updateQuantities()"/>
+    <ul class="ingredient-list">
+        <li th:each="recipeIngredient : ${recipe.ingredients}">
+            <input type="checkbox"
+                   th:attr="id=${'ingredient_' + recipeIngredient.id}"
+                   th:name="selectedIngredients"
+                   th:value="${recipeIngredient.id}"/>
+            <label th:for="${'ingredient_' + recipeIngredient.id}">
+                <span th:text="${recipeIngredient.ingredient.item}"></span> -
+                <span th:data-original-quantity="${recipeIngredient.quantityValue}"
+                      th:text="${recipeIngredient.quantityValue}" class="quantity"></span>
+                <span th:text="${recipeIngredient.quantityUnit}"></span>
+            </label>
+        </li>
+    </ul>
+    <input type="hidden" name="recipeId" th:value="${recipe.id}"/>
+    <button type="submit">Add to shopping list</button>
+</form>
+<a href="/select-category" class="back-button">Go back to category selection</a>
+<script>
+    function updateQuantities() {
+        const servings = parseFloat(document.getElementById('servings').value) || 1;
+        document.querySelectorAll('.ingredient-list .quantity').forEach((element) => {
+            const originalQuantity = parseFloat(element.getAttribute('data-original-quantity'));
+            if (!isNaN(originalQuantity)) {
+                const newQuantity = originalQuantity * servings;
+                element.textContent = newQuantity.toFixed(2);
+            }
+        });
+    }
+</script>
+</body>
+</html>-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
@@ -6,67 +167,242 @@
     <title>Recipe Details</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #204d74;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0;
-            padding: 20px;
         }
+
+        .header-image {
+            width: 100%;
+            max-height: 400px;
+            overflow: hidden;
+        }
+
+        .header-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .content {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: -50px;
+            z-index: 10;
+            border-radius: 10px;
+            position: relative;
+        }
+
         h1 {
             text-align: center;
+            font-size: 50px;
+            font-style: italic;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #204d74;
+        }
+
+        .recipe-info {
+            display: flex;
+            justify-content: space-around;
             margin-bottom: 20px;
         }
+
+        .recipe-info .info-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.2em;
+            color: #7a43b6;
+            text-align: left;
+        }
+
+        .recipe-info .info-item img {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+        }
+
+        .instructions {
+            margin-bottom: 20px;
+            line-height: 1.6em;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .see-ingredients {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            cursor: pointer;
+            color: #7a43b6;
+            font-size: 2em;
+            font-weight: bold;
+            font-style: italic;
+            transition: color 0.3s;
+            text-transform: uppercase;
+        }
+
+        .see-ingredients:hover {
+            color: #0056b3;
+        }
+
+        .arrow-down {
+            margin-left: 10px;
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s;
+        }
+
+        .ingredients-section {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.8em;
+        }
+
+        .servings-label {
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .servings-input {
+            font-size: 0.7em;
+            padding: 5px;
+            width: 80px;
+        }
+
         .ingredient-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
             list-style: none;
             padding: 0;
             margin: 0;
         }
+
         .ingredient-list li {
-            margin-bottom: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
         }
+
+        .ingredient-list li span {
+            font-size: 0.7em;
+            margin-bottom: 5px;
+        }
+
         .back-button {
             display: block;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background-color: #007bff;
+            margin: 40px 0;
+            padding: 20px 40px;
+            background-color: #204d74;
             color: white;
             text-align: center;
             text-decoration: none;
             border-radius: 5px;
-            width: 150px;
+            width: 300px;
             margin-left: auto;
             margin-right: auto;
         }
+
         .back-button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-<h1>Ingredients for [[${recipe.name}]]</h1>
-<form th:action="@{/recipes/saveIngredients}" method="post">
-    <!-- Input for servings -->
-    <label for="servings">Servings:</label>
-    <input type="number" id="servings" name="servings" min="1" value="1"/>
 
-    <!-- Ingredients list -->
-    <ul class="ingredient-list">
-        <li th:each="recipeIngredient : ${recipe.ingredients}">
-            <input type="checkbox"
-                   th:attr="id=${'ingredient_' + recipeIngredient.id}"
-                   th:name="selectedIngredients"
-                   th:value="${recipeIngredient.id}"/>
-            <label th:for="${'ingredient_' + recipeIngredient.id}">
-                <span th:text="${recipeIngredient.ingredient.item}">Ingredient Name</span> -
-                <span th:text="${recipeIngredient.quantityValue}">Quantity</span>
-                <span th:text="${recipeIngredient.quantityUnit}">Unit</span>
-            </label>
-        </li>
-    </ul>
-    <input type="hidden" name="recipeId" th:value="${recipe.id}"/>
-    <button type="submit">Add to shopping list</button>
-</form>
-<a href="/select-category" class="back-button">Go back to category selection</a>
+<!-- Header Image -->
+<div class="header-image">
+    <img th:src="@{'/images/recipe-header1.jpg'}" alt="Recipe Image">
+</div>
+<div class="content">
+    <h1 th:text="${recipe.name}">Recipe Name</h1>
+    <div class="recipe-info">
+        <div class="info-item">
+            <img th:src="@{'/icons/cooking-time.png'}" alt="Cooking Time">
+            <span th:text="${recipe.cookingTime.displayName}">Cooking Time</span>
+        </div>
+        <!-- Add more icons/buttons if needed - difficulty lvl or similar -->
+    </div>
+    <p class="instructions" th:text="${recipe.instructions}">
+        Recipe instructions will appear here...
+    </p>
+    <div class="see-ingredients" onclick="toggleIngredients()">
+        See Ingredients
+        <img class="arrow-down" src="/icons/arrow-down.png" alt="Arrow Down">
+    </div>
+    <div class="ingredients-section" id="ingredients-section">
+        <form th:action="@{/recipes/saveIngredients}" method="post">
+            <label for="servings" class="servings-label">Servings:</label>
+            <input type="number" id="servings" name="servings" class="servings-input" min="1" value="1" oninput="updateQuantities()"/>
+
+            <ul class="ingredient-list">
+                <li th:each="recipeIngredient : ${recipe.ingredients}">
+                    <input type="checkbox"
+                           th:attr="id=${'ingredient_' + recipeIngredient.id}"
+                           th:name="selectedIngredients"
+                           th:value="${recipeIngredient.id}"/>
+                    <label th:for="${'ingredient_' + recipeIngredient.id}">
+                        <span th:text="${recipeIngredient.ingredient.item}"></span> -
+                        <span class="quantity"
+                              th:text="${recipeIngredient.quantityValue}"
+                              th:data-original-quantity="${recipeIngredient.quantityValue}"></span>
+                        <span th:text="${recipeIngredient.quantityUnit}"></span>
+                    </label>
+                </li>
+            </ul>
+            <input type="hidden" name="recipeId" th:value="${recipe.id}"/>
+            <button type="submit">Add to shopping list</button>
+        </form>
+    </div>
+    <a href="/select-category" class="back-button">Go back to category selection</a>
+</div>
+<script>
+    function toggleIngredients() {
+        const ingredientsSection = document.getElementById('ingredients-section');
+        const arrow = document.querySelector('.arrow-down');
+
+        if (ingredientsSection.style.display === 'none') {
+            ingredientsSection.style.display = 'flex';
+            arrow.style.transform = 'rotate(180deg)';
+        } else {
+            ingredientsSection.style.display = 'none';
+            arrow.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    function updateQuantities() {
+        const servings = parseFloat(document.getElementById('servings').value) || 1;
+        document.querySelectorAll('.ingredient-list .quantity').forEach((element) => {
+            const originalQuantity = parseFloat(element.getAttribute('data-original-quantity'));
+            if (!isNaN(originalQuantity)) {
+                const newQuantity = originalQuantity * servings;
+                element.textContent = newQuantity.toFixed(2);
+            }
+        });
+    }
+
+    // Initialize the ingredients section as hidden
+    document.getElementById('ingredients-section').style.display = 'none';
+</script>
+
 </body>
 </html>
