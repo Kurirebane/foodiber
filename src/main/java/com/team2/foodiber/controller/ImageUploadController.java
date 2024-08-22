@@ -60,6 +60,5 @@ public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile f
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(image.getType()))
                 .body(image.getImageData());
-
     }
 }
