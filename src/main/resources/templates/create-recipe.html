@@ -76,7 +76,7 @@
 
     <div>
         <label for="category">Category</label>
-        <select id="category" name="category" th:field="*{recipe.category}" required>
+        <select id="category" name="category" th:field="*{recipe.recipeCategory}" required>
             <option value="BREAKFAST">Breakfast</option>
             <option value="MAIN COURSE">Main Course</option>
             <option value="SOUP">Soup</option>
@@ -93,7 +93,7 @@
 
     <div>
         <label for="cookingTime">Cooking Time (minutes)</label>
-        <input type="number" id="cookingTime" name="cookingTime" th:field="*{cookingTime}" required>
+        <input type="number" id="cookingTime" name="cookingTime" th:field="*{recipe.cookingTime}" required>
     </div>
 
     <div>
