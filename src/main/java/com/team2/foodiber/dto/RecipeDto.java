@@ -16,7 +16,8 @@ public class RecipeDto {
     private Long imageId;
 
     // No-argument constructor
-    public RecipeDto() {}
+    public RecipeDto() {
+    }
 
     // Constructor to initialize from Recipe entity
     public RecipeDto(Recipe recipe) {
@@ -26,8 +27,7 @@ public class RecipeDto {
         this.recipeCategory = recipe.getRecipeCategory(); // Directly use Enum
         this.cookingTime = recipe.getCookingTime(); // Directly use Enum
         this.instructions = recipe.getInstructions();
-        if (recipe.getImage() != null) {
-            this.imageId = recipe.getImage().getId(); // Assuming Recipe has a getImage() method
-        }
+
     }
 }
+
