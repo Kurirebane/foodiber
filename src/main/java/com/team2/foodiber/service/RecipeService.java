@@ -39,11 +39,11 @@ public class RecipeService {
         recipe.setInstructions(recipeDto.getInstructions());
 
         // Fetch and set the image if imageId is provided
-        if (recipeDto.getImageId() != null) {
-            Image image = imageRepository.findById(recipeDto.getImageId())
+        //if (recipeDto.getImageId() != null) {
+        /*    Image image = imageRepository.findById(recipeDto.getImageId())
                     .orElseThrow(() -> new ImageNotFoundException(recipeDto.getImageId()));
-            recipe.setImage(image);
-        }
+            recipe.setImage(image);*/
+
 
         return recipe;
     }
@@ -56,10 +56,6 @@ public class RecipeService {
         recipeDto.setRecipeCategory(recipe.getRecipeCategory());
         recipeDto.setCookingTime(recipe.getCookingTime());
         recipeDto.setInstructions(recipe.getInstructions());
-
-        if (recipe.getImage() != null) {
-            recipeDto.setImageId(recipe.getImage().getId());
-        }
 
         return recipeDto;
     }

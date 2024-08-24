@@ -10,14 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
 
 @Controller
 public class MealPlanController {
 
     @Autowired
     private MealPlanService mealPlanService;
-    @Autowired private RecipeService recipeService;
+    @Autowired
+    private RecipeService recipeService;
 
 //    @GetMapping("/meal-plan")
 //    public String get3DayMealPlan(Model model) {

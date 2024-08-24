@@ -1,6 +1,6 @@
 package com.team2.foodiber;
 
-import com.team2.foodiber.model.*;
+
 import com.team2.foodiber.repository.IngredientsRepository;
 import com.team2.foodiber.repository.RecipeIngredientsRepository;
 import com.team2.foodiber.repository.RecipeRepository;
@@ -10,9 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 @SpringBootApplication
 public class FoodiberApplication implements CommandLineRunner {
