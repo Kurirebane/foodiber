@@ -3,6 +3,7 @@ package com.team2.foodiber.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Data
@@ -13,6 +14,6 @@ public class MealPlan {
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<MealPlanDay> days;
+    private List<MealPlanDay> days = new ArrayList<>();
 
 }

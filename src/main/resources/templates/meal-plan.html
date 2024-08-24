@@ -30,7 +30,7 @@
         }
         .recipe-grid {
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* Ensure three columns for recipes */
             gap: 10px;
         }
         .recipe-item {
@@ -39,89 +39,74 @@
             border-radius: 5px;
             padding: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         .recipe-item h3 {
             margin-top: 0;
         }
+        .empty-slot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .empty-slot a {
+            text-decoration: none;
+            color: #666;
+        }
+        .back-button {
+            display: block;
+            margin: 40px 0;
+            padding: 20px 40px;
+            background-color: #204d74;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-<h1>3-Day Meal Plan</h1>
-<!--<div class="meal-plan-container">
-    <div th:each="day : ${mealPlan}" class="day-container">
-        <h2 th:text="${day.name}"></h2>
-        <div class="recipe-grid">
-            <div th:each="recipe : ${day.recipes}" class="recipe-item">
-                <h3 th:text="${recipe.name}"></h3>
-                <p th:text="${recipe.details}"></p>
-            </div>
-        </div>
-    </div>
-</div>-->
 <div class="meal-plan-container">
-    <div class="day-container">
-        <h2>Day 1</h2>
+    <h1>3-Day Meal Plan</h1>
+
+    <!-- Loop through each day in the meal plan -->
+    <div th:each="day, dayStat : ${mealPlan.days}" class="day-container">
+        <h2 th:text="'Day ' + ${dayStat.index + 1}">Day Number</h2>
         <div class="recipe-grid">
-            <div class="recipe-item">
-                <h3>Recipe 1</h3>
-                <p>Details about Recipe 1...</p>
+            <div th:if="${day.recipes != null}" th:each="recipe, recipeStat : ${day.recipes}" class="recipe-item">
+                <h3 th:text="${recipe.name}">Recipe Name</h3>
             </div>
-            <div class="recipe-item">
-                <h3>Recipe 2</h3>
-                <p>Details about Recipe 2...</p>
-            </div>
-            <div class="recipe-item">
-                <h3>Recipe 3</h3>
-                <p>Details about Recipe 3...</p>
-            </div>
-        </div>
-    </div>
-    <div class="day-container">
-        <h2>Day 2</h2>
-        <div class="recipe-grid">
-            <div class="recipe-item">
-                <h3>Recipe 1</h3>
-                <p>Details about Recipe 1...</p>
-            </div>
-            <div class="recipe-item">
-                <h3>Recipe 2</h3>
-                <p>Details about Recipe 2...</p>
-            </div>
-            <div class="recipe-item">
-                <h3>Recipe 3</h3>
-                <p>Details about Recipe 3...</p>
-            </div>
-        </div>
-    </div>
-    <div class="day-container">
-        <h2>Day 3</h2>
-        <div class="recipe-grid">
-            <div class="recipe-item">
-                <h3>Recipe 1</h3>
-                <p>Details about Recipe 1...</p>
-            </div>
-            <div class="recipe-item">
-                <h3>Recipe 2</h3>
-                <p>Details about Recipe 2...</p>
-            </div>
-            <div class="recipe-item">
-                <h3>Recipe 3</h3>
-                <p>Details about Recipe 3...</p>
+            <div th:if="${day.recipes == null || day.recipes.size() < 3}" th:each="i : ${#numbers.sequence((day.recipes == null ? 1 : day.recipes.size()) + 1, 3)}" class="recipe-item empty-slot">
+                <a th:href="@{/meal-plan/add-recipe-to-day/{dayIndex}/{recipeId}(dayIndex=${dayStat.index}, recipeId=${selectedRecipeId})}">
+                    <span>+</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
+<div class="buttons-container">
+<a href="/select-category" class="back-button">Go back to category selection</a>
+</div>
+<div th:if="${mealPlan == null}">
+    <p>No meal plan available.</p>
+</div></body>
+</html>
+<!--
 <script>
-    function addRecipe(day, recipeName, recipeDetails) {
+    function addRecipe(day, recipeName, recipeInstructions
         const dayContainer = document.querySelector(`.day-container:nth-child(${day}) .recipe-grid`);
         const newRecipeItem = document.createElement('div');
         newRecipeItem.className = 'recipe-item';
-        newRecipeItem.innerHTML = `<h3>${recipeName}</h3><p>${recipeDetails}</p>`;
+        newRecipeItem.innerHTML = `<h3>${recipeName}</h3>`;
         dayContainer.appendChild(newRecipeItem);
     }
-
-    // Example usage:
-    // addRecipe(1, 'New Recipe', 'Details about new recipe...');
-</script>
-</body>
-</html>
+</script>-->

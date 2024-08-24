@@ -30,6 +30,7 @@ public class Recipe {
 
     @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RecipeIngredients> ingredients = new ArrayList<>();
-
+    @ManyToMany(mappedBy = "recipes")
+    private List<MealPlanDay> mealPlanDays = new ArrayList<>();
 
 }
