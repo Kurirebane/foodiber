@@ -1,78 +1,99 @@
 package com.team2.foodiber.service;
 
 import com.team2.foodiber.dto.RecipeDto;
+import com.team2.foodiber.exceptions.ImageNotFoundException;
 import com.team2.foodiber.exceptions.RecipeNotFoundException;
 import com.team2.foodiber.model.*;
 import com.team2.foodiber.repository.IngredientsRepository;
 import com.team2.foodiber.repository.RecipeIngredientsRepository;
 import com.team2.foodiber.repository.RecipeRepository;
+import com.team2.foodiber.repository.ImageRepository; // Import this if you are using ImageRepository
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-
 public class RecipeService {
 
-    public final RecipeRepository recipeRepository;
+    private final RecipeRepository recipeRepository;
     private final IngredientsRepository ingredientsRepository;
     private final RecipeIngredientsRepository recipeIngredientsRepository;
+    private final ImageRepository imageRepository; // Add ImageRepository
 
-
-    public RecipeService(RecipeRepository recipeRepository, IngredientsRepository ingredientsRepository, RecipeIngredientsRepository recipeIngredientsRepository) {
+    public RecipeService(RecipeRepository recipeRepository, IngredientsRepository ingredientsRepository,
+                         RecipeIngredientsRepository recipeIngredientsRepository, ImageRepository imageRepository) {
         this.recipeRepository = recipeRepository;
         this.ingredientsRepository = ingredientsRepository;
         this.recipeIngredientsRepository = recipeIngredientsRepository;
+        this.imageRepository = imageRepository; // Initialize ImageRepository
     }
 
-    //RecipeDTO -> Recipe
     private Recipe recipeDtoToRecipe(RecipeDto recipeDto) {
         Recipe recipe = new Recipe();
+        recipe.setId(recipeDto.getId());
+        recipe.setUserId(recipeDto.getUserId());
         recipe.setName(recipeDto.getName());
-        recipe.setRecipeCategory(RecipeCategory.valueOf(recipeDto.getCategory()));
+        recipe.setRecipeCategory(recipeDto.getRecipeCategory());
         recipe.setCookingTime(recipeDto.getCookingTime());
-        recipe.setImageId(recipeDto.getImageId());
+        recipe.setInstructions(recipeDto.getInstructions());
+
+        // Fetch and set the image if imageId is provided
+        if (recipeDto.getImageId() != null) {
+            Image image = imageRepository.findById(recipeDto.getImageId())
+                    .orElseThrow(() -> new ImageNotFoundException(recipeDto.getImageId()));
+            recipe.setImage(image);
+        }
+
         return recipe;
     }
-    // Recipe -> RecipeDTO
+
     private RecipeDto toDto(Recipe recipe) {
         RecipeDto recipeDto = new RecipeDto();
+        recipeDto.setId(recipe.getId());
+        recipeDto.setUserId(recipe.getUserId());
         recipeDto.setName(recipe.getName());
-        recipeDto.setCategory(String.valueOf(RecipeCategory.valueOf(recipeDto.getCategory())));
-        recipeDto.setCookingTime(recipeDto.getCookingTime());
-        recipeDto.setImageId(recipeDto.getImageId());
+        recipeDto.setRecipeCategory(recipe.getRecipeCategory());
+        recipeDto.setCookingTime(recipe.getCookingTime());
+        recipeDto.setInstructions(recipe.getInstructions());
+
+        if (recipe.getImage() != null) {
+            recipeDto.setImageId(recipe.getImage().getId());
+        }
+
         return recipeDto;
     }
-    // New Recipe
-    public RecipeDto createRecipe(RecipeDto createdRecipeDto) {
-        Recipe recipe = recipeDtoToRecipe(createdRecipeDto);
-        Recipe savedRecipe = recipeRepository.save(recipe);
-        return toDto(savedRecipe);
-    }
-    // get all RECIPES by Category
-    public List<Recipe> getRecipesByCategory(RecipeCategory category) {
-        return recipeRepository.findByRecipeCategory(category);
-    }
 
-    // get all Recipes
-    public List<Recipe> getAllRecipes() {
-        return recipeRepository.findAll();
-
-    }
-    // get Recipe by ID
-    public Recipe getRecipeById(Long recipeId) {
-        Optional<Recipe> recipe = recipeRepository.findById(recipeId);
-        return recipe.orElseThrow(() -> new RecipeNotFoundException(recipeId));
-    }
-
-    // save Recipes
-    public RecipeDto saveRecipe(RecipeDto recipeDto) {
+    public RecipeDto createRecipe(RecipeDto recipeDto) {
         Recipe recipe = recipeDtoToRecipe(recipeDto);
         Recipe savedRecipe = recipeRepository.save(recipe);
         return toDto(savedRecipe);
     }
 
+    public RecipeDto getRecipeDtoById(Long recipeId) {
+        Recipe recipe = recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new RecipeNotFoundException(recipeId));
+        return toDto(recipe);
+    }
+
+    public List<Recipe> getRecipesByCategory(RecipeCategory category) {
+        return recipeRepository.findByRecipeCategory(category);
+    }
+
+    public List<Recipe> getAllRecipes() {
+        return recipeRepository.findAll();
+    }
+
+    public Recipe getRecipeById(Long recipeId) {
+        return recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new RecipeNotFoundException(recipeId));
+    }
+
+    public RecipeDto saveRecipe(RecipeDto recipeDto) {
+        Recipe recipe = recipeDtoToRecipe(recipeDto);
+        Recipe savedRecipe = recipeRepository.save(recipe);
+        return toDto(savedRecipe);
+    }
 
     public Recipe createRecipe(String name, RecipeCategory category, CookingTime cookingTime, String instructions) {
         Recipe recipe = new Recipe();
@@ -107,4 +128,3 @@ public class RecipeService {
         return recipeRepository.findById(recipeId);
     }
 }
-

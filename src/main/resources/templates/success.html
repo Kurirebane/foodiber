@@ -1,16 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Created Successfully</title>
-    <script>
-        setTimeout(function() {
-            window.location.href = "/";
-        }, 3000);
-    </script>
+    <title>Recipe Created Successfully</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            padding: 40px;
+            background-image: url("/images/createdrecipes.jpg");
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .recipe-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+        }
+
+        .recipe-details img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .recipe-details h3 {
+            margin-top: 0;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-<h1>User Created Successfully</h1>
-<h2>You will be redirected back to main page</h2>
+<h2>Recipe Created Successfully</h2>
+<div class="recipe-details">
+    <img th:src="@{'/api/images/' + ${recipe.imageId}}" alt="Recipe Image">
+    <h3 th:text="${recipe.name}">Recipe Name</h3>
+    <p><strong>Category:</strong> <span th:text="${recipe.category}">Category</span></p>
+    <p><strong>Cooking Time:</strong> <span th:text="${recipe.cookingTime.displayName}">Cooking Time</span></p>
+</div>
+<a href="/recipes" class="back-link">Go back to recipes</a>
 </body>
 </html>

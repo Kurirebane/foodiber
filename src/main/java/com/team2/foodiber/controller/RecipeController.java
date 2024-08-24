@@ -38,7 +38,7 @@ public class RecipeController {
         return "create-recipe";
     }
 
-    @PostMapping
+    @PostMapping()
     public String createRecipe(@ModelAttribute RecipeDto recipeDto,
                                @RequestParam("image") MultipartFile file, Model model) {
         try {
@@ -56,7 +56,7 @@ public class RecipeController {
 
                 RecipeDto savedRecipe = recipeService.createRecipe(recipeDto);
                 model.addAttribute("recipe", savedRecipe);
-                return "redirect:/recipes/success";
+                return "redirect:/recipes/success?recipeId=" + savedRecipe.getId();
             } catch (Exception exception) {
             exception.printStackTrace();
             model.addAttribute("Error", "Could not upload this image.");

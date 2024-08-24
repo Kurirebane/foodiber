@@ -3,33 +3,37 @@ package com.team2.foodiber.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
 @Entity
-@Table(name = "recipes")
+@Data
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long userId;
-
     private String name;
-
-    private long imageId;
 
     @Enumerated(EnumType.STRING)
     private RecipeCategory recipeCategory;
 
     @Enumerated(EnumType.STRING)
     private CookingTime cookingTime;
-    @Column(columnDefinition = "TEXT")
+
+    @Column(length = 2000)
     private String instructions;
 
-    @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RecipeIngredients> ingredients = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
 
-
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<RecipeIngredients> ingredients = new HashSet<>();
 }
+
+
+
+
+

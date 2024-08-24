@@ -48,7 +48,7 @@
 <h2>User Created Recipes</h2>
 <div class="recipe-list" th:each="recipe : ${recipes}">
   <div class="recipe-item">
-    <img th:src="@{'/api/images/' + ${recipe.imageId}}" alt="Recipe Image">
+    <img th:src="@{'/api/images/' + ${recipe.image.id}}" alt="Recipe Image">
     <div class="recipe-details">
       <h3 th:text="${recipe.name}">Recipe Name</h3>
       <p><strong>Category:</strong> <span th:text="${recipe.category}">Category</span></p>

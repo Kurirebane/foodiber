@@ -16,4 +16,19 @@ public enum CookingTime {
         return displayName;
     }
 
+    public static CookingTime fromString(String text) {
+        switch (text) {
+            case "5":
+                return FAST_5MIN;
+            case "15":
+                return MEDIUM_15MIN;
+            case "30":
+                return SLOW_30MIN;
+            case "60":
+                return SUPER_SLOW;
+            default:
+                throw new IllegalArgumentException("Unknown cooking time: " + text);
+        }
+    }
 }
+
