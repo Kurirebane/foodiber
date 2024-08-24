@@ -76,7 +76,7 @@
 
     <div>
         <label for="category">Category</label>
-        <select id="category" name="category" th:field="*{category}" required>
+        <select id="category" name="category" th:field="*{recipe.category}" required>
             <option value="BREAKFAST">Breakfast</option>
             <option value="MAIN COURSE">Main Course</option>
             <option value="SOUP">Soup</option>
@@ -88,7 +88,7 @@
 
     <div>
         <label for="ingredients">Ingredients</label>
-        <textarea id="ingredients" name="ingredients" th:field="*{ingredients}" rows="4" required></textarea>
+        <textarea id="ingredients" name="ingredients" th:field="*{recipe.ingredients}" rows="4" required></textarea>
     </div>
 
     <div>
