@@ -7,7 +7,7 @@ import com.team2.foodiber.model.*;
 import com.team2.foodiber.repository.IngredientsRepository;
 import com.team2.foodiber.repository.RecipeIngredientsRepository;
 import com.team2.foodiber.repository.RecipeRepository;
-import com.team2.foodiber.repository.ImageRepository; // Import this if you are using ImageRepository
+import com.team2.foodiber.repository.ImageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,25 +39,23 @@ public class RecipeService {
         recipe.setInstructions(recipeDto.getInstructions());
 
         // Fetch and set the image if imageId is provided
-//        if (recipeDto.getImageId() != null) {
-//            Image image = imageRepository.findById(recipeDto.getImageId())
-//                    .orElseThrow(() -> new ImageNotFoundException(recipeDto.getImageId()));
-//            recipe.setImage(image);
-//        }
+        if (recipeDto.getImageId() != null) {
+            Image image = imageRepository.findById(recipeDto.getImageId())  // Assuming Image ID is a Long
+                    .orElseThrow(() -> new ImageNotFoundException(recipeDto.getImageId()));
+            recipe.setImage(image);  // Assuming setImage accepts an Image object
+        }
 
         return recipe;
     }
 
-    private RecipeDto toDto(Recipe recipe) {
+    public RecipeDto toDto(Recipe recipe) {
         RecipeDto recipeDto = new RecipeDto();
         recipeDto.setId(recipe.getId());
-        recipeDto.setUserId(recipe.getUserId());
         recipeDto.setName(recipe.getName());
-        recipeDto.setRecipeCategory(recipe.getRecipeCategory());
+        recipeDto.setRecipeCategory(recipe.getRecipeCategory()); // Ensure this is correctly set
         recipeDto.setCookingTime(recipe.getCookingTime());
         recipeDto.setInstructions(recipe.getInstructions());
-
-
+        recipeDto.setImageId(recipe.getImage() != null ? recipe.getImage().getId() : null);
         return recipeDto;
     }
 

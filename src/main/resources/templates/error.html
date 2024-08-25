@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #ffffff; /* Light pink background */
+        }
+        .error-message {
+            color: #f379ae; /* Pink color for text */
+            font-size: 24px;
+            margin: 20px;
+        }
+        .error-details {
+            color: #721c24; /* Darker color for details */
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-<h1>Error</h1>
-<p>Something went wrong: ${error}</p>
+<div class="error-message">
+    Something went wrong: Your Dear Friend Whitelabel Error c(^_^c)
+</div>
+<div class="error-details" th:text="${message}">
+    <!-- Error details will be rendered here -->
+</div>
 </body>
 </html>

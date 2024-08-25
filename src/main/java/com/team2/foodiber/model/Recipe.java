@@ -18,19 +18,22 @@ public class Recipe {
 
     private String name;
 
-    private long imageId;
+    @OneToOne(fetch = FetchType.LAZY)  // Many recipes can share the same image
+    @JoinColumn(name = "image_id")  // Specifies the foreign key column name in the recipes table
+    private Image image;
 
     @Enumerated(EnumType.STRING)
     private RecipeCategory recipeCategory;
 
     @Enumerated(EnumType.STRING)
     private CookingTime cookingTime;
+
     @Column(columnDefinition = "TEXT")
     private String instructions;
 
     @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RecipeIngredients> ingredients = new ArrayList<>();
+
     @ManyToMany(mappedBy = "recipes")
     private List<MealPlanDay> mealPlanDays = new ArrayList<>();
-
 }
