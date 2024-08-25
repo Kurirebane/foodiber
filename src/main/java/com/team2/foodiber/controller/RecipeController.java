@@ -53,15 +53,20 @@ public class RecipeController {
                 recipeDto.setImageId(savedImage.getId());
             }
 
-                RecipeDto savedRecipe = recipeService.createRecipe(recipeDto);
-                model.addAttribute("recipe", savedRecipe);
-                return "redirect:/recipes/success?recipeId=" + savedRecipe.getId();
-            } catch (Exception exception) {
+
+            RecipeDto savedRecipe = recipeService.createRecipe(recipeDto);
+
+
+            List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();
+            model.addAttribute("recipes", allRecipes);
+
+
+            return "recipes";
+        } catch (Exception exception) {
             exception.printStackTrace();
-            model.addAttribute("Error", "Could not upload this image.");
+            model.addAttribute("error", "Could not upload this image.");
             return "create-recipe";
         }
-
     }
 
     @GetMapping("/success")
@@ -98,5 +103,11 @@ public class RecipeController {
         shoppingListService.addIngredientsToShoppingList(ingredientsToAdd, servings);
 
         return "redirect:/recipes/shopping-list";
+    }
+    @GetMapping("/recipes")
+    public String viewRecipes(Model model) {
+        List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();
+        model.addAttribute("recipes", allRecipes);
+        return "recipes";
     }
 }

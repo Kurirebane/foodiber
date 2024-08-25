@@ -8,67 +8,72 @@
             font-family: Arial, sans-serif;
             margin: 40px;
             padding: 40px;
-            background-image: url("/images/createdrecipes.jpg")        }
+            background-image: url("/images/createdrecipes.jpg");
+            background-repeat: no-repeat;
+            background-position: right top;
+            background-size: cover;
+            background-attachment: fixed;
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
+            h2 {
+                text-align: center;
+                color: #333;
+            }
 
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5%);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+            .form-container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: rgba(0, 0, 0, 0.5%);
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+            form {
+                display: flex;
+                flex-direction: column;
+            }
 
-        div {
-            margin-bottom: 15px;
-        }
+            div {
+                margin-bottom: 15px;
+            }
 
-        label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                display: block;
+            }
 
-        input[type="text"], input[type="number"], textarea, select {
-            width: 60%;
-            padding: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.7%);
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+            input[type="text"], input[type="number"], textarea, select {
+                width: 60%;
+                padding: 20px;
+                border: 1px solid rgba(0, 0, 0, 0.7%);
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
 
-        textarea {
-            resize: vertical;
-        }
+            textarea {
+                resize: vertical;
+            }
 
-        button {
-            background-color: rgba(16, 188, 128, 0.4);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+            button {
+                background-color: rgba(16, 188, 128, 0.4);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
 
-        button:hover {
-            background-color: #0056b3;
+            button:hover {
+                background-color: #0056b3;
+            }
         }
     </style>
 </head>
 <body>
 <h2>Create Recipe</h2>
-<form action="/recipes" method="post" enctype="multipart/form-data" th:object="${recipe}">
+<form action="/recipes" method="POST" enctype="multipart/form-data" th:object="${recipe}">
     <div>
         <label for="name">Recipe Name</label>
         <input type="text" id="name" name="name" th:field="*{name}" required>

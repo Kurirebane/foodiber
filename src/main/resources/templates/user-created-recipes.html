@@ -2,60 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>User Created Recipes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Recipes</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 40px;
       padding: 40px;
       background-image: url("/images/createdrecipes.jpg");
+      background-repeat: no-repeat;
+      background-position: right top;
+      background-size: cover;
+      background-attachment: fixed;
     }
-
-    h2 {
-      text-align: center;
-      color: #333;
-    }
-
-    .recipe-list {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .recipe-item {
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
+    .container {
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for content */
       padding: 20px;
-      margin-bottom: 20px;
-      background-color: rgba(255, 255, 255, 0.9);
-    }
-
-    .recipe-item img {
-      max-width: 100%;
-      height: auto;
       border-radius: 8px;
     }
-
-    .recipe-details {
-      margin-top: 15px;
+    .recipe {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
     }
-
-    .recipe-details h3 {
-      margin: 0;
+    .recipe img {
+      max-width: 200px; /* Limit the image width */
+      height: auto; /* Maintain aspect ratio */
+      float: right; /* Float image to the right */
+      margin-left: 10px;
     }
   </style>
 </head>
 <body>
-<h2>User Created Recipes</h2>
-<div class="recipe-list" th:each="recipe : ${recipes}">
-  <div class="recipe-item">
-    <img th:src="@{'/api/images/' + ${recipe.image.id}}" alt="Recipe Image">
-    <div class="recipe-details">
-      <h3 th:text="${recipe.name}">Recipe Name</h3>
-      <p><strong>Category:</strong> <span th:text="${recipe.category}">Category</span></p>
-      <p><strong>Description:</strong> <span th:text="${recipe.description}">Description</span></p>
-      <p><strong>Cooking Time:</strong> <span th:text="${recipe.cookingTime}">Cooking Time</span> minutes</p>
+<h1>My Recipes</h1>
+<div>
+  <!-- Iterate over recipes and display them -->
+  <div th:each="recipe : ${recipes}">
+    <div>
+      <h2 th:text="${recipe.name}"></h2>
+      <p>Ingredients: <span th:text="${recipe.ingredients}"></span></p>
+      <p>Instructions: <span th:text="${recipe.instructions}"></span></p>
+      <img th:src="@{/images/{imageId}(imageId=${recipe.imageId})}" th:alt="${recipe.name}" style="width:200px;">
     </div>
   </div>
 </div>
+<a th:href="@{/recipes/create}">Create more recipes</a>
 </body>
 </html>
