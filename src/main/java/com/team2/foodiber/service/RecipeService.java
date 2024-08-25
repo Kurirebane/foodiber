@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
@@ -117,6 +118,12 @@ public class RecipeService {
 
         recipe.getIngredients().add(recipeIngredient);
         recipeRepository.save(recipe);
+    }
+    public List<RecipeDto> getAllRecipeDtos() {
+        List<Recipe> recipes = recipeRepository.findAll();
+        return recipes.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     public Optional<Recipe> findById(Long recipeId) {

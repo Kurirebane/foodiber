@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            padding: 40px;
+            background-image: url("/images/createdrecipes.jpg");
+            background-repeat: no-repeat;
+            background-position: right top;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .recipes-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .recipe {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .recipe img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .recipe h3 {
+            margin-top: 0;
+        }
+
+        .create-more-recipes {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .create-more-recipes a {
+            font-size: 1.1em;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+<h2>All Recipes</h2>
+<div class="recipes-container">
+    <div th:each="recipe : ${recipes}" class="recipe">
+        <div th:if="${recipe.imageId != null}">
+            <img th:src="@{/api/images/{id}(id=${recipe.imageId})}" alt="Recipe Image"/>
+        </div>
+        <div th:if="${recipe.imageId == null}">
+            <p>No image uploaded for this recipe.</p>
+        </div>
+        <h3 th:text="${recipe.name}">Recipe Name</h3>
+        <p><strong>Category:</strong> <span th:text="${recipe.recipeCategory}">Category</span></p>
+        <p><strong>Cooking Time:</strong> <span th:text="${recipe.cookingTime.displayName}">Cooking Time</span></p>
+    </div>
+</div>
+<div class="create-more-recipes">
+    <a href="/recipes/create">Create More Recipes</a>
+</div>
+</body>
+</html>
