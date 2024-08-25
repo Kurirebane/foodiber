@@ -53,7 +53,6 @@ public class RecipeController {
                 recipeDto.setImageId(savedImage.getId());
             }
 
-
                 RecipeDto savedRecipe = recipeService.createRecipe(recipeDto);
                 model.addAttribute("recipe", savedRecipe);
                 return "redirect:/recipes/success?recipeId=" + savedRecipe.getId();
@@ -66,7 +65,15 @@ public class RecipeController {
     }
 
     @GetMapping("/success")
-    public String showSuccessPage() {
+    public String showSuccessPage(@RequestParam("recipeId") Long recipeId, Model model) {
+        RecipeDto recipe = recipeService.getRecipeDtoById(recipeId);
+        if (recipe != null) {
+            System.out.println("Recipe ID: " + recipe.getId());
+            System.out.println("Recipe Image ID: " + recipe.getImageId());
+        } else {
+            System.out.println("Recipe not found!");
+        }
+        model.addAttribute("recipe", recipe);
         return "success";
     }
 

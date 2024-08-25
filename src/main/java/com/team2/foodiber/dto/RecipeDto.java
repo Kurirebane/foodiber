@@ -12,6 +12,7 @@ public class RecipeDto {
     private String name;
     private RecipeCategory recipeCategory; // Enum directly
     private CookingTime cookingTime; // Enum directly
+    private String ingredients;
     private String instructions;
     private Long imageId;
 
