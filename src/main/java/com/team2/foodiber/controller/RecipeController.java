@@ -1,13 +1,14 @@
 package com.team2.foodiber.controller;
 
+
 import com.team2.foodiber.dto.RecipeDto;
 import com.team2.foodiber.model.Image;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.model.RecipeIngredients;
 import com.team2.foodiber.repository.ImageRepository;
-import com.team2.foodiber.repository.RecipeRepository;
 import com.team2.foodiber.service.RecipeService;
 import com.team2.foodiber.service.ShoppingListService;
+import com.team2.foodiber.repository.RecipeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/recipes")
 public class RecipeController {
 
-
     @Autowired
     private final RecipeService recipeService;
     @Autowired
@@ -39,7 +39,6 @@ public class RecipeController {
         model.addAttribute("recipe", new RecipeDto());
         return "create-recipe";
     }
-
     @PostMapping()
     public String createRecipe(@ModelAttribute RecipeDto recipeDto,
                                @RequestParam("image") MultipartFile file, Model model) {
@@ -70,7 +69,6 @@ public class RecipeController {
             return "create-recipe";
         }
     }
-
     @GetMapping("/success")
     public String showSuccessPage(@RequestParam("recipeId") Long recipeId, Model model) {
         RecipeDto recipe = recipeService.getRecipeDtoById(recipeId);
@@ -83,7 +81,6 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         return "success";
     }
-
 
     @PostMapping("/saveIngredients")
     public String saveIngredients(

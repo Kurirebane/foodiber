@@ -24,8 +24,7 @@ public class MealPlanService {
         MealPlan mealPlan = mealPlanRepository.findAll().stream().findFirst().orElse(new MealPlan());
         if (mealPlan.getDays() == null || mealPlan.getDays().isEmpty()) {
             mealPlan.setDays(new ArrayList<>());
-            // Optionally, add initial empty days if necessary
-            for (int i = 0; i < 3; i++) { // Assuming a 3-day meal plan
+            for (int i = 0; i < 3; i++) {
                 MealPlanDay day = new MealPlanDay();
                 day.setRecipes(new ArrayList<>());
                 mealPlan.getDays().add(day);
@@ -38,20 +37,13 @@ public class MealPlanService {
         MealPlan mealPlan = getCurrentMealPlan();
         Recipe recipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new RuntimeException("Recipe not found"));
-
-        // Ensure enough days exist
         while (mealPlan.getDays().size() <= dayIndex) {
             mealPlan.getDays().add(new MealPlanDay());
         }
-
         MealPlanDay day = mealPlan.getDays().get(dayIndex);
-
-        // Initialize recipes list if null
         if (day.getRecipes() == null) {
             day.setRecipes(new ArrayList<>());
         }
-
-        // Check if recipe is already added
         if (day.getRecipes().contains(recipe)) {
             throw new RuntimeException("Recipe already added to this day.");
         }
@@ -60,8 +52,5 @@ public class MealPlanService {
         mealPlanRepository.save(mealPlan);
     }
 
-//    public List<MealPlan> getMealPlan() {
-//        return mealPlanRepository.findAll();
-//    }
 }
 

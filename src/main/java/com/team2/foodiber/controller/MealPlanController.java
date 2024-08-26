@@ -1,5 +1,4 @@
 package com.team2.foodiber.controller;
-
 import com.team2.foodiber.model.MealPlan;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.service.MealPlanService;
@@ -21,23 +20,17 @@ public class MealPlanController {
     @Autowired
     private RecipeService recipeService;
 
-    //    @GetMapping("/meal-plan")
-//    public String get3DayMealPlan(Model model) {
-//        MealPlan mealPlan = mealPlanService.get3DayMealPlan();
-//        model.addAttribute("mealPlan", mealPlan);
-//        return "meal-plan";
-//    }
 
     @GetMapping("/meal-plan")
     public String showMealPlan(Model model) {
-        MealPlan mealPlan = mealPlanService.getCurrentMealPlan(); // Fetch a single meal plan
-        model.addAttribute("mealPlan", mealPlan); // Add the meal plan to the model
-        return "meal-plan"; // Return the view name
+        MealPlan mealPlan = mealPlanService.getCurrentMealPlan();
+        model.addAttribute("mealPlan", mealPlan);
+        return "meal-plan";
     }
 
     @GetMapping("/meal-plan/add-recipe/{recipeId}")
     public String addRecipeToMealPlan(@PathVariable Long recipeId, Model model) {
-        Recipe selectedRecipe = recipeService.getRecipeById(recipeId); // Fetch the selected recipe
+        Recipe selectedRecipe = recipeService.getRecipeById(recipeId);
         model.addAttribute("selectedRecipeId", selectedRecipe.getId());
         model.addAttribute("mealPlan", mealPlanService.getCurrentMealPlan());
         return "meal-plan";
@@ -49,12 +42,4 @@ public class MealPlanController {
         return "redirect:/meal-plan";
     }
 
-
-//    @GetMapping("/meal-plan/day/{dayNumber}")
-//    public String getMealPlanForDay(@PathVariable int dayNumber, Model model) {
-//        List<Recipe> recipes = mealPlanService.getRecipesForDay(dayNumber);
-//        model.addAttribute("recipes", recipes);
-//        model.addAttribute("dayNumber", dayNumber);
-//        return "dayMealPlanView";
-//    }
 }
