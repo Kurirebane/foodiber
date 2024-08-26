@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
@@ -55,19 +54,31 @@ public class RecipeController {
             }
 
 
-                RecipeDto savedRecipe = recipeService.createRecipe(recipeDto);
-                model.addAttribute("recipe", savedRecipe);
-                return "redirect:/recipes/success?recipeId=" + savedRecipe.getId();
-            } catch (Exception exception) {
+            RecipeDto savedRecipe = recipeService.createRecipe(recipeDto);
+
+
+            List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();
+            model.addAttribute("recipes", allRecipes);
+
+
+            return "recipes";
+        } catch (Exception exception) {
             exception.printStackTrace();
-            model.addAttribute("Error", "Could not upload this image.");
+            model.addAttribute("error", "Could not upload this image.");
             return "create-recipe";
         }
-
     }
 
     @GetMapping("/success")
-    public String showSuccessPage() {
+    public String showSuccessPage(@RequestParam("recipeId") Long recipeId, Model model) {
+        RecipeDto recipe = recipeService.getRecipeDtoById(recipeId);
+        if (recipe != null) {
+            System.out.println("Recipe ID: " + recipe.getId());
+            System.out.println("Recipe Image ID: " + recipe.getImageId());
+        } else {
+            System.out.println("Recipe not found!");
+        }
+        model.addAttribute("recipe", recipe);
         return "success";
     }
 
@@ -93,15 +104,10 @@ public class RecipeController {
 
         return "redirect:/recipes/shopping-list";
     }
-
-    @GetMapping("/save/{recipeId}")
-    public String saveRecipe(@PathVariable Long recipeId, RedirectAttributes redirectAttributes) {
-        try {
-            recipeService.savedRecipe(recipeId);  // Implement this method in the RecipeService
-            redirectAttributes.addFlashAttribute("message", "Recipe saved successfully!");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Failed to save recipe.");
-        }
-        return "redirect:/saved-recipes";  // Redirect to the saved recipes page
+    @GetMapping("/recipes")
+    public String viewRecipes(Model model) {
+        List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();
+        model.addAttribute("recipes", allRecipes);
+        return "recipes";
     }
 }
