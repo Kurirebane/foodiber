@@ -4,6 +4,7 @@ import com.team2.foodiber.model.MealPlan;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.service.MealPlanService;
 import com.team2.foodiber.service.RecipeService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Controller
+@AllArgsConstructor
 public class MealPlanController {
 
     @Autowired

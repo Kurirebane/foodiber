@@ -1,4 +1,4 @@
-package com.team2.foodiber.config;
+package com.team2.foodiber.data;
 
 import com.team2.foodiber.model.CookingTime;
 import org.springframework.core.convert.converter.Converter;

@@ -53,27 +53,14 @@ public class MainController {
         model.addAttribute("recipes", filteredRecipes);
         model.addAttribute("categoryName", recipeCategory);
 
-        String backgroundImageUrl;
-        switch (recipeCategory) {
-            case BREAKFAST:
-                backgroundImageUrl = "/images/breakfast.jpg";
-                break;
-            case MAIN_COURSE:
-                backgroundImageUrl = "/images/maincourses3.jpeg";
-                break;
-            case SOUP:
-                backgroundImageUrl = "/images/soups.jpg";
-                break;
-            case DESSERT:
-                backgroundImageUrl = "/images/dessert3.jpg";
-                break;
-            case VEGETARIAN:
-                backgroundImageUrl = "/images/vegetarian2.jpg";
-                break;
-            default:
-                backgroundImageUrl = "/images/categories_backround.jpeg";
-                break;
-        }
+        String backgroundImageUrl = switch (recipeCategory) {
+            case BREAKFAST -> "/images/breakfast.jpg";
+            case MAIN_COURSE -> "/images/maincourses3.jpeg";
+            case SOUP -> "/images/soups.jpg";
+            case DESSERT -> "/images/dessert3.jpg";
+            case VEGETARIAN -> "/images/vegetarian2.jpg";
+            default -> "/images/categories_backround.jpeg";
+        };
         model.addAttribute("backgroundImageUrl", backgroundImageUrl);
 
         return "category";

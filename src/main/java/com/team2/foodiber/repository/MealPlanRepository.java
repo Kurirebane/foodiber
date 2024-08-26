@@ -14,8 +14,4 @@ public interface MealPlanRepository extends JpaRepository<MealPlan, Long> {
         return new MealPlan(); // Replace with actual fetching logic
     }
 
-//    public List<Recipe> findRecipesByDay(int dayNumber) {
-//        // Fetch recipes for a specific day from the database
-//        return List.of(new Recipe("Recipe 1"), new Recipe("Recipe 2"), new Recipe("Recipe 3")); // Replace with actual fetching logic
-//    }
 }

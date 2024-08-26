@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/recipes")
 public class RecipeController {
 
+
+    @Autowired
     private final RecipeService recipeService;
     @Autowired
     private RecipeRepository recipeRepository;
