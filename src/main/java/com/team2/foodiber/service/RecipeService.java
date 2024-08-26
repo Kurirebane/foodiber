@@ -4,10 +4,8 @@ import com.team2.foodiber.dto.RecipeDto;
 import com.team2.foodiber.exceptions.ImageNotFoundException;
 import com.team2.foodiber.exceptions.RecipeNotFoundException;
 import com.team2.foodiber.model.*;
-import com.team2.foodiber.repository.IngredientsRepository;
-import com.team2.foodiber.repository.RecipeIngredientsRepository;
-import com.team2.foodiber.repository.RecipeRepository;
-import com.team2.foodiber.repository.ImageRepository; // Import this if you are using ImageRepository
+import com.team2.foodiber.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +17,8 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final IngredientsRepository ingredientsRepository;
     private final RecipeIngredientsRepository recipeIngredientsRepository;
+    @Autowired
+    private SavedRecipeRepository savedRecipeRepository;
     private final ImageRepository imageRepository; // Add ImageRepository
 
     public RecipeService(RecipeRepository recipeRepository, IngredientsRepository ingredientsRepository,
@@ -92,6 +92,16 @@ public class RecipeService {
         return toDto(savedRecipe);
     }
 
+    public void savedRecipe(Long recipeId) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
+        if (recipeOptional.isPresent()) {
+            Recipe recipe = recipeOptional.get();
+            SavedRecipe savedRecipe = new SavedRecipe(recipe);  // Create a new SavedRecipe entity
+            savedRecipeRepository.save(savedRecipe);  // Save it to the database
+        } else {
+            throw new RecipeNotFoundException(recipeId);
+        }
+    }
     public Recipe createRecipe(String name, RecipeCategory category, CookingTime cookingTime, String instructions) {
         Recipe recipe = new Recipe();
         recipe.setName(name);

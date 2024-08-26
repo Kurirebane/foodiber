@@ -15,9 +15,7 @@ public class Recipe {
     private Long id;
 
     private Long userId;
-
     private String name;
-
     private long imageId;
 
     @Enumerated(EnumType.STRING)
@@ -25,11 +23,13 @@ public class Recipe {
 
     @Enumerated(EnumType.STRING)
     private CookingTime cookingTime;
+
     @Column(columnDefinition = "TEXT")
     private String instructions;
 
     @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RecipeIngredients> ingredients = new ArrayList<>();
+
     @ManyToMany(mappedBy = "recipes")
     private List<MealPlanDay> mealPlanDays = new ArrayList<>();
 

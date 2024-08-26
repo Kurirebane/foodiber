@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
@@ -91,5 +92,16 @@ public class RecipeController {
         shoppingListService.addIngredientsToShoppingList(ingredientsToAdd, servings);
 
         return "redirect:/recipes/shopping-list";
+    }
+
+    @GetMapping("/save/{recipeId}")
+    public String saveRecipe(@PathVariable Long recipeId, RedirectAttributes redirectAttributes) {
+        try {
+            recipeService.savedRecipe(recipeId);  // Implement this method in the RecipeService
+            redirectAttributes.addFlashAttribute("message", "Recipe saved successfully!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Failed to save recipe.");
+        }
+        return "redirect:/saved-recipes";  // Redirect to the saved recipes page
     }
 }

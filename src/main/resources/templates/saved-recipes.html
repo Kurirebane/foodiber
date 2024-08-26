@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Recipes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #204d74;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .recipe-list {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .recipe-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .recipe-item:last-child {
+            border-bottom: none;
+        }
+
+        .add-to-meal-plan {
+            padding: 10px 20px;
+            background-color: #204d74;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .add-to-meal-plan:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Saved Recipes</h1>
+<div class="recipe-list">
+    <div th:each="savedRecipe : ${savedRecipes}" class="recipe-item">
+        <span th:text="${savedRecipe.name}">Recipe Name</span>
+        <a th:href="@{/meal-plan/add-recipe/{recipeId}(recipeId=${savedRecipe.id})}" class="add-to-meal-plan">Add to Meal Plan</a>
+    </div>
+</div>
+</body>
+</html>

@@ -27,9 +27,17 @@ public class MealPlanController {
 //    }
 @GetMapping("/meal-plan")
 public String showMealPlan(Model model) {
-    MealPlan mealPlan = mealPlanService.getCurrentMealPlan(); // Fetch a single meal plan
-    model.addAttribute("mealPlan", mealPlan); // Add the meal plan to the model
-    return "meal-plan"; // Return the view name
+    MealPlan mealPlan = mealPlanService.getCurrentMealPlan();
+    if (mealPlan == null) {
+        mealPlan = new MealPlan(); // Create a new meal plan if none exists
+    }
+    model.addAttribute("mealPlan", mealPlan);
+
+    // Fetch all recipes
+    List<Recipe> allRecipes = recipeService.getAllRecipes();
+    model.addAttribute("recipes", allRecipes);
+
+    return "meal-plan";
 }
 
     @GetMapping("/meal-plan/add-recipe/{recipeId}")
@@ -42,8 +50,18 @@ public String showMealPlan(Model model) {
 
     @GetMapping("/meal-plan/add-recipe-to-day/{dayIndex}/{recipeId}")
     public String addRecipeToDay(@PathVariable int dayIndex, @PathVariable Long recipeId) {
-        mealPlanService.addRecipeToDay(dayIndex, recipeId);
-        return "redirect:/meal-plan";
+    mealPlanService.addRecipeToDay(dayIndex, recipeId);
+    return "redirect:/meal-plan";
+}
+    @GetMapping("/meal-plan/remove-recipe-from-day/{dayIndex}/{recipeId}")
+    public String removeRecipeFromDay(@PathVariable int dayIndex, @PathVariable Long recipeId) {
+        try {
+            mealPlanService.removeRecipeFromDay(dayIndex, recipeId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error"; // Redirect to an error page or show an error message
+        }
+        return "redirect:/meal-plan"; // Redirect back to the meal plan page
     }
 
 
