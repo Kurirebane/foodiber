@@ -2,6 +2,8 @@ package com.team2.foodiber.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,4 +38,13 @@ public class Recipe {
 
     @ManyToMany(mappedBy = "recipes")
     private List<MealPlanDay> mealPlanDays = new ArrayList<>();
+
+    @Component
+    public static class StringToCookingTimeConverter implements Converter<String, CookingTime> {
+
+        @Override
+        public CookingTime convert(String source) {
+            return CookingTime.fromString(source);
+        }
+    }
 }
