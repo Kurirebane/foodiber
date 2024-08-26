@@ -31,7 +31,7 @@ public class Recipe {
     @Column(columnDefinition = "TEXT")
     private String instructions;
 
-    @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RecipeIngredients> ingredients = new ArrayList<>();
 
     @ManyToMany(mappedBy = "recipes")
