@@ -25,6 +25,7 @@ public class MealPlanController {
 //        model.addAttribute("mealPlan", mealPlan);
 //        return "meal-plan";
 //    }
+
     @GetMapping("/meal-plan")
     public String showMealPlan(Model model) {
         MealPlan mealPlan = mealPlanService.getCurrentMealPlan(); // Fetch a single meal plan

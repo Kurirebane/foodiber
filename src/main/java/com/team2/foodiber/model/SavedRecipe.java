@@ -29,7 +29,7 @@ public class SavedRecipe {
         this.name = recipe.getName();
         this.userId = recipe.getUserId();
         this.instructions = recipe.getInstructions();
-        this.imageId = recipe.getImageId();
+
         this.recipeCategory = recipe.getRecipeCategory();
         this.cookingTime = recipe.getCookingTime();
 
