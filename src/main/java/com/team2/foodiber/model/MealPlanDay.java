@@ -15,10 +15,5 @@ public class MealPlanDay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany(fetch = FetchType.EAGER)
-        @JoinTable(
-            name = "meal_plan_day_recipes",
-            joinColumns = @JoinColumn(name = "meal_plan_day_id"),
-            inverseJoinColumns = @JoinColumn(name = "recipe_id")
-    )
     private List<Recipe> recipes = new ArrayList<>();
 }

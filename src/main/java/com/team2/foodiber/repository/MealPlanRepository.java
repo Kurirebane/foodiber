@@ -14,4 +14,5 @@ public interface MealPlanRepository extends JpaRepository<MealPlan, Long> {
         return new MealPlan(); // Replace with actual fetching logic
     }
 
+
 }

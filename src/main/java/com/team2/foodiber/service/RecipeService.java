@@ -15,7 +15,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class RecipeService {
+public class
+RecipeService {
 
     private final RecipeRepository recipeRepository;
     private final IngredientsRepository ingredientsRepository;
