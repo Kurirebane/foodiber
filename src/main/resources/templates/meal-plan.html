@@ -204,7 +204,11 @@
         <div class="recipe-grid">
             <div th:if="${day.recipes != null}" th:each="recipe, recipeStat : ${day.recipes}" class="recipe-item">
                 <h3 th:text="${recipe.name}">Recipe Name</h3>
+                <form th:action="@{/meal-plan/remove-recipe-from-day/{dayIndex}/{recipeId}(dayIndex=${dayStat.index}, recipeId=${recipe.id})}" method="post">
+                    <button type="submit" class="remove-button">Remove</button>
+                </form>
             </div>
+            <!-- Handle empty slots if necessary -->
             <div th:if="${day.recipes == null || day.recipes.size() < 3}" th:each="i : ${#numbers.sequence((day.recipes == null ? 1 : day.recipes.size()) + 1, 3)}" class="recipe-item empty-slot">
                 <a th:href="@{/meal-plan/add-recipe-to-day/{dayIndex}/{recipeId}(dayIndex=${dayStat.index}, recipeId=${selectedRecipeId})}">
                     <span>+</span>
@@ -212,12 +216,12 @@
             </div>
         </div>
     </div>
-</div>
-<div class="buttons-container">
+    <div class="buttons-container">
     <a href="/select-category" class="back-button">Go back to category selection</a>
 </div>
 <div th:if="${mealPlan == null}">
     <p>No meal plan available.</p>
+</div>
 </div>
 </body>
 </html>
