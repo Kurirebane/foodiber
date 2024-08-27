@@ -1,115 +1,3 @@
-<!--<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3-Day Meal Plan</title>
-    <link rel="stylesheet" type="text/css" href="/styles/style.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .meal-plan-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .day-container {
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-        }
-        .day-container h2 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .recipe-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Ensure three columns for recipes */
-            gap: 10px;
-        }
-        .recipe-item {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .recipe-item h3 {
-            margin-top: 0;
-        }
-        .empty-slot {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .empty-slot a {
-            text-decoration: none;
-            color: #666;
-        }
-        .back-button {
-            display: block;
-            margin: 40px 0;
-            padding: 20px 40px;
-            background-color: #204d74;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-<div class="meal-plan-container">
-    <h1>3-Day Meal Plan</h1>
-
-    Loop through each day in the meal plan
-    <div th:each="day, dayStat : ${mealPlan.days}" class="day-container">
-        <h2 th:text="'Day ' + ${dayStat.index + 1}">Day Number</h2>
-        <div class="recipe-grid">
-            <div th:if="${day.recipes != null}" th:each="recipe, recipeStat : ${day.recipes}" class="recipe-item">
-                <h3 th:text="${recipe.name}">Recipe Name</h3>
-            </div>
-            <div th:if="${day.recipes == null || day.recipes.size() < 3}" th:each="i : ${#numbers.sequence((day.recipes == null ? 1 : day.recipes.size()) + 1, 3)}" class="recipe-item empty-slot">
-                <a th:href="@{/meal-plan/add-recipe-to-day/{dayIndex}/{recipeId}(dayIndex=${dayStat.index}, recipeId=${selectedRecipeId})}">
-                    <span>+</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="buttons-container">
-    <a href="/select-category" class="back-button">Go back to category selection</a>
-</div>
-<div th:if="${mealPlan == null}">
-    <p>No meal plan available.</p>
-</div></body>
-</html>
-
-<script>
-    function addRecipe(day, recipeName, recipeInstructions
-        const dayContainer = document.querySelector(`.day-container:nth-child(${day}) .recipe-grid`);
-        const newRecipeItem = document.createElement('div');
-        newRecipeItem.className = 'recipe-item';
-        newRecipeItem.innerHTML = `<h3>${recipeName}</h3>`;
-        dayContainer.appendChild(newRecipeItem);
-    }
-</script>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
@@ -204,7 +92,11 @@
         <div class="recipe-grid">
             <div th:if="${day.recipes != null}" th:each="recipe, recipeStat : ${day.recipes}" class="recipe-item">
                 <h3 th:text="${recipe.name}">Recipe Name</h3>
+                <form th:action="@{/meal-plan/remove-recipe-from-day/{dayIndex}/{recipeId}(dayIndex=${dayStat.index}, recipeId=${recipe.id})}" method="post">
+                    <button type="submit" class="remove-button">Remove</button>
+                </form>
             </div>
+            <!-- Handle empty slots if necessary -->
             <div th:if="${day.recipes == null || day.recipes.size() < 3}" th:each="i : ${#numbers.sequence((day.recipes == null ? 1 : day.recipes.size()) + 1, 3)}" class="recipe-item empty-slot">
                 <a th:href="@{/meal-plan/add-recipe-to-day/{dayIndex}/{recipeId}(dayIndex=${dayStat.index}, recipeId=${selectedRecipeId})}">
                     <span>+</span>
@@ -212,12 +104,12 @@
             </div>
         </div>
     </div>
-</div>
 <div class="buttons-container">
     <a href="/select-category" class="back-button">Go back to category selection</a>
 </div>
 <div th:if="${mealPlan == null}">
     <p>No meal plan available.</p>
+</div>
 </div>
 </body>
 </html>
