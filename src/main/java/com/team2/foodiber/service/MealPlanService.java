@@ -52,5 +52,7 @@ public class MealPlanService {
         mealPlanRepository.save(mealPlan);
     }
 
+    public void removeRecipeFromDay(int dayIndex, Long recipeId) {
+    }
 }
 
