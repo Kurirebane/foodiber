@@ -1,5 +1,4 @@
 package com.team2.foodiber.controller;
-
 import com.team2.foodiber.model.MealPlan;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.service.MealPlanService;
@@ -25,14 +24,14 @@ public class MealPlanController {
 
     @GetMapping("/meal-plan")
     public String showMealPlan(Model model) {
-        MealPlan mealPlan = mealPlanService.getCurrentMealPlan(); // Fetch a single meal plan
-        model.addAttribute("mealPlan", mealPlan); // Add the meal plan to the model
-        return "meal-plan"; // Return the view name
+        MealPlan mealPlan = mealPlanService.getCurrentMealPlan();
+        model.addAttribute("mealPlan", mealPlan);
+        return "meal-plan";
     }
 
     @GetMapping("/meal-plan/add-recipe/{recipeId}")
     public String addRecipeToMealPlan(@PathVariable Long recipeId, Model model) {
-        Recipe selectedRecipe = recipeService.getRecipeById(recipeId); // Fetch the selected recipe
+        Recipe selectedRecipe = recipeService.getRecipeById(recipeId);
         model.addAttribute("selectedRecipeId", selectedRecipe.getId());
         model.addAttribute("mealPlan", mealPlanService.getCurrentMealPlan());
         return "meal-plan";

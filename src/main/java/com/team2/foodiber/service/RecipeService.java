@@ -21,14 +21,14 @@ RecipeService {
     private final RecipeRepository recipeRepository;
     private final IngredientsRepository ingredientsRepository;
     private final RecipeIngredientsRepository recipeIngredientsRepository;
-    private final ImageRepository imageRepository; // Add ImageRepository
+    private final ImageRepository imageRepository;
 
     public RecipeService(RecipeRepository recipeRepository, IngredientsRepository ingredientsRepository,
                          RecipeIngredientsRepository recipeIngredientsRepository, ImageRepository imageRepository) {
         this.recipeRepository = recipeRepository;
         this.ingredientsRepository = ingredientsRepository;
         this.recipeIngredientsRepository = recipeIngredientsRepository;
-        this.imageRepository = imageRepository; // Initialize ImageRepository
+        this.imageRepository = imageRepository;
     }
 
     private Recipe recipeDtoToRecipe(RecipeDto recipeDto) {
