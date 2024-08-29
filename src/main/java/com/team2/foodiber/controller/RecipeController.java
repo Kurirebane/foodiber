@@ -82,31 +82,32 @@ public class RecipeController {
         return "success";
     }
 
-    @PostMapping("/saveIngredients")
-    public String saveIngredients(
-            @RequestParam Long recipeId,
-            @RequestParam Map<Long, String> quantities,
-            @RequestParam int servings,
-            @RequestParam List<Long> selectedIngredients,
-            Model model) {
-
-        Recipe recipe = recipeRepository.findById(recipeId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid recipe Id:" + recipeId));
-
-        // Filtering selected recipes
-        List<RecipeIngredients> ingredientsToAdd = recipe.getIngredients().stream()
-                .filter(ingredient -> selectedIngredients.contains(ingredient.getId()))
-                .collect(Collectors.toList());
-
-        // quantities and servings
-        shoppingListService.addIngredientsToShoppingList(ingredientsToAdd, servings);
-
-        return "redirect:/recipes/shopping-list";
-    }
+//    @PostMapping("/saveIngredients")
+//    public String saveIngredients(
+//            @RequestParam Long recipeId,
+//            @RequestParam Map<Long, String> quantities,
+//            @RequestParam int servings,
+//            @RequestParam List<Long> selectedIngredients,
+//            Model model) {
+//
+//        Recipe recipe = recipeRepository.findById(recipeId)
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid recipe Id:" + recipeId));
+//
+//        // Filtering selected recipes
+//        List<RecipeIngredients> ingredientsToAdd = recipe.getIngredients().stream()
+//                .filter(ingredient -> selectedIngredients.contains(ingredient.getId()))
+//                .collect(Collectors.toList());
+//
+//        // quantities and servings
+//        shoppingListService.addIngredientToShoppingList(ingredientsToAdd, servings);
+//
+//        return "redirect:/recipes/shopping-list";
+//    }
     @GetMapping("/recipes")
     public String viewRecipes(Model model) {
         List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();
         model.addAttribute("recipes", allRecipes);
         return "recipes";
     }
+
 }

@@ -1,8 +1,11 @@
 package com.team2.foodiber.controller;
 import com.team2.foodiber.model.MealPlan;
 import com.team2.foodiber.model.Recipe;
+import com.team2.foodiber.model.RecipeIngredients;
+import com.team2.foodiber.repository.RecipeRepository;
 import com.team2.foodiber.service.MealPlanService;
 import com.team2.foodiber.service.RecipeService;
+import com.team2.foodiber.service.ShoppingListService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -20,6 +26,10 @@ public class MealPlanController {
     private MealPlanService mealPlanService;
     @Autowired
     private RecipeService recipeService;
+    @Autowired
+    private RecipeRepository recipeRepository;
+    @Autowired
+    private ShoppingListService shoppingListService;
 
 
     @GetMapping("/meal-plan")
@@ -59,4 +69,21 @@ public class MealPlanController {
         return "redirect:/meal-plan";
     }
 
+    @PostMapping("/recipes/add-to-shopping-list")
+    public String addToShoppingList(@RequestParam("selectedIngredients") List<Long> ingredientIds,
+                                    @RequestParam("recipeId") Long recipeId) {
+        // Fetch the recipe to get its ingredients
+        Recipe recipe = recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid recipe Id:" + recipeId));
+
+        // Filter the ingredients based on the selected ingredient IDs
+        List<RecipeIngredients> selectedIngredients = recipe.getIngredients().stream()
+                .filter(ingredient -> ingredientIds.contains(ingredient.getId()))
+                .collect(Collectors.toList());
+
+        // Add ingredients to shopping list with default quantity (e.g., 1.0)
+        shoppingListService.addIngredientsToShoppingList(selectedIngredients, 1);
+
+        return "redirect:/meal-plan";
+    }
 }

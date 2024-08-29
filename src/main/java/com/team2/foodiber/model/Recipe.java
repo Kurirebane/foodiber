@@ -1,7 +1,9 @@
 package com.team2.foodiber.model;
 
+import com.team2.foodiber.repository.RecipeRepository;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -47,4 +49,5 @@ public class Recipe {
             return CookingTime.fromString(source);
         }
     }
+
 }
