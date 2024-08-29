@@ -1,13 +1,11 @@
 <!DOCTYPE HTML>
-
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-
-
 <head>
     <meta charset="utf-8">
     <title>FOODIBER</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <!-- Meta tags -->
     <meta property="og:title" content=""/>
     <meta property="og:image" content=""/>
     <meta property="og:url" content=""/>
@@ -18,61 +16,22 @@
     <meta name="twitter:url" content=""/>
     <meta name="twitter:card" content=""/>
 
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
 
-    <!-- Animate.css -->
+    <!-- Stylesheets -->
     <link th:href="@{/css/animate.css}" rel="stylesheet"/>
-    <!-- Icomoon Icon Fonts-->
     <link th:href="@{/css/icomoon.css}" rel="stylesheet"/>
-    <!-- Themify Icons-->
     <link th:href="@{/css/themify.css}" rel="stylesheet"/>
-    <!-- Bootstrap  -->
     <link th:href="@{/css/bootsrap.css}" rel="stylesheet"/>
-
-    <!-- Animate.css -->
-    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
-    <!-- Icomoon Icon Fonts-->
-    <link th:href="@{/css/icomoon.css}" rel="stylesheet"/>
-    <!-- Themify Icons-->
-    <link th:href="@{/css/themify.css}" rel="stylesheet"/>
-    <!-- Bootstrap  -->
-    <link th:href="@{/css/bootsrap.css}" rel="stylesheet"/>
-
-    <!-- Magnific Popup -->
     <link rel="stylesheet" href="./css/magnific-popup.css">
-
-    <!-- Bootstrap DateTimePicker -->
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
-
-    <!-- Owl Carousel  -->
     <link rel="stylesheet" href="./css/owl.carousel.min.css">
     <link rel="stylesheet" href="./css/owl.theme.default.min.css">
-
-    <!-- Theme style  -->
     <link rel="stylesheet" href="./css/style.css">
 
-</head>
-<body>
-
-<div class="gtco-loader"></div>
-
-<div id="page">
-
-    <nav class="gtco-nav" role="navigation">
-        <div class="gtco-container">
-        </div>
-        <div class="row">
-            <div class="col-sm-4 col-xs-12">
-                <div id="gtco-logo"><a href="index.html">FOODIBER <em>.</em></a></div>
-                <div class="col-sm-8 col-xs-12 text-right gtco-nav-btns">
-                    <a href="/saved-recipes" class="btn btn-primary">Saved Recipes</a>
-                    <a href="/meal-plan" class="btn btn-primary">Meal Plan</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <title>Large Input Text in Textarea</title>
+    <!-- Custom styles -->
     <style>
         .custom-textarea {
             width: 100%;
@@ -85,10 +44,11 @@
             border-radius: 4px;
             resize: none;
         }
-        footer{
-            background-image: url("/images/vege1.jpg");
 
+        footer {
+            background-image: url("/images/vege1.jpg");
         }
+
         .toggle-password {
             position: absolute;
             right: 10px;
@@ -123,44 +83,48 @@
         .white-text {
             color: white;
         }
-        /*.menu-container {*/
-        /*    position: absolute;*/
-        /*    top: 20px;*/
-        /*    right: 20px;*/
-        /*    background-color: #9bec66;*/
-        /*    border-radius: 10px;*/
-        /*    box-shadow: #2e6da4;*/
-        /*    width: 150px;*/
-        /*    z-index: 1000;*/
-        /*}*/
-        /*.menu-container ul {*/
-        /*    list-style-type: none;*/
-        /*    padding:0;*/
-        /*    margin:0;*/
-        /*}*/
-        /*.menu-container li {*/
-        /*    padding:10px 20px;*/
-        /*    border-bottom: 1px solid;*/
-        /*}*/
-        /*.menu-container li:hover {*/
-        /*    background-color: #3c763d;*/
-        /*    cursor: pointer;*/
-        /*}*/
 
+        /* Fix for navbar alignment */
+        .navbar-buttons {
+            margin-left: auto; /* Pushes buttons to the right */
+        }
 
-
+        .gtco-nav .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
     </style>
-    </head>
-    <body>
+</head>
+<body>
+
+<div class="gtco-loader"></div>
+
+<div id="page">
+
+    <!-- Navigation Bar -->
+    <nav class="gtco-nav" role="navigation">
+        <div class="gtco-container">
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <div id="gtco-logo">
+                        <a href="index.html">FOODIBER <em>.</em></a>
+                    </div>
+                </div>
+                <div class="col-sm-8 col-xs-12">
+                    <div class="navbar-buttons">
+                        <a href="/saved-recipes" class="btn btn-primary">Saved Recipes</a>
+                        <a href="/meal-plan" class="btn btn-primary">Meal Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
     <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
             style="background-image: url(images/backgroundimage.png); height: 130vh;"
             data-stellar-background-ratio="0.5">
-<!--        <div> class="menu-container">-->
-<!--            <ul>-->
-<!--                <li>User</li>-->
-<!--                <li>logout</li>-->
-<!--            </ul>-->
-<!--            </div>-->
         <div class="overlay"></div>
         <div class="gtco-container">
             <div class="row">
@@ -191,16 +155,16 @@
                                                         <div class="password-container">
                                                             <input type="password" id="password" class="custom-textarea"
                                                                    placeholder="Password">
-                                                            <button  type="button" class="toggle-password"
+                                                            <button type="button" class="toggle-password"
                                                                     id="togglePassword">👁️
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    <div class="row form-group"></div>
-                                                    <div class="row form-group"></div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
-                                                            <input onclick="window.location.href='/select-category'" type="button" class="btn btn-primary btn-block"
+                                                            <input onclick="window.location.href='/select-category'"
+                                                                   type="button"
+                                                                   class="btn btn-primary btn-block"
                                                                    value="LOGIN">
                                                         </div>
                                                     </div>
@@ -216,31 +180,39 @@
                                                                    class="custom-textarea" placeholder="New Username"
                                                                    required>
                                                         </div>
-                                                    </div>
-                                                    <div class="row form-group">
-                                                        <div class="password-container">
-                                                            <input type="password" id="new-password" name="password"
-                                                                   class="custom-textarea" placeholder="New Password"
-                                                                   required>
-                                                            <button type="button" class="toggle-password"
-                                                                    id="toggleNewPassword">👁️
-                                                            </button>
+                                                        <div class="row form-group">
+                                                            <div class="username-container">
+                                                                <input type="email" id="new-email" name="email"
+                                                                       class="custom-textarea" placeholder="Email"
+                                                                       required>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row form-group">
-                                                        <div class="password-container">
-                                                            <input type="password" id="confirm-password"
-                                                                   name="confirmPassword" class="custom-textarea"
-                                                                   placeholder="Confirm Password" required>
-                                                            <button type="button" class="toggle-password"
-                                                                    id="toggleConfirmPassword">👁️
-                                                            </button>
+                                                        <div class="row form-group">
+                                                            <div class="password-container">
+                                                                <input type="password" id="new-password" name="password"
+                                                                       class="custom-textarea"
+                                                                       placeholder="New Password"
+                                                                       required>
+                                                                <button type="button" class="toggle-password"
+                                                                        id="toggleNewPassword">👁️
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row form-group">
-                                                        <div class="col-md-12">
-                                                            <input type="submit" class="btn btn-primary btn-block"
-                                                                   value="CREATE USER">
+                                                        <div class="row form-group">
+                                                            <div class="password-container">
+                                                                <input type="password" id="confirm-password"
+                                                                       name="confirmPassword" class="custom-textarea"
+                                                                       placeholder="Confirm Password" required>
+                                                                <button type="button" class="toggle-password"
+                                                                        id="toggleConfirmPassword">👁️
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <input type="submit" class="btn btn-primary btn-block"
+                                                                       value="CREATE USER">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -286,12 +258,11 @@
                 event.preventDefault();
             }
         });
+
     </script>
-    </body>
-	<div class="gtco-cover gtco-cover-sm" style="background-image: url(images/backgroundimage.png)"
-		 data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-	</div>
+</div>
+</body>
+
 
 <script>
     document.getElementById('togglePassword').addEventListener('click', function () {
@@ -349,24 +320,24 @@
                                       data-refresh-interval="50">1</span>
                     <span class="counter-label">Avg. Rating</span>
 
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
-                            <div class="feature-center">
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
+                <div class="feature-center">
                                 <span class="counter js-counter" data-from="0" data-to="5" data-speed="5000"
                                       data-refresh-interval="50">1</span>
-                                <span class="counter-label">Food Categories</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
-                            <div class="feature-center">
+                    <span class="counter-label">Food Categories</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
+                <div class="feature-center">
                                 <span class="counter js-counter" data-from="0" data-to="52" data-speed="5000"
                                       data-refresh-interval="50">1</span>
-                                <span class="counter-label">Recipes</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
-                            <div class="feature-center">
+                    <span class="counter-label">Recipes</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInUp">
+                <div class="feature-center">
                                 <span class="counter js-counter" data-from="0" data-to="2024" data-speed="5000"
                                       data-refresh-interval="50">1</span>
                     <span class="counter-label">Year Started</span>
@@ -374,7 +345,7 @@
                 </div>
             </div>
 
-            <div id="gtco-subscribe" >
+            <div id="gtco-subscribe">
                 <div class="gtco-container">
                     <div class="row animate-box">
                         <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
@@ -385,50 +356,51 @@
                     <div class="col-md-6 col-sm-6">
                         <button type="submit" class="btn btn-default btn-block">Subscribe</button>
                     </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<footer id="gtco-footer" role="contentinfo"
-        data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="gtco-container">
-        <div class="row row-pb-md">
-            <div class="col-md-12 text-center">
-                            <div class="gtco-widget">
-                                <h3>Get In Touch</h3>
-                                <ul class="gtco-quick-contact">
-                                    <li><a href="#"><i class="icon-phone"></i> +1 234 567 890</a></li>
-                                    <li><a href="#"><i class="icon-mail2"></i> info@Foodiber.com</a></li>
-                                    <li><a href="#"><i class="icon-chat"></i> Live Chat</a></li>
-                                </ul>
-                            </div>
-                            <div class="gtco-widget">
-                                <h3>Get Social</h3>
-                                <ul class="gtco-social-icons">
-                                    <li><a href="#"><i class="icon-twitter"></i></a></li>
-                                    <li><a href="#"><i class="icon-facebook"></i></a></li>
-                                    <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
 
+    <footer id="gtco-footer" role="contentinfo"
+            data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="gtco-container">
+            <div class="row row-pb-md">
+                <div class="col-md-12 text-center">
+                    <div class="gtco-widget">
+                        <h3>Get In Touch</h3>
+                        <ul class="gtco-quick-contact">
+                            <li><a href="#"><i class="icon-phone"></i> +1 234 567 890</a></li>
+                            <li><a href="#"><i class="icon-mail2"></i> info@Foodiber.com</a></li>
+                            <li><a href="#"><i class="icon-chat"></i> Live Chat</a></li>
+                        </ul>
                     </div>
-
-
+                    <div class="gtco-widget">
+                        <h3>Get Social</h3>
+                        <ul class="gtco-social-icons">
+                            <li><a href="#"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                            <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
-            </footer>
-            <!-- </div> -->
+
+            </div>
+
 
         </div>
+    </footer>
+    <!-- </div> -->
+
+</div>
 
 
-    </div>
+</div>
 </footer>
-<!-- </div> -->
+
 
 </div>
 
@@ -459,12 +431,8 @@
 <script src="js/moment.min.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
 
-
 <!-- Main -->
 <script src="js/main.js"></script>
-
-</body>
-</html>
 
 </body>
 </html>

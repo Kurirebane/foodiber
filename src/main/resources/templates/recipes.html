@@ -33,10 +33,12 @@
         }
 
         .recipe img {
-            max-width: 100%;
-            height: auto;
+            width: 50%; /* Set the width of the images to 50% */
+            height: auto; /* Maintain the aspect ratio */
             border-radius: 8px;
-            margin-bottom: 20px;
+            display: block; /* Block element ensures consistent spacing */
+            margin: 0 auto 20px auto; /* Center the image and add space below */
+            object-fit: cover; /* Ensure the image covers the designated area without distortion */
         }
 
         .recipe h3 {
@@ -53,11 +55,15 @@
             text-decoration: none;
             color: #007bff;
         }
+
+        .create-more-recipes a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <h2>All Recipes</h2>
-<div class="recipes-container">
+<div class="cursive-font recipes-container">
     <div th:each="recipe : ${recipes}" class="recipe">
         <div th:if="${recipe.imageId != null}">
             <img th:src="@{/api/images/{id}(id=${recipe.imageId})}" alt="Recipe Image"/>
