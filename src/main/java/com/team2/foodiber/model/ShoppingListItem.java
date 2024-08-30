@@ -21,4 +21,13 @@ public class ShoppingListItem {
     @ManyToOne
     @JoinColumn(name = "shopping_list_id")
     private ShoppingList shoppingList;
+
+    public ShoppingListItem(Ingredient ingredient, double quantity) {
+        this.ingredient = ingredient;
+        this.quantityValue = quantity;
+    }
+
+    public ShoppingListItem() {
+
+    }
 }

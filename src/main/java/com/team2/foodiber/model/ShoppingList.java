@@ -21,6 +21,13 @@ public class ShoppingList {
     @Column
     private LocalDateTime createdDate;
 
-    public void addItem(String item, String totalQuantity) {
+    public void addIngredient(ShoppingListItem ingredient) {
+        items.add(ingredient);
+        ingredient.setShoppingList(this);
+    }
+
+    public void removeIngredient(ShoppingListItem ingredient) {
+        items.remove(ingredient);
+        ingredient.setShoppingList(null);
     }
 }
