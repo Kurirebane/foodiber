@@ -1,6 +1,7 @@
 package com.team2.foodiber.service;
 
 import com.team2.foodiber.dto.UserDto;
+import com.team2.foodiber.exceptions.UsernameOrEmailIsAlreadyExisted;
 import com.team2.foodiber.model.User;
 import com.team2.foodiber.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -31,10 +32,17 @@ public class UserService {
     }
 
 
-    public UserDto saveUser(UserDto userDto) {
-        User user = UserDtoToUser(userDto);
-        User savedUser = userRepository.save(user);
-        return toDto(savedUser);
+    public void saveUser(UserDto userDto) throws UsernameOrEmailIsAlreadyExisted {
+        if (userRepository.existsByUsername(userDto.getUsername()) || userRepository.existsByEmail(userDto.getEmail())) {
+            throw new UsernameOrEmailIsAlreadyExisted("Username or Email already exists!");
+        }
+        // If the user does not exist, proceed with saving the user
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setPassword(userDto.getPassword()); // Remember to encode passwords
+        user.setEmail(userDto.getEmail());
+        user.setName(userDto.getName());
+        userRepository.save(user);
     }
 
 

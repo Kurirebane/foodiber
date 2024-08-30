@@ -6,6 +6,7 @@ import com.team2.foodiber.model.MealPlanDay;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.repository.MealPlanRepository;
 import com.team2.foodiber.repository.RecipeRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ public class MealPlanService {
 
     @Autowired
     private RecipeRepository recipeRepository;
+
 
     public MealPlan getCurrentMealPlan() {
         MealPlan mealPlan = mealPlanRepository.findAll().stream().findFirst().orElse(new MealPlan());
@@ -46,6 +48,7 @@ public class MealPlanService {
         if (day.getRecipes() == null) {
             day.setRecipes(new ArrayList<>());
         }
+
         if (day.getRecipes().contains(recipe)) {
             throw new RuntimeException("Recipe already added to this day.");
         }
