@@ -11,11 +11,14 @@ import com.team2.foodiber.service.ShoppingListService;
 import com.team2.foodiber.repository.RecipeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,6 +42,7 @@ public class RecipeController {
         model.addAttribute("recipe", new RecipeDto());
         return "create-recipe";
     }
+
     @PostMapping()
     public String createRecipe(@ModelAttribute RecipeDto recipeDto,
                                @RequestParam("image") MultipartFile file, Model model) {
@@ -69,6 +73,7 @@ public class RecipeController {
             return "create-recipe";
         }
     }
+
     @GetMapping("/success")
     public String showSuccessPage(@RequestParam("recipeId") Long recipeId, Model model) {
         RecipeDto recipe = recipeService.getRecipeDtoById(recipeId);
@@ -81,6 +86,14 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         return "success";
     }
+
+    @GetMapping()
+    public String viewRecipes(Model model) {
+        List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();
+        model.addAttribute("recipes", allRecipes);
+        return "recipes";
+    }
+}
 
 //    @PostMapping("/saveIngredients")
 //    public String saveIngredients(
@@ -103,11 +116,5 @@ public class RecipeController {
 //
 //        return "redirect:/recipes/shopping-list";
 //    }
-    @GetMapping("/recipes")
-    public String viewRecipes(Model model) {
-        List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();
-        model.addAttribute("recipes", allRecipes);
-        return "recipes";
-    }
 
-}
+

@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class
 RecipeService {
 
+
     private final RecipeRepository recipeRepository;
     private final IngredientsRepository ingredientsRepository;
     private final RecipeIngredientsRepository recipeIngredientsRepository;
@@ -120,12 +121,14 @@ RecipeService {
         recipe.getIngredients().add(recipeIngredient);
         recipeRepository.save(recipe);
     }
+
     public List<RecipeDto> getAllRecipeDtos() {
         List<Recipe> recipes = recipeRepository.findAll();
         return recipes.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
+
 
     public Optional<Recipe> findById(Long recipeId) {
         return recipeRepository.findById(recipeId);
