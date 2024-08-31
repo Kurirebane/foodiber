@@ -1,9 +1,8 @@
 package com.team2.foodiber.model;
 
-import com.team2.foodiber.repository.RecipeRepository;
+
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +21,8 @@ public class Recipe {
 
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)  // Many recipes can share the same image
-    @JoinColumn(name = "image_id")  // Specifies the foreign key column name in the recipes table
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id")
     private Image image;
 
     @Enumerated(EnumType.STRING)
@@ -49,5 +48,9 @@ public class Recipe {
             return CookingTime.fromString(source);
         }
     }
+    public Long getImageId() {
+        return image != null ? image.getId() : null;
+    }
+
 
 }
