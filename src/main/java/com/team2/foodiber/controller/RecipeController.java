@@ -24,10 +24,6 @@ public class RecipeController {
     @Autowired
     private final RecipeService recipeService;
     @Autowired
-    private RecipeRepository recipeRepository;
-    @Autowired
-    private ShoppingListService shoppingListService;
-    @Autowired
     private ImageRepository imageRepository;
 
     @GetMapping("/create")
@@ -35,7 +31,6 @@ public class RecipeController {
         model.addAttribute("recipe", new RecipeDto());
         return "create-recipe";
     }
-
     @PostMapping()
     public String createRecipe(@ModelAttribute RecipeDto recipeDto,
                                @RequestParam("image") MultipartFile file, Model model) {
@@ -66,7 +61,6 @@ public class RecipeController {
             return "create-recipe";
         }
     }
-
     @GetMapping("/success")
     public String showSuccessPage(@RequestParam("recipeId") Long recipeId, Model model) {
         RecipeDto recipe = recipeService.getRecipeDtoById(recipeId);
@@ -79,7 +73,6 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         return "success";
     }
-
     @GetMapping()
     public String viewRecipes(Model model) {
         List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();

@@ -1,5 +1,8 @@
 package com.team2.foodiber.model;
 
+import lombok.Getter;
+
+@Getter
 public enum CookingTime {
 
     FAST_5MIN("About 5 minutes"),
@@ -11,10 +14,6 @@ public enum CookingTime {
 
     CookingTime(String displayName) {
         this.displayName = displayName;
-    }
-
-    public String getDisplayName() {
-        return displayName;
     }
 
     public static CookingTime fromString(String text) {
