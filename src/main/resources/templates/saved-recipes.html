@@ -14,10 +14,21 @@
             align-items: center;
             padding: 20px;
         }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 100px auto; /* Center the container vertically */
+            width: 60%; /* Adjust width as needed */
+        }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-family: Arial, Baskerville, monospace;
+            font-size: 40px;
+            font-style: italic;
+            font-weight: bold;
+            color: #204d74;
         }
 
         .recipe-list {
@@ -56,12 +67,14 @@
     </style>
 </head>
 <body>
+<div class="container">
 <h1>Saved Recipes</h1>
 <div class="recipe-list">
     <div th:each="savedRecipe : ${savedRecipes}" class="recipe-item">
         <span th:text="${savedRecipe.name}">Recipe Name</span>
         <a th:href="@{/meal-plan/add-recipe/{recipeId}(recipeId=${savedRecipe.id})}" class="add-to-meal-plan">Add to Meal Plan</a>
     </div>
+</div>
 </div>
 </body>
 </html>
