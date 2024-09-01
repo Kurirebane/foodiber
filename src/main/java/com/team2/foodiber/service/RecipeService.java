@@ -10,6 +10,7 @@ import com.team2.foodiber.repository.RecipeIngredientsRepository;
 import com.team2.foodiber.repository.RecipeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,16 +35,14 @@ RecipeService {
 
     private Recipe recipeDtoToRecipe(RecipeDto recipeDto) {
         Recipe recipe = new Recipe();
-        recipe.setId(recipeDto.getId());
         recipe.setUserId(recipeDto.getUserId());
         recipe.setName(recipeDto.getName());
         recipe.setRecipeCategory(recipeDto.getRecipeCategory());
         recipe.setCookingTime(recipeDto.getCookingTime());
         recipe.setInstructions(recipeDto.getInstructions());
 
-        // Fetch and set the image if imageId is provided
         if (recipeDto.getImageId() != null) {
-            Image image = imageRepository.findById(recipeDto.getImageId())  // Assuming Image ID is a Long
+            Image image = imageRepository.findById(recipeDto.getImageId())
                     .orElseThrow(() -> new ImageNotFoundException(recipeDto.getImageId()));
             recipe.setImage(image);  // Assuming setImage accepts an Image object
         }
@@ -55,7 +54,7 @@ RecipeService {
         RecipeDto recipeDto = new RecipeDto();
         recipeDto.setId(recipe.getId());
         recipeDto.setName(recipe.getName());
-        recipeDto.setRecipeCategory(recipe.getRecipeCategory()); // Ensure this is correctly set
+        recipeDto.setRecipeCategory(recipe.getRecipeCategory());
         recipeDto.setCookingTime(recipe.getCookingTime());
         recipeDto.setInstructions(recipe.getInstructions());
         recipeDto.setImageId(recipe.getImage() != null ? recipe.getImage().getId() : null);
@@ -64,8 +63,9 @@ RecipeService {
 
     public RecipeDto createRecipe(RecipeDto recipeDto) {
         Recipe recipe = recipeDtoToRecipe(recipeDto);
-        Recipe savedRecipe = recipeRepository.save(recipe);
+        Recipe savedRecipe = recipeRepository.save(recipe);;
         return toDto(savedRecipe);
+
     }
 
     public RecipeDto getRecipeDtoById(Long recipeId) {
@@ -124,9 +124,11 @@ RecipeService {
 
     public List<RecipeDto> getAllRecipeDtos() {
         List<Recipe> recipes = recipeRepository.findAll();
-        return recipes.stream()
+        List<RecipeDto> recipeDtos = recipes.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
+
+        return recipeDtos;
     }
 
 

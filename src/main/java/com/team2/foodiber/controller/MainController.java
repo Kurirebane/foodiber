@@ -68,42 +68,18 @@ public class MainController {
     public String getRecipeDetails(@RequestParam(name = "id") Long recipeId, Model model) {
         Recipe recipe = recipeService.getRecipeById(recipeId);
         if (recipe == null) {
-            return "/select-category";  // Handle the error properly
+            return "/select-category";
         }
         model.addAttribute("recipe", recipe);
         return "recipe-details";
     }
-
 
     @PostMapping("create-user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.createUser(user);
         return ResponseEntity.ok(createdUser);
     }
-
-//    @Autowired
-//    private UserService userService;
-//
-//    @GetMapping("/")
-//    public String showIndexPage() {
-//        return "index";
-//    }
-//
-//    @PostMapping("/login")
-//    public String loginFormHandlerer(@RequestParam("username") String username,
-//                                     @RequestParam("password") String password,
-//         -                            Model model) {
-//        if (userService.isValidUser(username,password)) {
-//            return "redirect:/home";
-//        }
-//        model.addAttribute("error", "Invalid username or password");
-//        return "login";
-//    }
 }
-
-
-//    @GetMapping(path = )
-
 
 
 

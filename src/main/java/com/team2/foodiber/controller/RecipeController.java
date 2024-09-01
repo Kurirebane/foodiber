@@ -6,9 +6,10 @@ import com.team2.foodiber.model.Image;
 import com.team2.foodiber.repository.ImageRepository;
 import com.team2.foodiber.repository.RecipeRepository;
 import com.team2.foodiber.service.RecipeService;
+import com.team2.foodiber.service.SavedRecipeService;
 import com.team2.foodiber.service.ShoppingListService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,19 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 @AllArgsConstructor
 @RequestMapping("/recipes")
 public class RecipeController {
 
-    @Autowired
     private final RecipeService recipeService;
-    @Autowired
-    private RecipeRepository recipeRepository;
-    @Autowired
-    private ShoppingListService shoppingListService;
-    @Autowired
-    private ImageRepository imageRepository;
+    private final RecipeRepository recipeRepository;
+    private final ShoppingListService shoppingListService;
+    private final ImageRepository imageRepository;
+    private final SavedRecipeService savedRecipeService;
 
     @GetMapping("/create")
     public String showCreateRecipeForm(Model model) {
@@ -49,17 +48,13 @@ public class RecipeController {
 
                 Image savedImage = imageRepository.save(image);
                 recipeDto.setImageId(savedImage.getId());
+                log.info("Image saved with ID: " + savedImage.getId());
             }
 
-
             RecipeDto savedRecipe = recipeService.createRecipe(recipeDto);
+            savedRecipeService.saveRecipeToSavedRecipe(savedRecipe);
 
-
-            List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();
-            model.addAttribute("recipes", allRecipes);
-
-
-            return "recipes";
+            return "redirect:/recipes/success?recipeId=" + savedRecipe.getId();
         } catch (Exception exception) {
             exception.printStackTrace();
             model.addAttribute("error", "Could not upload this image.");
@@ -71,20 +66,21 @@ public class RecipeController {
     public String showSuccessPage(@RequestParam("recipeId") Long recipeId, Model model) {
         RecipeDto recipe = recipeService.getRecipeDtoById(recipeId);
         if (recipe != null) {
-            System.out.println("Recipe ID: " + recipe.getId());
-            System.out.println("Recipe Image ID: " + recipe.getImageId());
+            model.addAttribute("recipe", recipe);
+            log.info("Recipe Details: " + recipe); // for the debug
+            return "success";
         } else {
-            System.out.println("Recipe not found!");
+            model.addAttribute("error", "Recipe not found.");
+            return "error";
         }
-        model.addAttribute("recipe", recipe);
-        return "success";
     }
 
-    @GetMapping()
-    public String viewRecipes(Model model) {
+    @GetMapping("/recipe")
+    public String viewSavedRecipes(Model model) {
         List<RecipeDto> allRecipes = recipeService.getAllRecipeDtos();
+        System.out.println("All Recipes: " + allRecipes); // Debugging line
         model.addAttribute("recipes", allRecipes);
-        return "recipes";
+        return "saved-recipes"; // Ensure this matches your Thymeleaf template name
     }
 }
 

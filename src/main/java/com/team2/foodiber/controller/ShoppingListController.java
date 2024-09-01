@@ -24,9 +24,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/recipes")
 public class ShoppingListController {
 
-    @Autowired
     private final ShoppingListService shoppingListService;
-    @Autowired
     private RecipeRepository recipeRepository;
 
 
@@ -68,9 +66,7 @@ public class ShoppingListController {
 
     @PostMapping("/shopping-list/empty")
     public String emptyShoppingList() {
-        System.out.println("empty shoppingList method called");
         shoppingListService.clearShoppingList();
         return "redirect:/select-category";
     }
-
-}//*************************************************************************************
+}

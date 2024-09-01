@@ -2,6 +2,7 @@ package com.team2.foodiber.controller;
 
 import com.team2.foodiber.model.Image;
 import com.team2.foodiber.repository.ImageRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +16,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("api/images")
+@AllArgsConstructor
 public class ImageUploadController {
 
     private final ImageRepository imageRepository;
-
-    public ImageUploadController(ImageRepository imageRepository) {
-        this.imageRepository = imageRepository;
-    }
 
     @GetMapping
     public String getImageUploadPage() {
@@ -31,7 +29,7 @@ public class ImageUploadController {
     @PostMapping("/upload")
     public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile file) {
         if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body("Select right file");
+            return ResponseEntity.badRequest().body("Select a valid file");
         }
         try {
             Image image = new Image();
@@ -42,12 +40,10 @@ public class ImageUploadController {
 
             imageRepository.save(image);
 
-            return ResponseEntity.ok("Image uploaded");
+            return ResponseEntity.ok("Image uploaded successfully");
         } catch (IOException ex) {
             ex.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Could not upload image"
-                    + file.getOriginalFilename());
-
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Could not upload image: " + file.getOriginalFilename());
         }
     }
 
