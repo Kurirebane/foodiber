@@ -1,8 +1,5 @@
 package com.team2.foodiber.controller;
 
-import java.io.IOException;
-import java.util.Optional;
-
 import com.team2.foodiber.model.Image;
 import com.team2.foodiber.repository.ImageRepository;
 import org.springframework.http.HttpStatus;
@@ -11,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Optional;
 
 
 @Controller
@@ -22,11 +22,14 @@ public class ImageUploadController {
     public ImageUploadController(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
     }
+
     @GetMapping
-    public String getImageUploadPage() {return "upload";}
+    public String getImageUploadPage() {
+        return "upload";
+    }
 
     @PostMapping("/upload")
-public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile file) {
+    public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile file) {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body("Select right file");
         }
@@ -40,14 +43,14 @@ public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile f
             imageRepository.save(image);
 
             return ResponseEntity.ok("Image uploaded");
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Could not upload image"
-             + file.getOriginalFilename());
+                    + file.getOriginalFilename());
 
         }
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable long id) {
         Optional<Image> imageOptional = imageRepository.findById(id);

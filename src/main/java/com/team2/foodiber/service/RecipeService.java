@@ -4,10 +4,10 @@ import com.team2.foodiber.dto.RecipeDto;
 import com.team2.foodiber.exceptions.ImageNotFoundException;
 import com.team2.foodiber.exceptions.RecipeNotFoundException;
 import com.team2.foodiber.model.*;
+import com.team2.foodiber.repository.ImageRepository;
 import com.team2.foodiber.repository.IngredientsRepository;
 import com.team2.foodiber.repository.RecipeIngredientsRepository;
 import com.team2.foodiber.repository.RecipeRepository;
-import com.team2.foodiber.repository.ImageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

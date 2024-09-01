@@ -6,7 +6,6 @@ import com.team2.foodiber.model.MealPlanDay;
 import com.team2.foodiber.model.Recipe;
 import com.team2.foodiber.repository.MealPlanRepository;
 import com.team2.foodiber.repository.RecipeRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

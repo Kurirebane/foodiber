@@ -14,6 +14,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     private RecipeService recipeService;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -101,16 +102,16 @@ public class DataInitializer implements CommandLineRunner {
         recipeService.addIngredientToRecipe(pumpkinSoup, parsley, "to taste", 0.1);
 
         // PASTA BOLOGNESE
-        recipeService.addIngredientToRecipe(pastaBolognese , oliveOil, "tbsp", 1);
-        recipeService.addIngredientToRecipe(pastaBolognese , mincedMeat, "gr", 100);
-        recipeService.addIngredientToRecipe(pastaBolognese , onion, "gr", 10);
-        recipeService.addIngredientToRecipe(pastaBolognese , garlic, "gr", 5);
-        recipeService.addIngredientToRecipe(pastaBolognese , carrot, "gr", 25);
-        recipeService.addIngredientToRecipe(pastaBolognese , tomatoSauce, "gr", 200);
-        recipeService.addIngredientToRecipe(pastaBolognese , stock, "ml", 100);
-        recipeService.addIngredientToRecipe(pastaBolognese , pasta, "gr", 100);
-        recipeService.addIngredientToRecipe(pastaBolognese , salt, "to taste", 0.1);
-        recipeService.addIngredientToRecipe(pastaBolognese , pepper, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(pastaBolognese, oliveOil, "tbsp", 1);
+        recipeService.addIngredientToRecipe(pastaBolognese, mincedMeat, "gr", 100);
+        recipeService.addIngredientToRecipe(pastaBolognese, onion, "gr", 10);
+        recipeService.addIngredientToRecipe(pastaBolognese, garlic, "gr", 5);
+        recipeService.addIngredientToRecipe(pastaBolognese, carrot, "gr", 25);
+        recipeService.addIngredientToRecipe(pastaBolognese, tomatoSauce, "gr", 200);
+        recipeService.addIngredientToRecipe(pastaBolognese, stock, "ml", 100);
+        recipeService.addIngredientToRecipe(pastaBolognese, pasta, "gr", 100);
+        recipeService.addIngredientToRecipe(pastaBolognese, salt, "to taste", 0.1);
+        recipeService.addIngredientToRecipe(pastaBolognese, pepper, "to taste", 0.1);
 
         // PANCAKES
         recipeService.addIngredientToRecipe(pancakes, egg, "egg/eggs", 1);

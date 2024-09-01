@@ -21,8 +21,6 @@ import java.util.List;
 @AllArgsConstructor
 public class MainController {
 
-    // Create an API with path /search-recipe that shows the list of recipes
-
     private final UserService userService;
     private final RecipeService recipeService;
 
@@ -75,7 +73,6 @@ public class MainController {
         model.addAttribute("recipe", recipe);
         return "recipe-details";
     }
-
 
 
     @PostMapping("create-user")

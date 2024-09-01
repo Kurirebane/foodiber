@@ -2,8 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Details</title>
+    <title>Categories</title>
+    <!-- Animate.css -->
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <!-- Icomoon Icon Fonts-->
+    <link th:href="@{/css/icomoon.css}" rel="stylesheet"/>
+    <!-- Themify Icons-->
+    <link th:href="@{/css/themify.css}" rel="stylesheet"/>
+    <!-- Bootstrap  -->
+    <link th:href="@{/css/bootsrap.css}" rel="stylesheet"/>
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+
+    <!-- Bootstrap DateTimePicker -->
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="/js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -164,6 +191,18 @@
         .back-button:hover {
             background-color: #0056b3;
         }
+
+        .shopping {
+            background-color: #0056b3;
+            border-color: #0056b3 ;
+            color: white;
+        }
+
+        .shopping:hover {
+            background-color: #93c4fa;
+            border-color: #93c4fa;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -209,7 +248,7 @@
                 </li>
             </ul>
             <input type="hidden" name="recipeId" th:value="${recipe.id}"/>
-            <button type="submit">Add to shopping list</button>
+            <button class="shopping" type="submit">Add to shopping list</button>
         </form>
     </div>
     <div class="buttons-container">

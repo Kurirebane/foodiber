@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RecipeIngredientsRepository extends JpaRepository <RecipeIngredients, Long> {
+public interface RecipeIngredientsRepository extends JpaRepository<RecipeIngredients, Long> {
     List<RecipeIngredients> findByRecipe(Recipe recipe);
 }

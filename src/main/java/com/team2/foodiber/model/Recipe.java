@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Data
 @Entity
 @Table(name = "recipes")
@@ -40,6 +41,7 @@ public class Recipe {
     @ManyToMany(mappedBy = "recipes")
     private List<MealPlanDay> mealPlanDays = new ArrayList<>();
 
+
     @Component
     public static class StringToCookingTimeConverter implements Converter<String, CookingTime> {
 
@@ -48,6 +50,7 @@ public class Recipe {
             return CookingTime.fromString(source);
         }
     }
+
     public Long getImageId() {
         return image != null ? image.getId() : null;
     }
