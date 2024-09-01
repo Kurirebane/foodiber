@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RecipeRepository extends JpaRepository <Recipe, Long> {
+public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
 
-List <Recipe> findByRecipeCategory(RecipeCategory recipeCategory);
+    List<Recipe> findByRecipeCategory(RecipeCategory recipeCategory);
 
     Recipe findAllById(Long id);
 
-List <Recipe> findByUserId(Long userId);  //need this to get userCreatedRecipes by userId
+    List<Recipe> findByUserId(Long userId);  //need this to get userCreatedRecipes by userId
 }

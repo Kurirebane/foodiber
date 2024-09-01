@@ -1,6 +1,5 @@
 package com.team2.foodiber.service;
 
-import com.team2.foodiber.exceptions.IngredientNotFoundException;
 import com.team2.foodiber.model.Ingredient;
 import com.team2.foodiber.model.RecipeIngredients;
 import com.team2.foodiber.model.ShoppingList;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ShoppingListService {
@@ -22,7 +20,6 @@ public class ShoppingListService {
     private ShoppingListRepository shoppingListRepository;
     @Autowired
     private IngredientsRepository ingredientsRepository;
-
 
 
     public void addIngredientsToShoppingList(List<RecipeIngredients> recipeIngredients, int servings) {

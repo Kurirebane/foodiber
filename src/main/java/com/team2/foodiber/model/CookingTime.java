@@ -9,10 +9,11 @@ public enum CookingTime {
 
     private final String displayName;
 
-    CookingTime(String displayName){
+    CookingTime(String displayName) {
         this.displayName = displayName;
     }
-    public String getDisplayName(){
+
+    public String getDisplayName() {
         return displayName;
     }
 
