@@ -5,10 +5,7 @@ import lombok.Getter;
 @Getter
 public enum CookingTime {
 
-    FAST_5MIN("About 5 minutes"),
-    MEDIUM_15MIN("About 15 minutes"),
-    SLOW_30MIN("About 30 minutes"),
-    SUPER_SLOW("More than 60 minutes");
+    FAST_5MIN("About 5 minutes"), MEDIUM_15MIN("About 15 minutes"), SLOW_30MIN("About 30 minutes"), SUPER_SLOW("More than 60 minutes");
 
     private final String displayName;
 
@@ -24,6 +21,15 @@ public enum CookingTime {
             case "60" -> SUPER_SLOW;
             default -> throw new IllegalArgumentException("Unknown cooking time: " + text);
         };
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    @Override
+    public String toString() {
+        return displayName;
     }
 }
 

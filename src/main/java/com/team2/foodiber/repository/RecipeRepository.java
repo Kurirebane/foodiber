@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
-
     List<Recipe> findByRecipeCategory(RecipeCategory recipeCategory);
 
-    Recipe findAllById(Long id);
+    Optional<Recipe> findById(Long id);
 
-    List<Recipe> findByUserId(Long userId);  //need this to get userCreatedRecipes by userId
+    List<Recipe> findByUserId(Long userId);
 }

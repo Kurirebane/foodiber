@@ -41,6 +41,9 @@ public class Recipe {
     @ManyToMany(mappedBy = "recipes")
     private List<MealPlanDay> mealPlanDays = new ArrayList<>();
 
+    public Long getImageId() {
+        return image != null ? image.getId() : null;
+    }
 
     @Component
     public static class StringToCookingTimeConverter implements Converter<String, CookingTime> {
@@ -50,10 +53,4 @@ public class Recipe {
             return CookingTime.fromString(source);
         }
     }
-
-    public Long getImageId() {
-        return image != null ? image.getId() : null;
-    }
-
-
 }

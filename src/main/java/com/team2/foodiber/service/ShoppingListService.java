@@ -27,12 +27,12 @@ public class ShoppingListService {
                 .orElseGet(() -> {
                     ShoppingList newShoppingList = new ShoppingList();
                     newShoppingList.setCreatedDate(LocalDateTime.now());
-                    return shoppingListRepository.save(newShoppingList); // Save the new shopping list and return it
+                    return shoppingListRepository.save(newShoppingList);
                 });
 
         for (RecipeIngredients recipeIngredient : recipeIngredients) {
             Ingredient ingredient = recipeIngredient.getIngredient();
-            double quantity = recipeIngredient.getQuantityValue() * servings; // Calculate the quantity based on servings
+            double quantity = recipeIngredient.getQuantityValue() * servings;
             ShoppingListItem item = new ShoppingListItem();
             item.setIngredient(ingredient);
             item.setQuantityValue(quantity);
@@ -73,33 +73,4 @@ public class ShoppingListService {
             shoppingListRepository.save(shoppingList);
         }
     }
-    // Saving ingredients to shopping list and trying to make it so it checks if item already exists and adds quantities together so the same ingredient will appear on one line
-//    public void addIngredientsToShoppingList(List<RecipeIngredients> selectedIngredients, int servings) {
-//        ShoppingList shoppingList = getLatestShoppingList();
-//
-//        for (RecipeIngredients ingredient : selectedIngredients) {
-//            double adjustedQuantity = ingredient.getQuantityValue() * servings;
-//
-//            if (adjustedQuantity > 0) {
-//                Optional<ShoppingListItem> existingItemOpt = shoppingList.getItems().stream()
-//                        .filter(item -> item.getIngredient().equals(ingredient.getIngredient()) &&
-//                                item.getQuantityUnit().equals(ingredient.getQuantityUnit()))
-//                        .findFirst();
-//
-//                if (existingItemOpt.isPresent()) {
-//                    ShoppingListItem existingItem = existingItemOpt.get();
-//                    existingItem.setQuantityValue(existingItem.getQuantityValue() + adjustedQuantity);
-//                } else {
-//                    ShoppingListItem newItem = new ShoppingListItem();
-//                    newItem.setIngredient(ingredient.getIngredient());
-//                    newItem.setQuantityValue(adjustedQuantity);
-//                    newItem.setQuantityUnit(ingredient.getQuantityUnit());
-//                    newItem.setShoppingList(shoppingList);
-//
-//                    shoppingList.getItems().add(newItem);
-//                }
-//            }
-//        }
-//        shoppingListRepository.save(shoppingList);
-//    }
-}//*********************************************************************************************************************
+}

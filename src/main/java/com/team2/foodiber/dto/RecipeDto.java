@@ -9,6 +9,7 @@ import lombok.Data;
 public class RecipeDto {
     private Long id;
     private Long userId;
+    private Long recipeId;
     private String name;
     private RecipeCategory recipeCategory; // Enum directly
     private CookingTime cookingTime; // Enum directly
@@ -16,11 +17,9 @@ public class RecipeDto {
     private String instructions;
     private Long imageId;
 
-    // No-argument constructor
     public RecipeDto() {
     }
 
-    // Constructor to initialize from Recipe entity
     public RecipeDto(Recipe recipe) {
         this.id = recipe.getId();
         this.userId = recipe.getUserId();

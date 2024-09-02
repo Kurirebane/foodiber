@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MealPlanRepository extends JpaRepository<MealPlan, Long> {
-    default MealPlan find3DayMealPlan() {
-        // Fetch the 3-day meal plan from the database
-        return new MealPlan(); // Replace with actual fetching logic
-    }
-
 
 }
+

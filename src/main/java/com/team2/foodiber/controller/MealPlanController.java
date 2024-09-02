@@ -8,7 +8,8 @@ import com.team2.foodiber.service.MealPlanService;
 import com.team2.foodiber.service.RecipeService;
 import com.team2.foodiber.service.ShoppingListService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,17 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Controller
 @AllArgsConstructor
 public class MealPlanController {
 
-    @Autowired
     private MealPlanService mealPlanService;
-    @Autowired
     private RecipeService recipeService;
-    @Autowired
     private RecipeRepository recipeRepository;
-    @Autowired
     private ShoppingListService shoppingListService;
 
 
@@ -56,16 +54,16 @@ public class MealPlanController {
 
     @PostMapping("/meal-plan/remove-recipe-from-day/{dayIndex}/{recipeId}")
     public String removeRecipeFromDay(@PathVariable int dayIndex, @PathVariable Long recipeId, Model model) {
-        // Log the received values
-        System.out.println("Received Day Index: " + dayIndex);  // This should log `0` for the first day
-        System.out.println("Received Recipe ID: " + recipeId);
+
+        log.info("Received Day Index: " + dayIndex);
+        log.info("Received Recipe ID: " + recipeId);
 
         try {
             mealPlanService.removeRecipeFromDay(dayIndex, recipeId);
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("errorMessage", "Error removing recipe from meal plan: " + e.getMessage());
-            return "error";  // Redirect to an error page or show an error message
+            return "error";
         }
         return "redirect:/meal-plan";
     }
@@ -73,16 +71,14 @@ public class MealPlanController {
     @PostMapping("/recipes/add-to-shopping-list")
     public String addToShoppingList(@RequestParam("selectedIngredients") List<Long> ingredientIds,
                                     @RequestParam("recipeId") Long recipeId) {
-        // Fetch the recipe to get its ingredients
+
         Recipe recipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid recipe Id:" + recipeId));
 
-        // Filter the ingredients based on the selected ingredient IDs
         List<RecipeIngredients> selectedIngredients = recipe.getIngredients().stream()
                 .filter(ingredient -> ingredientIds.contains(ingredient.getId()))
                 .collect(Collectors.toList());
 
-        // Add ingredients to shopping list with default quantity (e.g., 1.0)
         shoppingListService.addIngredientsToShoppingList(selectedIngredients, 1);
 
         return "redirect:/meal-plan";

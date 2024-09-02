@@ -73,9 +73,7 @@ public class MainController {
         User createdUser = userService.createUser(user);
         return ResponseEntity.ok(createdUser);
     }
-
 }
-
 
 
 
