@@ -1,21 +1,31 @@
 package com.team2.foodiber.model;
 
+import lombok.Getter;
+
+@Getter
 public enum RecipeCategory {
-    BREAKFAST("Breakfast"), MAIN_COURSE("Main Course"), SOUP("Soup"), DESSERT("Dessert"), VEGETARIAN("Vegetarian");
+    BREAKFAST("BREAKFast"),
+    MAIN_COURSE("MAIN COURSE"),
+    SOUP("SOUP"),
+    DESSERT("DESSERT"),
+    VEGETARIAN("VEGETARIAN");
 
-    private final String displayName;
+    private final String dpName;
 
-    private RecipeCategory(String displayName) {
-        this.displayName = displayName;
+    RecipeCategory(String dpName){
+        this.dpName = dpName;
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
+    public static RecipeCategory fromString(String text){
+        return switch (text) {
+            case "BREAKFAST" -> BREAKFAST;
+            case "MAIN COURSE" -> MAIN_COURSE;
+            case "SOUP" -> SOUP;
+            case "DESSERT" -> DESSERT;
+            case "VEGETARIAN" -> VEGETARIAN;
+            default -> throw new IllegalArgumentException("Unknown recipe category" + text);
+        };
 
-    @Override
-    public String toString() {
-        return displayName;
     }
 }
 

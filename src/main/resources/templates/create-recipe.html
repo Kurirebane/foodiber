@@ -6,35 +6,41 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
-            padding: 40px;
-            background-image: url("/images/createdrecipes.jpg");
-            background-repeat: no-repeat;
-            background-position: right top;
+            margin: 0;
+            padding: 0;
+            background-image: url("/images/backgroundimage.png");
             background-size: cover;
-            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: Arial, Baskerville, monospace;
+            font-size: 40px;
+            font-style: italic;
+            font-weight: bold;
+            color: #204d74;
+            margin-bottom: 20px;
         }
 
         form {
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
-        div {
+        .form-group {
+            width: 100%;
             margin-bottom: 15px;
         }
 
@@ -42,14 +48,17 @@
             font-weight: bold;
             margin-bottom: 5px;
             display: block;
+            color: #333;
         }
 
-        input[type="text"], input[type="number"], textarea, select {
+        input[type="text"], input[type="number"], textarea, select, input[type="file"] {
             width: 100%;
+            max-width: 500px;
             padding: 10px;
-            border: 1px solid rgba(0, 0, 0, 0.7);
+            border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            font-size: 16px;
         }
 
         textarea {
@@ -57,27 +66,47 @@
         }
 
         button {
-            background-color: #10bc80;
+            background-color: #204d74;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
+            padding: 20px 30px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 30px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            width: 400px;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #5bc0de;
+        }
+        .back-button {
+            display: block;
+            margin: 40px 0;
+            padding: 10px 20px;
+            background-color: #1b6d85;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .back-button:hover {
+            background-color: #5bc0de;
         }
     </style>
 </head>
 <body>
-<h2>Create Recipe</h2>
-<form action="/recipes" method="POST" enctype="multipart/form-data" th:object="${recipe}">
-    <div>
-        <label for="name">Recipe Name</label>
-        <input type="text" id="name" name="name" th:field="*{name}" required>
-    </div>
+<div class="container">
+    <h2>Create Recipe</h2>
+    <form action="/recipes" method="POST" enctype="multipart/form-data" th:object="${recipe}">
+        <div class="form-group">
+            <label for="name">Recipe Name</label>
+            <input type="text" id="name" name="name" th:field="*{name}" required>
+        </div>
 
     <div>
         <label for="category">Category</label>
@@ -112,9 +141,9 @@
         <input type="file" id="image" name="image" accept="image/*">
     </div>
 
-    <div>
         <button type="submit">Create Recipe</button>
-    </div>
-</form>
+        <a href="/select-category" class="back-button">Go back to category selection</a>
+    </form>
+</div>
 </body>
 </html>

@@ -34,7 +34,6 @@ public class RecipeController {
         model.addAttribute("recipe", new RecipeDto());
         return "create-recipe";
     }
-
     @PostMapping()
     public String createRecipe(@ModelAttribute RecipeDto recipeDto,
                                @RequestParam("image") MultipartFile file, Model model) {
@@ -61,7 +60,6 @@ public class RecipeController {
             return "create-recipe";
         }
     }
-
     @GetMapping("/success")
     public String showSuccessPage(@RequestParam("recipeId") Long recipeId, Model model) {
         RecipeDto recipe = recipeService.getRecipeDtoById(recipeId);

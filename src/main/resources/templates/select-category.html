@@ -1,106 +1,92 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Categories</title>
-  <!-- Animate.css -->
-  <link th:href="@{/css/animate.css}" rel="stylesheet" />
-  <!-- Icomoon Icon Fonts-->
-  <link th:href="@{/css/icomoon.css}" rel="stylesheet" />
-  <!-- Themify Icons-->
-  <link th:href="@{/css/themify.css}" rel="stylesheet" />
-  <!-- Bootstrap  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Selection</title>
   <link th:href="@{/css/bootsrap.css}" rel="stylesheet" />
-
-  <!-- Magnific Popup -->
-  <link rel="stylesheet" href="/css/magnific-popup.css">
-
-  <!-- Bootstrap DateTimePicker -->
-  <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
-
-  <!-- Owl Carousel  -->
-  <link rel="stylesheet" href="/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="/css/owl.theme.default.min.css">
-
-  <!-- Theme style  -->
-  <link rel="stylesheet" href="/css/style.css">
-
-  <!-- Modernizr JS -->
-  <script src="/js/modernizr-2.6.2.min.js"></script>
-  <!-- FOR IE9 below -->
-  <!--[if lt IE 9]>
-  <script src="./js/respond.min.js"></script>
-  <![endif]-->
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category Selection</title>
-    <style>
-      body {
-        padding-top: 50px;
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-image: url('/images/backgroundimage.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-      .container {
-        margin-top: 100px;
-        margin-bottom: 200px;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.8);
-        padding: 20px;
-        border-radius: 10px;
-      }
-      .category-button {
-        display: block;
-        margin: 40px;
-        padding: 30px 45px;
-        font-size: 22px;
-        background-color: #204d74;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-decoration: none;
-
-      }
-      .category-button:hover {
-        background-color: #5bc0de;
-      }
-      h1 {
-        margin-top: 20px;
-        font-family: Arial, Baskerville, monospace;
-        font-size: 40px;
-        font-style: italic;
-        font-weight: bold;
-        color: #204d74;
-
-      }
-      .back-button {
-        color: #6c7a2e;
-        font-family: Arial, sans-serif;
-
-      }
-    </style>
-  </head>
-<body>
-<div class="container">
-  <h1>SELECT FOOD CATEGORY</h1>
-  <div>
-  <a href="/category?name=BREAKFAST" class="category-button">BREAKFAST</a>
-  <a href="/category?name=MAIN_COURSE" class="category-button">MAIN COURSE</a>
-  <a href="/category?name=SOUP" class="category-button">SOUP</a>
-  <a href="/category?name=DESSERT" class="category-button">DESSERT</a>
-  <a href="/category?name=VEGETARIAN" class="category-button">VEGETARIAN</a>
-    <a href="/" class="back-button">Go back to main page</a>
-  </div>
-</div>
-</body>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-image: url('/images/backgroundimage.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-buttons a {
+      margin-left: 10px;
+      padding: 10px 20px;
+      background-color: #204d74;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .navbar-buttons a:hover {
+      background-color: #5bc0de;
+    }
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 100px auto;
+      width: 60%;
+    }
+    .category-button {
+      display: block;
+      margin: 20px auto;
+      padding: 15px 30px;
+      font-size: 22px;
+      background-color: #204d74;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .category-button:hover {
+      background-color: #5bc0de;
+    }
+    h1 {
+      font-family: Arial, Baskerville, monospace;
+      font-size: 40px;
+      font-style: italic;
+      font-weight: bold;
+      color: #204d74;
+    }
+  </style>
 </head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="navbar-buttons">
+      <a href="/recipes/create" class="btn">Create Recipe</a>
+      <a href="/saved-recipes" class="btn">Saved Recipes</a>
+      <a href="/meal-plan" class="btn">Meal Plan</a>
+    </div>
+  </nav>
+</header>
+<section>
+  <div class="container">
+    <h1>SELECT FOOD CATEGORY</h1>
+    <div>
+      <a href="/category?name=BREAKFAST" class="category-button">BREAKFAST</a>
+      <a href="/category?name=MAIN_COURSE" class="category-button">MAIN COURSE</a>
+      <a href="/category?name=SOUP" class="category-button">SOUP</a>
+      <a href="/category?name=DESSERT" class="category-button">DESSERT</a>
+      <a href="/category?name=VEGETARIAN" class="category-button">VEGETARIAN</a>
+      <a href="/" class="category-button">Go back to main page</a>
+    </div>
+  </div>
+</section>
+
+</body>
 </html>

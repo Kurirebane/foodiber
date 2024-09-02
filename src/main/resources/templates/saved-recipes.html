@@ -13,10 +13,21 @@
             align-items: center;
             padding: 20px;
         }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 100px auto; /* Center the container vertically */
+            width: 60%; /* Adjust width as needed */
+        }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-family: Arial, Baskerville, monospace;
+            font-size: 40px;
+            font-style: italic;
+            font-weight: bold;
+            color: #204d74;
         }
 
         .recipe-details {
@@ -53,6 +64,7 @@
 <title>Saved Recipes</title>
 </head>
 <body>
+<div class="container">
 <h1>Saved Recipes</h1>
 
 <div th:if="${savedRecipes == null || savedRecipes.isEmpty()}">

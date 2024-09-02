@@ -1,5 +1,8 @@
 package com.team2.foodiber.model;
 
+import lombok.Getter;
+
+@Getter
 public enum CookingTime {
 
     FAST_5MIN("About 5 minutes"), MEDIUM_15MIN("About 15 minutes"), SLOW_30MIN("About 30 minutes"), SUPER_SLOW("More than 60 minutes");

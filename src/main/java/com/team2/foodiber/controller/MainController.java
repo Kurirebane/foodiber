@@ -24,14 +24,12 @@ public class MainController {
     private final UserService userService;
     private final RecipeService recipeService;
 
-
     @GetMapping(path = "/search-recipe")
     public String getAllRecipes(final ModelMap modelMap) {
         List<Recipe> recipes = recipeService.getAllRecipes();
         modelMap.addAttribute("recipes", recipes);
         return "search-recipes";
     }
-
     @GetMapping()
     public String getIndex() {
         return "index";
@@ -42,8 +40,6 @@ public class MainController {
 
         return "select-category";
     }
-
-
     @GetMapping("/category")
     public String getCategoryPage(@RequestParam(name = "name") RecipeCategory recipeCategory, ModelMap model) {
         String recipeCategoryLower = recipeCategory.name().toLowerCase();
@@ -63,7 +59,6 @@ public class MainController {
 
         return "category";
     }
-
     @GetMapping("/recipe/details")
     public String getRecipeDetails(@RequestParam(name = "id") Long recipeId, Model model) {
         Recipe recipe = recipeService.getRecipeById(recipeId);
@@ -73,7 +68,6 @@ public class MainController {
         model.addAttribute("recipe", recipe);
         return "recipe-details";
     }
-
     @PostMapping("create-user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.createUser(user);
