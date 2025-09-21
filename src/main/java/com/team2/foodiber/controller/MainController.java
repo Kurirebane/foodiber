@@ -29,6 +29,8 @@ public class MainController {
         List<Recipe> recipes = recipeService.getAllRecipes();
         modelMap.addAttribute("recipes", recipes);
         return "search-recipes";
+
+
     }
     @GetMapping()
     public String getIndex() {
@@ -68,11 +70,7 @@ public class MainController {
         model.addAttribute("recipe", recipe);
         return "recipe-details";
     }
-    @PostMapping("create-user")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return ResponseEntity.ok(createdUser);
-    }
+
 }
 
 

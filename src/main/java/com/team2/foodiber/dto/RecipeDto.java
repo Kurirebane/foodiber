@@ -29,6 +29,5 @@ public class RecipeDto {
         this.instructions = recipe.getInstructions();
 
     }
-
 }
 

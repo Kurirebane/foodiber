@@ -38,6 +38,7 @@ public class SavedRecipeController {
         } else {
             return ResponseEntity.ok(Collections.singletonMap("success", false));
         }
+
     }
 
     @GetMapping("/saved-recipes")

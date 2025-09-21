@@ -5,6 +5,9 @@ import com.team2.foodiber.exceptions.UsernameOrEmailIsAlreadyExisted;
 import com.team2.foodiber.model.User;
 import com.team2.foodiber.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     private User UserDtoToUser(UserDto userDto) {
@@ -39,15 +43,11 @@ public class UserService {
         // If the user does not exist, proceed with saving the user
         User user = new User();
         user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword()); // Remember to encode passwords
+        user.setPassword(passwordEncoder.encode(userDto.getPassword())); // Remember to encode passwords
         user.setEmail(userDto.getEmail());
         user.setName(userDto.getName());
+
         userRepository.save(user);
-    }
-
-
-    public User createUser(User user) {
-        return userRepository.save(user);
     }
 
 
@@ -61,6 +61,15 @@ public class UserService {
             return toDto(userRepository.save(user));
         }
         return null;
+    }
+    public String getLoggedInUsername() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        } else {
+            return principal.toString();
+        }
     }
 
 }
