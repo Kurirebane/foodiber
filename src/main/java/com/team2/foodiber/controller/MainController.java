@@ -1,0 +1,80 @@
+package com.team2.foodiber.controller;
+
+import com.team2.foodiber.model.Recipe;
+import com.team2.foodiber.model.RecipeCategory;
+import com.team2.foodiber.model.User;
+import com.team2.foodiber.service.RecipeService;
+import com.team2.foodiber.service.UserService;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
+@Controller
+@AllArgsConstructor
+public class MainController {
+
+    private final UserService userService;
+    private final RecipeService recipeService;
+
+    @GetMapping(path = "/search-recipe")
+    public String getAllRecipes(final ModelMap modelMap) {
+        List<Recipe> recipes = recipeService.getAllRecipes();
+        modelMap.addAttribute("recipes", recipes);
+        return "search-recipes";
+
+
+    }
+    @GetMapping()
+    public String getIndex() {
+        return "index";
+    }
+
+    @GetMapping(path = "/select-category")
+    public String getAllCategories() {
+
+        return "select-category";
+    }
+    @GetMapping("/category")
+    public String getCategoryPage(@RequestParam(name = "name") RecipeCategory recipeCategory, ModelMap model) {
+        String recipeCategoryLower = recipeCategory.name().toLowerCase();
+        List<Recipe> filteredRecipes = recipeService.getRecipesByCategory(recipeCategory);
+        model.addAttribute("recipes", filteredRecipes);
+        model.addAttribute("categoryName", recipeCategory);
+
+        String backgroundImageUrl = switch (recipeCategory) {
+            case BREAKFAST -> "/images/breakfast.jpg";
+            case MAIN_COURSE -> "/images/maincourses3.jpeg";
+            case SOUP -> "/images/soups.jpg";
+            case DESSERT -> "/images/dessert3.jpg";
+            case VEGETARIAN -> "/images/vegetarian2.jpg";
+            default -> "/images/categories_backround.jpeg";
+        };
+        model.addAttribute("backgroundImageUrl", backgroundImageUrl);
+
+        return "category";
+    }
+    @GetMapping("/recipe/details")
+    public String getRecipeDetails(@RequestParam(name = "id") Long recipeId, Model model) {
+        Recipe recipe = recipeService.getRecipeById(recipeId);
+        if (recipe == null) {
+            return "/select-category";
+        }
+        model.addAttribute("recipe", recipe);
+        return "recipe-details";
+    }
+
+}
+
+
+
+
+
+

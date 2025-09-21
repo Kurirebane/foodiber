@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+    <!-- Animate.css -->
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <!-- Icomoon Icon Fonts-->
+    <link th:href="@{/css/icomoon.css}" rel="stylesheet"/>
+    <!-- Themify Icons-->
+    <link th:href="@{/css/themify.css}" rel="stylesheet"/>
+    <!-- Bootstrap  -->
+    <link th:href="@{/css/bootsrap.css}" rel="stylesheet"/>
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+
+    <!-- Bootstrap DateTimePicker -->
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="/js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="./js/respond.min.js"></script>
+    <![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes in [[${categoryName}]]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .grid-item {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-item:hover {
+            background-color: #5bc0de;
+        }
+
+        .back-button {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body th:style="'background-image: url(' + ${backgroundImageUrl} + ');'">
+<h1>[[${categoryName}]] RECIPES</h1>
+<div class="grid-container">
+    <a th:each="recipe : ${recipes}"
+       th:href="@{/recipe/details(id=${recipe.id})}"
+       class="grid-item"
+       th:text="${recipe.name}">
+    </a>
+</div>
+<a href="/select-category" class="back-button">Go back to category selection</a>
+</body>
+</html>

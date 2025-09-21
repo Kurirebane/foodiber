@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            padding: 40px;
+            background-image: url("/images/createdrecipes.jpg");
+            background-repeat: no-repeat;
+            background-position: right top;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .recipes-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .recipe {
+            position: relative; /* Important: Make this element the positioning context */
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .recipe img {
+            width: 50%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto 20px auto;
+            object-fit: cover;
+        }
+
+        .favorite-container {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            text-align: center;
+        }
+
+        .favorite-label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+        }
+
+        .favorite-btn .fas.fa-heart {
+            transition: color 0.3s ease;
+        }
+
+        .favorite-btn:hover .fas.fa-heart,
+        .favorite-btn.active .fas.fa-heart {
+            color: #e74c3c;
+        }
+
+        .recipe h3 {
+            margin-top: 0;
+        }
+
+        .create-more-recipes {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .create-more-recipes a {
+            font-size: 1.1em;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .create-more-recipes a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<h2>All Recipes</h2>
+<div class="cursive-font recipes-container">
+    <div th:each="recipe : ${recipes}" class="recipe">
+        <div th:if="${recipe.imageId != null}">
+            <img th:src="@{/api/images/{id}(id=${recipe.imageId})}" alt="Recipe Image"/>
+        </div>
+        <div th:if="${recipe.imageId == null}">
+            <p>No image uploaded for this recipe.</p>
+        </div>
+        <h3 th:text="${recipe.name}">Recipe Name</h3>
+        <p><strong>Category:</strong> <span th:text="${recipe.recipeCategory}">Category</span></p>
+        <p><strong>Cooking Time:</strong> <span th:text="${recipe.cookingTime.displayName}">Cooking Time</span></p>
+
+        <!-- Container for the label and heart button -->
+        <div class="favorite-container">
+            <label class="favorite-label">Add to Favorites</label>
+            <button class="favorite-btn">
+                <i class="fas fa-heart"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    });
+</script>
+<div class="create-more-recipes">
+    <a href="/recipes/create">Create More Recipes</a>
+</div>
+</body>
+</html>

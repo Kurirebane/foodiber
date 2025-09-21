@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #204d74;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 100px auto; /* Center the container vertically */
+            width: 60%; /* Adjust width as needed */
+        }
+
+        h1 {
+            font-family: Arial, Baskerville, monospace;
+            font-size: 40px;
+            font-style: italic;
+            font-weight: bold;
+            color: #204d74;
+        }
+
+        .recipe-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .recipe-details img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .recipe-details h3 {
+            margin-top: 0;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<title>Saved Recipes</title>
+</head>
+<body>
+<div class="container">
+<h1>Saved Recipes</h1>
+
+<div th:if="${savedRecipes == null || savedRecipes.isEmpty()}">
+    <p>No Saved recipes found.</p>
+</div>
+
+<div th:if="${savedRecipes != null && !savedRecipes.isEmpty()}">
+    <ul>
+        <li th:each="savedRecipe : ${savedRecipes}" class="recipe-details">
+            <img th:src="@{/api/images/{id}(id=${savedRecipe.imageId})}" alt="Recipe Image"/>
+            <h2 th:text="${savedRecipe.name}">Recipe Name</h2>
+            <p><strong>Category:</strong> <span th:text="${savedRecipe.recipeCategory}">Category</span></p>
+            <p><strong>Cooking Time:</strong> <span th:text="${savedRecipe.cookingTime}">Cooking Time</span></p>
+            <p><strong>Description:</strong> <span th:text="${savedRecipe.instructions}">Description</span></p>
+        </li>
+    </ul>
+</div>
+
+<a href="/recipes/create" style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Create New Recipe</a>
+<a href="/saved-recipes" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">View Saved Recipes</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+package com.team2.foodiber.dto;
+
+import com.team2.foodiber.model.CookingTime;
+import com.team2.foodiber.model.Recipe;
+import com.team2.foodiber.model.RecipeCategory;
+import lombok.Data;
+
+@Data
+public class RecipeDto {
+    private Long id;
+    private Long userId;
+    private Long recipeId;
+    private String name;
+    private RecipeCategory recipeCategory; // Enum directly
+    private CookingTime cookingTime; // Enum directly
+    private String ingredients;
+    private String instructions;
+    private Long imageId;
+
+    public RecipeDto() {
+    }
+
+    public RecipeDto(Recipe recipe) {
+        this.id = recipe.getId();
+        this.userId = recipe.getUserId();
+        this.name = recipe.getName();
+        this.recipeCategory = recipe.getRecipeCategory(); // Directly use Enum
+        this.cookingTime = recipe.getCookingTime(); // Directly use Enum
+        this.instructions = recipe.getInstructions();
+
+    }
+}
+

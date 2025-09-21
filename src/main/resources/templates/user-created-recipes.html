@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Recipes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      padding: 40px;
+      background-image: url("/images/createdrecipes.jpg");
+      background-repeat: no-repeat;
+      background-position: right top;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    .container {
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for content */
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .recipe {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .recipe img {
+      max-width: 200px; /* Limit the image width */
+      height: auto; /* Maintain aspect ratio */
+      float: right; /* Float image to the right */
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+<h1>My Recipes</h1>
+<div>
+  <!-- Iterate over recipes and display them -->
+  <div th:each="recipe : ${recipes}">
+    <div>
+      <h2 th:text="${recipe.name}"></h2>
+      <p>Ingredients: <span th:text="${recipe.ingredients}"></span></p>
+      <p>Instructions: <span th:text="${recipe.instructions}"></span></p>
+      <img th:src="@{/images/{imageId}(imageId=${recipe.imageId})}" th:alt="${recipe.name}" style="width:200px;">
+    </div>
+  </div>
+</div>
+<a th:href="@{/recipes/create}">Create more recipes</a>
+</body>
+</html>
